@@ -3,12 +3,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: grey;
     color: #333;
 }
 
 header {
-    background-color: #333;
+    background-color: black;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -35,7 +35,7 @@ header nav ul li a {
 }
 
 .casino {
-    background-color: white;
+    background-color: grey;
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
