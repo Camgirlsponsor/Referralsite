@@ -6,54 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore the best casino referrals and recommendations for optimal gambling experiences.">
     <title>Casino Reviews and Recommendations</title>
-    <link rel="stylesheet" href="styles4.css">
+    <style>
+        /* Basic styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .content {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 2;
+        }
+
+        .nav-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: rgba(0, 119, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #0055aa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            color: #fff;
+            background-color: #0077ff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+    </style>
 </head>
-
 <body>
-    <header>
-        <h1>Harry's Referral Page</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="reviews.html">RC Plane Calculators</a></li>
-                <li><a href="Honeygain.html">Honeygain</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <section class="intro">
-            <h2>Referrals</h2>
-            <p>Discover the best deals for +Expected Value Gambling.</p>
-        </section>
+    <!-- Main Content Section -->
+    <div class="content">
+        <header>
+            <h1>Harry's Referral Page</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#reviews">RC Plane Calculators</a></li>
+                    <li><a href="#honeygain">Honeygain</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <section class="featured-casinos">
-            <h2>Featured Casinos</h2>
-            <article class="casino">
-                <h3>Jacksclub.io</h3>
-                <p>May need a VPN to work, but a good RTP crypto casino.</p>
-                <a href="https://jacksclub.io?r=~0xharry" class="btn">Sign Up Now</a>
-            </article>
-            <article class="casino">
-                <h3>Stake.us</h3>
-                <p>Get a free 25SC for signing up! Well-known social casino. Free 1 SC = 1 Dollar a day! Also, 25 Free SC in your email.</p>
-                <a href="https://stake.us/?c=41Rxpsn5" class="btn">Sign Up Now</a>
-            </article>
-        </section>
-    </main>
+        <main>
+            <section class="intro">
+                <h2>Referrals</h2>
+                <p>Discover the best deals for +Expected Value Gambling.</p>
+            </section>
 
-    <footer>
-        <p>&copy; 2024 0xharry. All rights reserved.</p>
-        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-    </footer>
+            <section class="featured-casinos">
+                <h2>Featured Casinos</h2>
+                <article class="casino">
+                    <h3>Jacksclub.io</h3>
+                    <p>May need a VPN to work, but a good RTP crypto casino.</p>
+                    <a href="https://jacksclub.io?r=~0xharry" class="btn">Sign Up Now</a>
+                </article>
+                <article class="casino">
+                    <h3>Stake.us</h3>
+                    <p>Get a free 25SC for signing up! Well-known social casino. Free 1 SC = 1 Dollar a day! Also, 25 Free SC in your email.</p>
+                    <a href="https://stake.us/?c=41Rxpsn5" class="btn">Sign Up Now</a>
+                </article>
+            </section>
+        </main>
+    </div>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM1TET5M6P"></script>
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <button onclick="window.location.href='#home'">Home</button>
+        <button onclick="window.location.href='#reviews'">RC Plane Calculators</button>
+        <button onclick="window.location.href='#honeygain'">Honeygain</button>
+        <button onclick="window.location.href='#contact'">Contact</button>
+    </div>
+
+    <!-- 3D Scene Section -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-NM1TET5M6P');
+        // Three.js setup for the 3D background effect
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create a rotating cube
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x0077ff, wireframe: true });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the cube for visual effect
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            // Render the scene
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Adjust canvas size on window resize
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
     </script>
 </body>
 </html>
