@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RC Plane Calculators</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    .calculator {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 8px;
+      width: 100%;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>RC Plane Calculators</h1>
+
+  <!-- Weight-to-Thrust Ratio Calculator -->
+  <div class="calculator">
+    <h2>Weight-to-Thrust Ratio</h2>
+    <label for="weight">Plane Weight (grams):</label>
+    <input type="number" id="weight" placeholder="Enter weight">
+    <label for="thrust">Motor Thrust (grams):</label>
+    <input type="number" id="thrust" placeholder="Enter thrust">
+    <button onclick="calculateRatio()">Calculate Ratio</button>
+    <div class="result" id="ratioResult"></div>
+  </div>
+
+  <!-- Wing Loading Calculator -->
+  <div class="calculator">
+    <h2>Wing Loading</h2>
+    <label for="wingArea">Wing Area (sq. cm):</label>
+    <input type="number" id="wingArea" placeholder="Enter wing area">
+    <label for="planeWeight">Plane Weight (grams):</label>
+    <input type="number" id="planeWeight" placeholder="Enter weight">
+    <button onclick="calculateWingLoading()">Calculate Wing Loading</button>
+    <div class="result" id="wingLoadingResult"></div>
+  </div>
+
+  <!-- Battery Flight Time -->
+  <div class="calculator">
+    <h2>Battery Flight Time</h2>
+    <label for="batteryCapacity">Battery Capacity (mAh):</label>
+    <input type="number" id="batteryCapacity" placeholder="Enter capacity">
+    <label for="motorCurrent">Motor Current Draw (Amps):</label>
+    <input type="number" id="motorCurrent" placeholder="Enter current draw">
+    <button onclick="calculateFlightTime()">Calculate Flight Time</button>
+    <div class="result" id="flightTimeResult"></div>
+  </div>
+
+  <!-- Center of Gravity Calculator -->
+  <div class="calculator">
+    <h2>Center of Gravity (CG)</h2>
+    <label for="wingChord">Wing Chord Length (cm):</label>
+    <input type="number" id="wingChord" placeholder="Enter wing chord length">
+    <label for="cgPercent">Desired CG Position (%):</label>
+    <input type="number" id="cgPercent" placeholder="Enter CG percentage">
+    <button onclick="calculateCG()">Calculate CG</button>
+    <div class="result" id="cgResult"></div>
+  </div>
+
+  <!-- JavaScript Logic -->
+  <script>
+    function calculateRatio() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const thrust = parseFloat(document.getElementById('thrust').value);
+      if (!weight || !thrust || weight <= 0 || thrust <= 0) {
+        document.getElementById('ratioResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const ratio = (weight / thrust).toFixed(2);
+      document.getElementById('ratioResult').textContent = `Weight-to-Thrust Ratio: ${ratio}`;
+    }
+
+    function calculateWingLoading() {
+      const wingArea = parseFloat(document.getElementById('wingArea').value);
+      const weight = parseFloat(document.getElementById('planeWeight').value);
+      if (!wingArea || !weight || wingArea <= 0 || weight <= 0) {
+        document.getElementById('wingLoadingResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const loading = (weight / wingArea).toFixed(2);
+      document.getElementById('wingLoadingResult').textContent = `Wing Loading: ${loading} g/cm²`;
+    }
+
+    function calculateFlightTime() {
+      const capacity = parseFloat(document.getElementById('batteryCapacity').value);
+      const current = parseFloat(document.getElementById('motorCurrent').value);
+      if (!capacity || !current || capacity <= 0 || current <= 0) {
+        document.getElementById('flightTimeResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const time = ((capacity / 1000) / current * 60).toFixed(2);
+      document.getElementById('flightTimeResult').textContent = `Flight Time: ${time} minutes`;
+    }
+
+    function calculateCG() {
+      const chord = parseFloat(document.getElementById('wingChord').value);
+      const percent = parseFloat(document.getElementById('cgPercent').value);
+      if (!chord || !percent || chord <= 0 || percent <= 0) {
+        document.getElementById('cgResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const cgPosition = (chord * (percent / 100)).toFixed(2);
+      document.getElementById('cgResult').textContent = `CG Position: ${cgPosition} cm from the leading edge`;
+    }
+  </script>
+</body>
+</html>
