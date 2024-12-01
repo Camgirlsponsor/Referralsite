@@ -3,130 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="Rc plane calculators, Rc Thrust calculator, RC Calcs, Wing loading calculator, Battery flight time calculator, COG calculator">
   <title>RC Plane Calculators</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #141312;
-      color: #333;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background-color: #007bff;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      flex: 1; /* Make it take up remaining space */
-    }
-
-    .calculator {
-      margin-bottom: 30px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    .calculator:hover {
-      transform: scale(1.02);
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-      color: #0056b3;
-    }
-
-    label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: 600;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      font-size: 1rem;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .result {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    footer {
-      background: #007bff;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: sticky;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .nav-button {
-      padding: 10px 20px;
-      background: white;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid white;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-
-    .nav-button:hover {
-      background: #0056b3;
-      color: white;
-      border-color: #0056b3;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYCTCDMSXY"></script>
@@ -137,67 +15,72 @@
 
   gtag('config', 'G-TYCTCDMSXY');
 </script>
-<body>
-  <header>
-    <h1>RC Plane Calculators</h1>
-    <p>Optimize your RC plane with these essential tools.</p>
+<body class="bg-gray-900 text-gray-200 font-sans flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-blue-600 py-6 text-center">
+    <h1 class="text-3xl font-bold">RC Plane Calculators</h1>
+    <p class="text-gray-200">Optimize your RC plane with these essential tools.</p>
   </header>
 
-  <div class="container">
-    <!-- Weight-to-Thrust Ratio Calculator -->
-    <div class="calculator">
-      <h2>Weight-to-Thrust Ratio</h2>
-      <label for="weight">Plane Weight (grams):</label>
-      <input type="number" id="weight" placeholder="Enter weight">
-      <label for="thrust">Motor Thrust (grams):</label>
-      <input type="number" id="thrust" placeholder="Enter thrust">
-      <button onclick="calculateRatio()">Calculate Ratio</button>
-      <div class="result" id="ratioResult"></div>
-    </div>
+  <!-- Main Container -->
+  <main class="container mx-auto px-4 py-6 flex-1">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-    <!-- Wing Loading Calculator -->
-    <div class="calculator">
-      <h2>Wing Loading</h2>
-      <label for="wingArea">Wing Area (sq. cm):</label>
-      <input type="number" id="wingArea" placeholder="Enter wing area">
-      <label for="planeWeight">Plane Weight (grams):</label>
-      <input type="number" id="planeWeight" placeholder="Enter weight">
-      <button onclick="calculateWingLoading()">Calculate Wing Loading</button>
-      <div class="result" id="wingLoadingResult"></div>
-    </div>
+      <!-- Weight-to-Thrust Ratio Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Weight-to-Thrust Ratio</h2>
+        <label class="block mt-3" for="weight">Plane Weight (grams):</label>
+        <input type="number" id="weight" placeholder="Enter weight" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="thrust">Motor Thrust (grams):</label>
+        <input type="number" id="thrust" placeholder="Enter thrust" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateRatio()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Ratio</button>
+        <div class="result mt-4 text-yellow-400" id="ratioResult"></div>
+      </div>
 
-    <!-- Battery Flight Time -->
-    <div class="calculator">
-      <h2>Battery Flight Time</h2>
-      <label for="batteryCapacity">Battery Capacity (mAh):</label>
-      <input type="number" id="batteryCapacity" placeholder="Enter capacity">
-      <label for="motorCurrent">Motor Current Draw (Amps):</label>
-      <input type="number" id="motorCurrent" placeholder="Enter current draw">
-      <button onclick="calculateFlightTime()">Calculate Flight Time</button>
-      <div class="result" id="flightTimeResult"></div>
-    </div>
+      <!-- Wing Loading Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Wing Loading</h2>
+        <label class="block mt-3" for="wingArea">Wing Area (sq. cm):</label>
+        <input type="number" id="wingArea" placeholder="Enter wing area" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="planeWeight">Plane Weight (grams):</label>
+        <input type="number" id="planeWeight" placeholder="Enter weight" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateWingLoading()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Wing Loading</button>
+        <div class="result mt-4 text-yellow-400" id="wingLoadingResult"></div>
+      </div>
 
-    <!-- Center of Gravity Calculator -->
-    <div class="calculator">
-      <h2>Center of Gravity (CG)</h2>
-      <label for="wingChord">Wing Chord Length (cm):</label>
-      <input type="number" id="wingChord" placeholder="Enter wing chord length">
-      <label for="cgPercent">Desired CG Position (%):</label>
-      <input type="number" id="cgPercent" placeholder="Enter CG percentage">
-      <button onclick="calculateCG()">Calculate CG</button>
-      <div class="result" id="cgResult"></div>
-    </div>
-  </div>
+      <!-- Battery Flight Time -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Battery Flight Time</h2>
+        <label class="block mt-3" for="batteryCapacity">Battery Capacity (mAh):</label>
+        <input type="number" id="batteryCapacity" placeholder="Enter capacity" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="motorCurrent">Motor Current Draw (Amps):</label>
+        <input type="number" id="motorCurrent" placeholder="Enter current draw" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateFlightTime()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Flight Time</button>
+        <div class="result mt-4 text-yellow-400" id="flightTimeResult"></div>
+      </div>
 
-  <footer>
-    <a href="index.html" class="nav-button">Home</a>
-    <a href="Honeygain.html" class="nav-button">Honeygain Guide</a>
-    <a href="contact.html" class="nav-button">Contact</a>
+      <!-- Add More Calculators Here -->
+	  <!-- Center of Gravity Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Center of Gravity (CG)</h2>
+        <label class="block mt-3" for="wingChord">Wing Chord Length (cm):</label>
+        <input type="number" id="wingChord" placeholder="Enter wing chord length" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="cgPercent">Desired CG Position (%):</label>
+        <input type="number" id="cgPercent" placeholder="Enter CG percentage (e.g., 25)" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateCG()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate CG</button>
+        <div class="result mt-4 text-yellow-400" id="cgResult"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 py-4 text-center">
+    <p>&copy; 2024 FLYWISEGUIDES | <a href="index.html" class="text-yellow-300">Back to main page</a></p>
   </footer>
 
-  <!-- JavaScript Logic -->
+  <!-- JavaScript -->
   <script>
-    // Same JavaScript logic from the previous version
     function calculateRatio() {
       const weight = parseFloat(document.getElementById('weight').value);
       const thrust = parseFloat(document.getElementById('thrust').value);
@@ -205,7 +88,7 @@
         document.getElementById('ratioResult').textContent = "Please enter valid values!";
         return;
       }
-      const ratio = (weight / thrust).toFixed(2);
+      const ratio = (thrust / weight).toFixed(2);
       document.getElementById('ratioResult').textContent = `Weight-to-Thrust Ratio: ${ratio}`;
     }
 
@@ -230,17 +113,18 @@
       const time = ((capacity / 1000) / current * 60).toFixed(2);
       document.getElementById('flightTimeResult').textContent = `Flight Time: ${time} minutes`;
     }
-
-    function calculateCG() {
-      const chord = parseFloat(document.getElementById('wingChord').value);
-      const percent = parseFloat(document.getElementById('cgPercent').value);
-      if (!chord || !percent || chord <= 0 || percent <= 0) {
+	
+	function calculateCG() {
+      const wingChord = parseFloat(document.getElementById('wingChord').value);
+      const cgPercent = parseFloat(document.getElementById('cgPercent').value);
+      if (!wingChord || !cgPercent || wingChord <= 0 || cgPercent <= 0 || cgPercent > 100) {
         document.getElementById('cgResult').textContent = "Please enter valid values!";
         return;
       }
-      const cgPosition = (chord * (percent / 100)).toFixed(2);
-      document.getElementById('cgResult').textContent = `CG Position: ${cgPosition} cm from the leading edge`;
+      const cgPosition = (wingChord * (cgPercent / 100)).toFixed(2);
+      document.getElementById('cgResult').textContent = `CG Position: ${cgPosition} cm from the leading edge.`;
     }
+
   </script>
 </body>
 </html>
