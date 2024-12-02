@@ -72,6 +72,49 @@
         <div class="result mt-4 text-yellow-400" id="cgResult"></div>
       </div>
     </div>
+  	  <!-- Propeller RPM Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Propeller RPM</h2>
+        <label class="block mt-3" for="motorKV">Motor KV (RPM/volt):</label>
+        <input type="number" id="motorKV" placeholder="Enter KV" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="voltage">Voltage (volts):</label>
+        <input type="number" id="voltage" placeholder="Enter voltage" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateRPM()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate RPM</button>
+        <div class="result mt-4 text-yellow-400" id="rpmResult"></div>
+      </div>
+	  
+	  <!-- MAC Calculator -->
+     <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+       <h2 class="text-xl font-semibold text-blue-400">Mean Aerodynamic Chord (MAC)</h2>
+       <label class="block mt-3" for="rootChord">Root Chord Length (cm):</label>
+       <input type="number" id="rootChord" placeholder="Enter root chord length" class="w-full p-2 rounded bg-gray-700 text-white">
+       <label class="block mt-3" for="taperRatio">Taper Ratio (Tip Chord / Root Chord):</label>
+       <input type="number" id="taperRatio" placeholder="Enter taper ratio (e.g., 0.5)" class="w-full p-2 rounded bg-gray-700 text-white">
+       <button onclick="calculateMAC()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate MAC</button>
+       <div class="result mt-4 text-yellow-400" id="macResult"></div>
+     </div>
+	 
+	 <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+       <h2 class="text-xl font-semibold text-blue-400">Wing Shape Visualizer</h2>
+       <p class="text-sm text-gray-400">Enter the chord lengths at 4 positions: Root, Mid-Inner, Mid-Outer, and Tip.</p>
+
+       <label class="block mt-3" for="rootChord">Root Chord Length (cm):</label>
+       <input type="number" id="rootChordGraph" placeholder="Enter root chord" class="w-full p-2 rounded bg-gray-700 text-white">
+
+       <label class="block mt-3" for="midInnerChord">Mid-Inner Chord Length (cm):</label>
+       <input type="number" id="midInnerChord" placeholder="Enter mid-inner chord" class="w-full p-2 rounded bg-gray-700 text-white">
+
+       <label class="block mt-3" for="midOuterChord">Mid-Outer Chord Length (cm):</label>
+       <input type="number" id="midOuterChord" placeholder="Enter mid-outer chord" class="w-full p-2 rounded bg-gray-700 text-white">
+
+       <label class="block mt-3" for="tipChord">Tip Chord Length (cm):</label>
+       <input type="number" id="tipChordGraph" placeholder="Enter tip chord" class="w-full p-2 rounded bg-gray-700 text-white">
+
+       <button onclick="updateWingGraph()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Update Graph</button>
+
+       <canvas id="wingGraph" class="mt-6" style="width: 100%; max-height: 300px;"></canvas>
+     </div>
+    </div>
   </main>
 
   <!-- Footer -->
@@ -124,7 +167,93 @@
       const cgPosition = (wingChord * (cgPercent / 100)).toFixed(2);
       document.getElementById('cgResult').textContent = `CG Position: ${cgPosition} cm from the leading edge.`;
     }
+	
+    function calculateRPM() {
+      const motorKV = parseFloat(document.getElementById('motorKV').value);
+      const voltage = parseFloat(document.getElementById('voltage').value);
+      if (!motorKV || !voltage || motorKV <= 0 || voltage <= 0) {
+        document.getElementById('rpmResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const rpm = (motorKV * voltage).toFixed(2);
+       document.getElementById('rpmResult').textContent = `Propeller RPM: ${rpm} RPM`;
+    }
 
-  </script>
-</body>
+    function calculateMAC() {
+      const rootChord = parseFloat(document.getElementById('rootChord').value);
+      const taperRatio = parseFloat(document.getElementById('taperRatio').value);
+      if (!rootChord || !taperRatio || rootChord <= 0 || taperRatio <= 0 || taperRatio > 1) {
+        document.getElementById('macResult').textContent = "Please enter valid values!";
+        return;
+      }
+      const mac = (2 / 3) * rootChord * ((1 + taperRatio + taperRatio ** 2) / (1 + taperRatio));
+       document.getElementById('macResult').textContent = `Mean Aerodynamic Chord (MAC): ${mac.toFixed(2)} cm`;
+    }
+	  </script>
+	
+	
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+   let wingChart;
+    function drawWingGraph(chords) {
+        const positions = [0, 25, 50, 100]; // Relative wing positions (e.g., 0%, 25%, 50%, 100%)
+    
+        const data = {
+          labels: positions.map(pos => `${pos}%`),
+         datasets: [
+           {
+             label: "Wing Chord (cm)",
+             data: chords,
+             fill: false,
+             borderColor: "rgb(59, 130, 246)", // Tailwind's blue-500
+             tension: 0.4,
+             pointBackgroundColor: "rgb(255, 215, 0)", // Tailwind's yellow-400
+            },
+          ],
+       };
+
+        const config = {
+          type: "line",
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+             legend: { display: false },
+             tooltip: { enabled: true },
+            },
+            scales: {
+              x: { title: { display: true, text: "Wing Span Position" } },
+              y: { title: { display: true, text: "Chord Length (cm)" } },
+            },
+          },
+        };
+
+      // If chart exists, destroy it before creating a new one
+       if (wingChart) {
+         wingChart.destroy();
+       }
+       const ctx = document.getElementById("wingGraph").getContext("2d");
+       wingChart = new Chart(ctx, config);
+     }
+
+      function updateWingGraph() {
+       const root = parseFloat(document.getElementById("rootChordGraph").value) || 0;
+       const midInner = parseFloat(document.getElementById("midInnerChord").value) || 0;
+       const midOuter = parseFloat(document.getElementById("midOuterChord").value) || 0;
+       const tip = parseFloat(document.getElementById("tipChordGraph").value) || 0;
+
+       if (root <= 0 || midInner <= 0 || midOuter <= 0 || tip <= 0) {
+         alert("Please enter valid positive values for all chord lengths.");
+         return;
+       }
+  
+      // Update graph with new data
+       drawWingGraph([root, midInner, midOuter, tip]);
+     }
+
+    // Initial Empty Graph
+       drawWingGraph([0, 0, 0, 0]);
+   
+   </script>
+ </body>
 </html>
