@@ -1,1 +1,18 @@
-0f8e1624c0d9495b8a3fcf9dfa20a8a3
+
+Request
+
+                    POST /IndexNow HTTP/1.1
+                    Content-Type: application/json; charset=utf-8
+                    Host: api.indexnow.org
+                    {
+                      "host": "www.flywiseguides.com",
+                      "key": "0f8e1624c0d9495b8a3fcf9dfa20a8a3",
+                      "keyLocation": "https://www.flywiseguides.com/0f8e1624c0d9495b8a3fcf9dfa20a8a3.txt",
+                      "urlList": [
+                          "https://www.flywiseguides.com",
+                          "https://www.flywiseguides.com/Rccalcs.html",
+                          "https://www.flywiseguides.com/index.html"
+                          ]
+                    }
+                
+
