@@ -121,7 +121,7 @@
 
   <!-- Footer -->
   <footer class="bg-blue-600 py-4 text-center">
-    <p>&copy; 2024 FLYWISEGUIDES | <a href="./index" class="text-yellow-300">Back to main page</a></p>
+    <p>&copy; 2024 FLYWISEGUIDES | <a href="index" class="text-yellow-300">Back to main page</a></p>
   </footer>
 
   <!-- JavaScript -->
