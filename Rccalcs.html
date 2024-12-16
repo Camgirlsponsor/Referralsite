@@ -39,7 +39,7 @@
   <main class="container mx-auto px-4 py-6 flex-1">
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-      <!-- Weight-to-Thrust Ratio Calculator -->
+     <!-- Weight-to-Thrust Ratio Calculator -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
         <h2 class="text-xl font-semibold text-blue-400">Weight-to-Thrust Ratio</h2>
         <label class="block mt-3" for="weight">Plane Weight (grams):</label>
@@ -48,7 +48,21 @@
         <input type="number" id="thrust" placeholder="Enter thrust" class="w-full p-2 rounded bg-gray-700 text-white">
         <button onclick="calculateRatio()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Ratio</button>
         <div class="result mt-4 text-yellow-400" id="ratioResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info1')">
+          Hide Info
+        </button>
+        <div id="info1" class="text-sm mt-4 text-gray-300">
+          <p>The **Weight-to-Thrust Ratio** helps determine the power required for your RC plane to take off and perform aerobatics. A ratio of 1.0 means the thrust equals the plane's weight, allowing vertical takeoff. Ratios above 1.0 enable advanced maneuvers, while ratios below 1.0 are suitable for gliders or slow flyers.</p>
+          <p><strong>Guidelines:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>For aerobatics, aim for a ratio above 1.2.</li>
+            <li>For basic flying, a ratio of 0.8 to 1.0 is sufficient.</li>
+            <li>Ensure the motor and ESC can handle the required thrust without overheating.</li>
+          </ul>
+        </div>
       </div>
+
 
       <!-- Wing Loading Calculator -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
@@ -59,6 +73,19 @@
         <input type="number" id="planeWeight" placeholder="Enter weight" class="w-full p-2 rounded bg-gray-700 text-white">
         <button onclick="calculateWingLoading()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Wing Loading</button>
         <div class="result mt-4 text-yellow-400" id="wingLoadingResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info2')">
+          Hide Info
+        </button>
+        <div id="info2" class="text-sm mt-4 text-gray-300">
+          <p>The **Wing Loading** calculator shows the weight supported by each square centimeter of wing area. Lower wing loading values result in slower, more stable flights, ideal for beginners. Higher values lead to faster planes but require better piloting skills.</p>
+          <p><strong>Guidelines:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>For trainers and gliders, aim for less than 15 g/cm².</li>
+            <li>For sport planes, aim between 15-25 g/cm².</li>
+            <li>For high-speed planes, aim above 25 g/cm².</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Battery Flight Time -->
@@ -72,39 +99,77 @@
         <div class="result mt-4 text-yellow-400" id="flightTimeResult"></div>
       </div>
 
-      <!-- Add More Calculators Here -->
-	  <!-- Center of Gravity Calculator -->
+      <!-- Center of Gravity (CG) Calculator -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
         <h2 class="text-xl font-semibold text-blue-400">Center of Gravity (CG)</h2>
-        <label class="block mt-3" for="wingChord">Wing Chord Length (cm):</label>
-        <input type="number" id="wingChord" placeholder="Enter wing chord length" class="w-full p-2 rounded bg-gray-700 text-white">
-        <label class="block mt-3" for="cgPercent">Desired CG Position (%):</label>
-        <input type="number" id="cgPercent" placeholder="Enter CG percentage (e.g., 25)" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="mac">Mean Aerodynamic Chord (MAC) (cm):</label>
+        <input type="number" id="mac" placeholder="Enter MAC" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="cgPosition">Desired CG Position (%MAC):</label>
+        <input type="number" id="cgPosition" placeholder="Enter CG position" class="w-full p-2 rounded bg-gray-700 text-white">
         <button onclick="calculateCG()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate CG</button>
         <div class="result mt-4 text-yellow-400" id="cgResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info3')">
+          Hide Info
+        </button>
+        <div id="info3" class="text-sm mt-4 text-gray-300">
+          <p>The **Center of Gravity (CG)** is crucial for stable flight. A plane with the CG too far forward may struggle to lift off, while a CG too far back can cause instability.</p>
+          <p><strong>Guidelines:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>Place the CG around 25-35% of the MAC for most planes.</li>
+            <li>Use ballast to adjust the CG after assembly.</li>
+            <li>Always perform a balance check before flight.</li>
+          </ul>
+        </div>
       </div>
 
-  	  <!-- Propeller RPM Calculator -->
+      <!-- RPM Calculator -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
-        <h2 class="text-xl font-semibold text-blue-400">Propeller RPM</h2>
-        <label class="block mt-3" for="motorKV">Motor KV (RPM/volt):</label>
-        <input type="number" id="motorKV" placeholder="Enter KV" class="w-full p-2 rounded bg-gray-700 text-white">
-        <label class="block mt-3" for="voltage">Voltage (volts):</label>
+        <h2 class="text-xl font-semibold text-blue-400">RPM Calculator</h2>
+        <label class="block mt-3" for="kvRating">Motor KV Rating:</label>
+        <input type="number" id="kvRating" placeholder="Enter KV rating" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="voltage">Battery Voltage (V):</label>
         <input type="number" id="voltage" placeholder="Enter voltage" class="w-full p-2 rounded bg-gray-700 text-white">
         <button onclick="calculateRPM()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate RPM</button>
         <div class="result mt-4 text-yellow-400" id="rpmResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info5')">
+          Hide Info
+        </button>
+        <div id="info5" class="text-sm mt-4 text-gray-300">
+          <p>The **RPM Calculator** helps determine the rotational speed of your motor based on the KV rating and supplied voltage.</p>
+          <p><strong>Tips:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>Use this to match the correct propeller size for your motor.</li>
+            <li>Higher RPM results in greater thrust but can increase wear on components.</li>
+            <li>Always stay within the recommended RPM limits for your propeller.</li>
+          </ul>
+        </div>
       </div>
 	  
-	  <!-- MAC Calculator -->
-     <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
-       <h2 class="text-xl font-semibold text-blue-400">Mean Aerodynamic Chord (MAC)</h2>
-       <label class="block mt-3" for="rootChord">Root Chord Length (cm):</label>
-       <input type="number" id="rootChord" placeholder="Enter root chord length" class="w-full p-2 rounded bg-gray-700 text-white">
-       <label class="block mt-3" for="taperRatio">Taper Ratio (Tip Chord / Root Chord):</label>
-       <input type="number" id="taperRatio" placeholder="Enter taper ratio (e.g., 0.5)" class="w-full p-2 rounded bg-gray-700 text-white">
-       <button onclick="calculateMAC()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate MAC</button>
-       <div class="result mt-4 text-yellow-400" id="macResult"></div>
-     </div>
+      <!-- Mean Aerodynamic Chord (MAC) Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Mean Aerodynamic Chord (MAC)</h2>
+        <label class="block mt-3" for="rootChord">Root Chord (cm):</label>
+        <input type="number" id="rootChord" placeholder="Enter root chord" class="w-full p-2 rounded bg-gray-700 text-white">
+        <label class="block mt-3" for="tipChord">Tip Chord (cm):</label>
+        <input type="number" id="tipChord" placeholder="Enter tip chord" class="w-full p-2 rounded bg-gray-700 text-white">
+        <button onclick="calculateMAC()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate MAC</button>
+        <div class="result mt-4 text-yellow-400" id="macResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info4')">
+          Hide Info
+        </button>
+        <div id="info4" class="text-sm mt-4 text-gray-300">
+          <p>The **Mean Aerodynamic Chord (MAC)** is the average width of the wing, used to calculate the Center of Gravity (CG) and stability margins.</p>
+          <p><strong>How to Use:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>Accurate MAC is critical for CG placement.</li>
+            <li>Measure your wing root and tip chords carefully.</li>
+            <li>For tapered or elliptical wings, this calculation is essential.</li>
+          </ul>
+        </div>
+      </div>
 	 
 	 <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
        <h2 class="text-xl font-semibold text-blue-400">Wing Shape Visualizer</h2>
@@ -267,5 +332,17 @@
        drawWingGraph([0, 0, 0, 0]);
    
    </script>
+   
+   <script>
+    function toggleInfo(id) {
+      const infoBox = document.getElementById(id);
+      if (infoBox.classList.contains('hidden')) {
+        infoBox.classList.remove('hidden');
+      } else {
+        infoBox.classList.add('hidden');
+      }
+    }
+  </script>
+  
  </body>
 </html>
