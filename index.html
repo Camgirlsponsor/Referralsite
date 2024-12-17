@@ -87,12 +87,12 @@
         }
         .referral-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
         }
         .referral-card p {
             font-size: 1rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .referral-card a {
             text-decoration: none;
@@ -116,7 +116,71 @@
         footer p {
             margin: 0;
         }
-    </style>
+
+        .tile {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 0px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tile:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .tile h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0px;
+        }
+
+        .tile p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 0px;
+        }
+		 
+        .contact-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .contact-section h2 {
+            margin-bottom: 20px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+        .contact-form button {
+            background: linear-gradient(45deg, #23c462, #009688);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(45deg, #009688, #23c462);
+        }
+</style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GT-WR9FQV3N"></script>
@@ -127,9 +191,6 @@
 
   gtag('config', 'GT-WR9FQV3N');
 </script>
-	
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/bbe7ca0fd1bfd.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8611249463710552"
 crossorigin="anonymous"></script>
@@ -142,7 +203,8 @@ crossorigin="anonymous"></script>
         <a href="#about">About</a>
         <a href="#referrals">Referrals</a>
         <a href="Rccalcs">Model Aircraft calculators</a>
-	<a href="Honeygain">Honeygain</a>
+	    <a href="Honeygain">Honeygain</a>
+		<a href="#contact">Contact</a>
     </nav>
 	
     <header id="home">
@@ -150,19 +212,24 @@ crossorigin="anonymous"></script>
         <p>Explore these amazing opportunities and earn rewards. Stay active and enjoy monthly rakeback! There is also an assortment of aviation based calculators under the aviation calculators tab!</p>
     </header>
 
-    <section id="about" class="container">
+<section id="about" class="container">
+    <div class="tile">
         <h2>About Us</h2>
         <p>Welcome to Flywiseguides! We provide curated lists of exciting referral opportunities, online casinos with rewards, and specialized RC model aircraft calculators. As an avid RC plane enthusiast and +EV gambling advocate, I created this platform to share my expertise and offer unique perks to users.</p>
         <p>New referrals will receive special bonuses – check out the referral section to get started!</p>
-    </section>
-	
-     <section id="about" class="container">
+    </div>
+</section>
+
+<section id="promotions" class="container">
+    <div class="tile">
         <h2>PROMOTIONS!!!</h2>
         <p>For our first ongoing Promotion, We are offering a $1 tip to each persons account who signs up under this referral! And another $3 dollar tip for every time you advance a VIP Rank!</p>
         <p>Visit the <a href="https://gamba.com/?c=0xharry" style="color: #23c462; text-decoration: underline;">SIGN UP NOW</a> Click the link to get started!</p>
-	<p> For each person to sign up under my Stake.us referral and verify, i will personally send you $10 dollars USD</p>
-	<p>Visit the <a href="https://stake.us/?c=41Rxpsn5" style="color: #23c462; text-decoration: underline;">SIGN UP NOW</a> Click the link to get started!</p>
-    </section>
+        <p>For each person to sign up under my Stake.us referral and verify, I will personally send you $10 dollars USD</p>
+        <p>Visit the <a href="https://stake.us/?c=41Rxpsn5" style="color: #23c462; text-decoration: underline;">SIGN UP NOW</a> Click the link to get started!</p>
+    </div>
+</section>
+
 	
     <section id="casino-referrals" class="container">
         <h2>Referral Opportunities</h2>
@@ -170,7 +237,7 @@ crossorigin="anonymous"></script>
             <article class="referral-card">
                 <h3>Gamba.com</h3>
                 <p>Get 75% comission of referral rakeback, great casino good variety of games. It requires a VPN tho. They also offer a deposit bonus towards bronze VIP. making a deposit of 20 dollars gets you a few plinko drops with no playthrough on the reward. They also give you tickets for their weekly lottery which is also a unique feature!</p>
-                <a href="https://gamba.com/?c=0xharry" target="_blank">Sign Up</a>
+                <a href="https://gamba.com/?c=Harry" target="_blank">Sign Up</a>
             </article>
             <article class="referral-card">
                 <h3>CrownCoinsCasino</h3>
@@ -189,15 +256,20 @@ crossorigin="anonymous"></script>
                 <a href="https://www.realprize.com/refer/421254" target="_blank">Sign Up</a>
             </article>
             <article class="referral-card">
-	        <h3>Stake.com</h3>
-                <p>This is the INTERNATIONAL version of stake. It is a crypto casino with a wide vareity of games, and very good perks like rakeback, and the ability to claim free bonus codes if you have the wager to do so. There is also Rain in chat if you have above a $1500 wager, sometimes people will drop $100-50 dollars at a time randomly. This is one of my favorites and their the industry leader for a reason!</p>
-                <a href="https://www.stake.com/?c=chOba0eN" target="_blank">Sign Up</a>
+                <h3>Jacksclub.io</h3>
+                <p>May need a VPN to work, but a good RTP crypto casino.</p>
+                <a href="https://jacksclub.io?r=~0xharry" target="_blank">Sign Up</a>
             </article>            
 	        <article class="referral-card">
                 <h3>Luckybird.io</h3>
                 <p>International and U.S Based online casino. They also have a faucet you can use once every 5 minutes, so you can keep playing. Their one of the few casinos to offer this, so that makes them definitely worth trying! They have a rather low cashout threshold as well. They cashout instantly to crypto.</p>
                 <a href="https://luckybird.io/?c=harry" target="_blank">Sign Up</a>
             </article>	   
+	        <article class="referral-card">
+                <h3>Stake.com</h3>
+                <p>This is the INTERNATIONAL version of stake. It is a crypto casino with a wide vareity of games, and very good perks like rakeback, and the ability to claim free bonus codes if you have the wager to do so. There is also Rain in chat if you have above a $1500 wager, sometimes people will drop $100-50 dollars at a time randomly. This is one of my favorites and their the industry leader for a reason!</p>
+                <a href="https://www.stake.com/?c=chOba0eN" target="_blank">Sign Up</a>
+            </article>
     </section>
 		
 	<section id="rc-calculators" class="container">
@@ -216,6 +288,17 @@ crossorigin="anonymous"></script>
         <h2>Honeygain Referral</h2>
         <p>Turn your unused internet into passive income with Honeygain. Earn rewards effortlessly!</p>
         <a href="Honeygain" target="_blank" style="color: #23c462; text-decoration: underline;">Learn More</a>
+    </section>
+	
+    <section id="contact" class="container contact-section">
+        <h2>Contact Me</h2>
+        <form class="contact-form" action="fly.postbox882@passinbox.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject">
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
     </section>
    
     <footer id="contact">
