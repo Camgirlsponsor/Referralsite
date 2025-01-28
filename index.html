@@ -6,248 +6,267 @@
     <meta name="description" content="Discover Flywiseguides for Casino sign up bonuses, Wager races for affiliates, We also offer a wide vareity of Aviation calculators specifically for model aircraft">
     <title>Flywiseguides: Casino Sign up bonuses, Side Hustles & RC Plane Calculators and Tools</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1124cb, #2575fc);
-            color: #fff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            padding: 10px 20px;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        nav a:hover {
-            background: #23c462;
-            color: #fff;
-        }
-        header {
-            text-align: center;
-            padding: 20px 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 10px auto;
-            padding: 5px;
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1124cb, #2575fc);
+    color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
 
-        .casino {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: left;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
-        .casino:hover {
-            background: linear-gradient(45deg, #009688, #23c462);
-        }
+nav {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            margin-top: 40px;
-        }
-        footer p {
-            margin: 0;
-        }
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
 
-        .tile {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1px;
-            padding: 5px;
-            margin-bottom: 0px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+nav a:hover {
+    background: #23c462;
+    color: #fff;
+}
 
-        .tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
+header {
+    text-align: center;
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-        .tile h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0px;
-        }
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
 
-        .tile p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 0px;
-        }
-		 
-        .contact-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .contact-section h2 {
-            margin-bottom: 20px;
-        }
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            max-width: 500px;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 1rem;
-        }
-        .contact-form button {
-            background: linear-gradient(45deg, #23c462, #009688);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .contact-form button:hover {
-            background: linear-gradient(45deg, #009688, #23c462);
-        }
-	.button { 
-	   background-color: #1c87c9; 
-	   border: none; 
-	   color: white; 
-	   padding: 20px 34px; 
-	   text-align: center; 
-	   text-decoration: none; 
-	   display: inline-block; 
-	   font-size: 20px; 
-	   margin: 4px 2px; 
-	   cursor: pointer; 
-	   }
-	.button:hover {
-           background: linear-gradient(45deg, #009688, #23c462);
-        }
-		
+header p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 5px;
+}
+
+.casino {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.casino:hover {
+    background: linear-gradient(45deg, #009688, #23c462);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.tile {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px; /* Changed from 1px to 15px */
+    padding: 5px;
+    margin-bottom: 0px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tile h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0px;
+}
+
+.tile p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0px;
+}
+
+.contact-section {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    background: linear-gradient(45deg, #23c462, #009688);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: linear-gradient(45deg, #009688, #23c462);
+}
+
+.button {
+    background-color: #1c87c9;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: linear-gradient(45deg, #009688, #23c462);
+}
+
 #leaderboard {
-  padding: 20px;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  color: #fff;
-  max-width: 900px;
-  margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    max-width: 900px;
+    margin: 20px auto;
 }
 
 /* Leaderboard title */
 #leaderboard h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #ffd700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Leaderboard table */
 #leaderboard-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  border-radius: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 15px;
 }
 
 /* Table headers */
 #leaderboard-table thead tr {
-  background: #282c34;
-  color: #ffd700;
+    background: #282c34;
+    color: #ffd700;
 }
 
 #leaderboard-table th {
-  padding: 15px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* Table rows */
 #leaderboard-table tbody tr {
-  transition: background 0.3s;
+    transition: background 0.3s;
 }
 
 #leaderboard-table tbody tr:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #leaderboard-table tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 #leaderboard-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Table cells */
 #leaderboard-table td {
-  padding: 12px;
-  font-size: 0.9rem;
+    padding: 12px;
+    font-size: 0.9rem;
 }
 
 /* Responsive styling */
 @media (max-width: 768px) {
-  #leaderboard h2 {
-    font-size: 1.5rem;
-  }
+    #leaderboard h2 {
+        font-size: 1.5rem;
+    }
 
-  #leaderboard-table th,
-  #leaderboard-table td {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
+    #leaderboard-table th,
+    #leaderboard-table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
 }
+     
 
 </style>
 </head>
@@ -396,18 +415,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Visit the <a href="Rccalcs" class="button" ">Model Aircraft Calculators</a> page to get started!</p>
     </section>
 
-<section id="contact" class="container contact-section">
-    <h2>Contact Me</h2>
-    <p>
-        Feel free to reach out via email: 
-        <a href="mailto:fly.postbox882@passinbox.com">fly.postbox882@passinbox.com</a>
-    </p>
-</section>
-   
-    <footer id="contact">
-        <p>&copy; Flywiseguides. All rights reserved.</p>
+<footer class="bg-gray-800 text-white py-6">
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- About Section -->
+    <div class="flex flex-col">
+      <h2 class="text-xl font-bold mb-2">About FlyWise Guides</h2>
+      <p class="text-sm text-gray-400">FlyWise Guides provides RC plane enthusiasts with expert tools, calculators, and resources to design and optimize their aircraft for maximum performance. Join us and take flight!</p>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex flex-col">
+      <h2 class="text-xl font-bold mb-2">Quick Links</h2>
+      <ul class="space-y-1">
+        <li><a href="/" class="button">Home</a></li>
+        <li><a href="/calculators" class="button" >Calculators</a></li>
+        <li><a href="/leaderboard" class="button"  >Affiliate Race Leaderboard</a></li>
+        <li><a href="/about" class="button"  >About Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="flex flex-col">
+      <h2 class="text-xl font-bold mb-2">Contact Us</h2>
+      <p class="text-sm text-gray-400">Have questions or feedback? Reach out to us:</p>
+      <a href=""mailto:fly.postbox882@passinbox.com" class="button" >flywiseguides.com</a>
+    </div>
+  </div>
+
+    <footer>
+
+        <p>&copy; 2023 Flywiseguides. All rights reserved.</p>
+
+        <p><a href="#privacy-policy" style="color: #fff;">Privacy Policy</a> | <a href="#terms-of-service" style="color: #fff;">Terms of Service</a></p>
+
     </footer>
-	
 </body>
 </html>
 
