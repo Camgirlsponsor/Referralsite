@@ -66,45 +66,20 @@
             max-width: 1200px;
             margin: 10px auto;
             padding: 5px;
-        }
-        .referral-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .referral-card {
+
+        .casino {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 20px;
-            text-align: center;
+            text-align: left;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .referral-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-        .referral-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0px;
-        }
-        .referral-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .referral-card a {
-            text-decoration: none;
-            color: #fff;
-            background: linear-gradient(45deg, #23c462, #009688);
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-        }
-        .referral-card a:hover {
+
+        .casino:hover {
             background: linear-gradient(45deg, #009688, #23c462);
         }
+
         footer {
             text-align: center;
             padding: 20px;
@@ -118,8 +93,8 @@
 
         .tile {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 1px;
+            padding: 5px;
             margin-bottom: 0px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -194,6 +169,86 @@
 	.button:hover {
            background: linear-gradient(45deg, #009688, #23c462);
         }
+		
+#leaderboard {
+  padding: 20px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+/* Leaderboard title */
+#leaderboard h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Leaderboard table */
+#leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Table headers */
+#leaderboard-table thead tr {
+  background: #282c34;
+  color: #ffd700;
+}
+
+#leaderboard-table th {
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Table rows */
+#leaderboard-table tbody tr {
+  transition: background 0.3s;
+}
+
+#leaderboard-table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#leaderboard-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#leaderboard-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Table cells */
+#leaderboard-table td {
+  padding: 12px;
+  font-size: 0.9rem;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  #leaderboard h2 {
+    font-size: 1.5rem;
+  }
+
+  #leaderboard-table th,
+  #leaderboard-table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+}
+
 </style>
 </head>
 <!-- Google Tag Manager -->
@@ -224,7 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
     <header id="home">
         <h1>Flywiseguides.com</h1>
-        <p>A Casino referral and RC plane/aviation calculator website. </p>
+        <p>A Casino Guide, blog and place to find various RC plane/aviation Calculators </p>
     </header>
 
 <section id="leaderboard" class="container">
@@ -277,36 +332,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section id="casino-referrals" class="container">
         <h2>Referral Opportunities</h2>
         <div class="referral-list">
-            <article class="referral-card">
-                <h3>Gamba.com</h3>
-                <p>Get 75% comission of referral rakeback, great casino good variety of games. It requires a VPN tho. They also offer a deposit bonus towards bronze VIP. making a deposit of 20 dollars gets you a few plinko drops with no playthrough on the reward. They also give you tickets for their weekly lottery which is also a unique feature!</p>
-                <a href="https://gamba.com/?c=Harry" target="_blank">Sign Up</a>
-            </article>
-            <article class="referral-card">
-                <h3>CrownCoinsCasino</h3>
-                <p>I have won $1000+ here many times, this is a good Casino if you enjoy slots, They do alot deals regularly through out the week! They offer a great VIP program. They also allow you to level up VIP with Gold coins! .</p>
-                <a href="https://crowncoinscasino.com/?utm_campaign=51455a93-f458-46c9-a015-93bace4614db&utm_source=friends" target="_blank">Sign Up</a>
-            </article>
-            <article class="referral-card">
-                <h3>Realprize.com</h3>
-                <p>Realprize gives a daily of .30SC and also does alot of great promotions usually close to $1 per 2sc. Be on the lookout for Free SC links and livestreams from them as well!</p>
-                <a href="https://www.realprize.com/refer/421254" target="_blank">Sign Up</a>
-            </article>
-            <article class="referral-card">
-                <h3>Jacksclub.io</h3>
-                <p>May need a VPN to work, but a good RTP crypto casino.</p>
-                <a href="https://jacksclub.io?r=~0xharry" target="_blank">Sign Up</a>
-            </article>            
-	        <article class="referral-card">
-                <h3>Luckybird.io</h3>
-                <p>International and U.S Based online casino. They also have a faucet you can use once every 5 minutes, so you can keep playing. Their one of the few casinos to offer this, so that makes them definitely worth trying! They have a rather low cashout threshold as well. They cashout instantly to crypto.</p>
-                <a href="https://luckybird.io/?c=harry" target="_blank">Sign Up</a>
-            </article>	   
-	        <article class="referral-card">
-                <h3>Stake.com</h3>
-                <p>This is the INTERNATIONAL version of stake. It is a crypto casino with a wide vareity of games, and very good perks like rakeback, and the ability to claim free bonus codes if you have the wager to do so. There is also Rain in chat if you have above a $1500 wager, sometimes people will drop $100-50 dollars at a time randomly. This is one of my favorites and their the industry leader for a reason!</p>
-                <a href="https://www.stake.com/?c=chOba0eN" target="_blank">Sign Up</a>
-            </article>
+        <section class="casino">
+            <h2>Stake.us</h2>
+            <p>Daily Earnings: $1</p>
+            <p>Sign up bonus: $25</p>
+            <p>Wager leaderboard access, with potential of winning $10</p>
+            <p>No playthrough required on the daily dollar!</p>
+            <a href="https://stake.us/?c=beer" class="button" target="_blank">Join Now</a>
+        </section>
+        <section class="casino">
+            <h2>CrownCoinsCasino</h2>
+            <p>I have won $1000+ here many times. This is a great casino if you enjoy slots. They regularly offer deals throughout the week and have an excellent VIP program. You can also level up VIP with Gold Coins!</p>
+            <p>Sign up bonus: 2SC and 100k Gold Coins</p>
+            <p>Daily Earnings: $0.30-$1</p>
+            <a href="https://crowncoinscasino.com/?utm_campaign=51455a93-f458-46c9-a015-93bace4614db&utm_source=friend" class="button" target="_blank">Join Now</a>
+        </section>
+        <section class="casino">
+            <h2>Luckybird</h2>
+            <p>Daily Earnings: $0.30-$1</p>
+            <p>Weekly bonus wheel: $0.30-$10</p>
+            <p>Faucet that can be used often for $0.05</p>
+            <a href="https://luckybird.io/?c=harry" class="button" target="_blank">Join Now</a>
+        </section>
+        <section class="casino">
+            <h2>Zula</h2>
+            <p>Daily Earnings: $1</p>
+            <p>They also offer good 100% bonus deals for +EV gambling.</p>
+            <a href="https://www.zulacasino.com/signup/7ec7817e-9805-4f95-9b6a-7251c6c15564" class="button" target="_blank">Join Now</a>
+        </section>
+        <section class="casino">
+            <h2>FortuneCoins</h2>
+            <p>Daily Earnings: 50FC = $0.50 (increases for consecutive days claimed)</p>
+            <p>They also offer some good 100% bonus deals for +EV gambling.</p>
+            <a href="https://www.fortunecoins.com/signup/7b11c20e-82be-4c0c-b163-f54b038adee6" class="button" target="_blank">Join Now</a>
+        </section>
+        <section class="casino">
+            <h2>Total Daily Earnings</h2>
+            <p>Daily Earnings: $2.60-$4</p>
+            <p>Monthly Earnings: $78-$120</p>
+        </section>
+		<section class="casino">
+            <h2>Everything below this point is a Crypto casino requiring a vpn</h2>
+            <p>The free vpn i use is Windscribe set to the location of Norway</p>
+            <p>Crypto casinos dont usually offer sign up bonuses but come at the advantage of being able to cashout instantly and they tend to have a lower cashout threshold allowing you to cashout smaller amounts</p>
+        </section>
+	    <section class="casino">
+            <h2>Stake.com</h2>
+            <p>This is the INTERNATIONAL version of stake. It is a crypto casino with a wide vareity of games, and very good perks like rakeback, and the ability to claim free bonus codes if you have the wager to do so. There is also Rain in chat if you have above a $1500 wager, sometimes people will drop $100-50 dollars at a time randomly. This is one of my favorites and their the industry leader for a reason</p>
+            <p>There is also a wider vareity of games on this version</p>
+			<a href="https://www.stake.com/?c=chOba0eN" class="button" target="_blank">Join Now</a>
+        </section>
     </section>
 		
 	<section id="rc-calculators" class="container">
@@ -335,4 +410,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 </body>
 </html>
+
 
