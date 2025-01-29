@@ -1,390 +1,348 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="msvalidate.01" content="97556390276BBAC9416EB3B1D6035917" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover Flywiseguides for Casino sign up bonuses, Wager races for affiliates, We also offer a wide vareity of Aviation calculators specifically for model aircraft">
-    <title>Flywiseguides: Casino Sign up bonuses, Side Hustles & RC Plane Calculators and Tools</title>
-      
-    <!-- Include Tailwind CSS -->
+    <title>Flywise Guides - RC Calculators & Casino Insights</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-	
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1124cb, #2575fc);
-            color: #fff;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --primary-color: #1c87c9;
+            --secondary-color: #23c462;
+            --background-gradient: linear-gradient(135deg, #1124cb, #2575fc);
         }
-        #webgl-canvas {
-            position: fixed;
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: var(--background-gradient);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .gradient-overlay {
+            background: rgba(0,0,0,0.6);
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
         }
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            padding: 10px 20px;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-        nav a:hover {
-            background: #23c462;
-            color: #fff;
-        }
-        header {
-            text-align: center;
-            padding: 20px 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 10px auto;
-            padding: 5px;
 
-        .casino {
-            background: rgba(255, 255, 255, 0.1);
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1581579186913-45ac24ed53d2');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .calculator-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
             border-radius: 15px;
             padding: 20px;
-            text-align: left;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
         }
-
-        .casino:hover {
-            background: linear-gradient(45deg, #009688, #23c462);
-        }
-
-
-
-        .tile {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 1px;
-            padding: 5px;
-            margin-bottom: 0px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .tile h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0px;
-        }
-
-        .tile p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 0px;
-        }
-		 
-	.button { 
-	   background-color: #1c87c9; 
-	   border: none; 
-	   color: white; 
-	   padding: 20px 34px; 
-	   text-align: center; 
-	   text-decoration: none; 
-	   display: inline-block; 
-	   font-size: 20px; 
-	   margin: 4px 2px; 
-	   cursor: pointer; 
-	   }
-	.button:hover {
-           background: linear-gradient(45deg, #009688, #23c462);
-        }
-		
-#leaderboard {
-  padding: 20px;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  color: #fff;
-  max-width: 900px;
-  margin: 20px auto;
+   .bg-bronze {
+    background-color: #cd7f32;
 }
 
-/* Leaderboard title */
-#leaderboard h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #ffd700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+/* Optional: Add some subtle animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
-/* Leaderboard table */
-#leaderboard-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-  border-radius: 15px;
+.leaderboard-entries > div:hover {
+    animation: pulse 1s infinite;
 }
-
-/* Table headers */
-#leaderboard-table thead tr {
-  background: #282c34;
-  color: #ffd700;
-}
-
-#leaderboard-table th {
-  padding: 15px;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Table rows */
-#leaderboard-table tbody tr {
-  transition: background 0.3s;
-}
-
-#leaderboard-table tbody tr:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-#leaderboard-table tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-#leaderboard-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Table cells */
-#leaderboard-table td {
-  padding: 12px;
-  font-size: 0.9rem;
-}
-
-/* Responsive styling */
-@media (max-width: 768px) {
-  #leaderboard h2 {
-    font-size: 1.5rem;
-  }
-
-  #leaderboard-table th,
-  #leaderboard-table td {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
-}   
-     
-
-</style>
+   </style>
 </head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5DFP5HR5');</script>
-<!-- End Google Tag Manager -->
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8611249463710552"
-crossorigin="anonymous"></script>
-
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DFP5HR5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    <canvas id="webgl-canvas"></canvas>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#referrals">Referrals</a>
-        <a href="Rccalcs">Model Aircraft calculators</a>
-	    <a href="Honeygain">Honeygain</a>
-		<a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-80 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#" class="text-white text-2xl font-bold flex items-center">
+                <i class="fas fa-plane-departure mr-2"></i> FlyWise Guides
+            </a>
+            <div class="space-x-6">
+                <a href="#home" class="text-white hover:text-blue-300 transition">Home</a>
+                <a href="#calculators" class="text-white hover:text-blue-300 transition">Calculators</a>
+                <a href="#referrals" class="text-white hover:text-blue-300 transition">Referrals</a>
+                <a href="#about" class="text-white hover:text-blue-300 transition">About</a>
+                <a href="#contact" class="cta-button">Contact</a>
+            </div>
+        </div>
     </nav>
-	
-    <header id="home">
-        <h1>Flywiseguides.com</h1>
-        <p>A Casino Guide, blog and place to find various RC plane/aviation Calculators </p>
+
+    <!-- Hero Section -->
+    <header class="hero relative">
+        <div class="gradient-overlay"></div>
+        <div class="container mx-auto text-center relative z-10 px-4">
+            <h1 class="text-5xl font-bold mb-4 text-white">Elevate Your RC Aircraft Design</h1>
+            <p class="text-xl mb-8 text-gray-200">Powerful Calculators & Casino Insights for Enthusiasts</p>
+            <div class="space-x-4">
+                <a href="#calculators" class="cta-button">Explore Calculators</a>
+                <a href="#referrals" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">View Referrals</a>
+            </div>
+        </div>
     </header>
 
-<section id="leaderboard" class="container">
-    <h2>Stake.us monthly affiliate giveaway leaderboard</h2>
-    <table id="leaderboard-table" style="width: 100%; border-collapse: collapse; margin: 20px auto; background: rgba(255, 255, 255, 0.1); border-radius: 15px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);">
-        <thead style="background: rgba(0, 0, 0, 0.8); color: #fff;">
-            <tr>
-                <th style="padding: 10px;">Rank</th>
-                <th style="padding: 10px;">Player</th>
-                <th style="padding: 10px;">Wager</th>
-            </tr>
-        </thead>
-        <tbody style="text-align: center; color: #fff;">
-            <tr>
-                <td style="padding: 10px;">1</td>
-                <td style="padding: 10px;">*****r13</td>
-                <td style="padding: 10px;">336.41</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">2</td>
-                <td style="padding: 10px;">******rl4</td>
-                <td style="padding: 10px;">181.00</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">3</td>
-                <td style="padding: 10px;">***028</td>
-                <td style="padding: 10px;">156.15</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px;">4</td>
-                <td style="padding: 10px;">******949</td>
-                <td style="padding: 10px;">78.00</td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-	
-<section id="about" class="container">
-    <div class="tile">
-        <h2>Stake.US PROMO</h2>
-        <p>Get a free 25SC for signing up! Well-known social casino. Free 1 SC = 1 Dollar a day! Also, 25 Free SC in your email for signing up.</p>
-        <p>You can Earn 1 dollar every 24 hours on this website. There is no playthrough required on the daily dollar.You can save them up and cashout once you get to the threshold in Any crypto of your choosing</p>
-        <p>Make sure you sign up with my link or after you create your account go to Profile>settings>Offers>Welcome Offer! type the code: augment</p>
-	<p>1st place of the affiliate wager leaderboard will get $10 crypto. Prizes will go up as there is more people to compete!</p>
-	<a href="https://stake.us/?c=Augment" class="button" target="_blank">Sign Up</a>
-    </div>
-</section>
-	
-
-    <section id="casino-referrals" class="container">
-        <h2>Referral Opportunities</h2>
-        <div class="referral-list">
-        <section class="casino">
-            <h2>Stake.us</h2>
-            <p>Daily Earnings: $1</p>
-            <p>Sign up bonus: $25</p>
-            <p>Wager leaderboard access, with potential of winning $10</p>
-            <p>No playthrough required on the daily dollar!</p>
-            <a href="https://stake.us/?c=beer" class="button" target="_blank">Join Now</a>
-        </section>
-        <section class="casino">
-            <h2>CrownCoinsCasino</h2>
-            <p>I have won $1000+ here many times. This is a great casino if you enjoy slots. They regularly offer deals throughout the week and have an excellent VIP program. You can also level up VIP with Gold Coins!</p>
-            <p>Sign up bonus: 2SC and 100k Gold Coins</p>
-            <p>Daily Earnings: $0.30-$1</p>
-            <a href="https://crowncoinscasino.com/?utm_campaign=51455a93-f458-46c9-a015-93bace4614db&utm_source=friend" class="button" target="_blank">Join Now</a>
-        </section>
-        <section class="casino">
-            <h2>Luckybird</h2>
-            <p>Daily Earnings: $0.30-$1</p>
-            <p>Weekly bonus wheel: $0.30-$10</p>
-            <p>Faucet that can be used often for $0.05</p>
-            <a href="https://luckybird.io/?c=harry" class="button" target="_blank">Join Now</a>
-        </section>
-        <section class="casino">
-            <h2>Zula</h2>
-            <p>Daily Earnings: $1</p>
-            <p>They also offer good 100% bonus deals for +EV gambling.</p>
-            <a href="https://www.zulacasino.com/signup/7ec7817e-9805-4f95-9b6a-7251c6c15564" class="button" target="_blank">Join Now</a>
-        </section>
-        <section class="casino">
-            <h2>FortuneCoins</h2>
-            <p>Daily Earnings: 50FC = $0.50 (increases for consecutive days claimed)</p>
-            <p>They also offer some good 100% bonus deals for +EV gambling.</p>
-            <a href="https://www.fortunecoins.com/signup/7b11c20e-82be-4c0c-b163-f54b038adee6" class="button" target="_blank">Join Now</a>
-        </section>
-        <section class="casino">
-            <h2>Total Daily Earnings</h2>
-            <p>Daily Earnings: $2.60-$4</p>
-            <p>Monthly Earnings: $78-$120</p>
-        </section>
-		<section class="casino">
-            <h2>Everything below this point is a Crypto casino requiring a vpn</h2>
-            <p>The free vpn i use is Windscribe set to the location of Norway</p>
-            <p>Crypto casinos dont usually offer sign up bonuses but come at the advantage of being able to cashout instantly and they tend to have a lower cashout threshold allowing you to cashout smaller amounts</p>
-        </section>
-	    <section class="casino">
-            <h2>Stake.com</h2>
-            <p>This is the INTERNATIONAL version of stake. It is a crypto casino with a wide vareity of games, and very good perks like rakeback, and the ability to claim free bonus codes if you have the wager to do so. There is also Rain in chat if you have above a $1500 wager, sometimes people will drop $100-50 dollars at a time randomly. This is one of my favorites and their the industry leader for a reason</p>
-            <p>There is also a wider vareity of games on this version</p>
-			<a href="https://www.stake.com/?c=chOba0eN" class="button" target="_blank">Join Now</a>
-        </section>
-    </section>
-		
-	<section id="rc-calculators" class="container">
-        <h2>Model Aircraft Calculators</h2>
-        <p>Explore tools for RC plane enthusiasts, including:</p>
-        <ul>
-            <li>Weight-to-Thrust Ratio Calculator</li>
-            <li>Battery Flight Time Calculator</li>
-            <li>Center of Gravity Calculator Calculator</li>
-            <li>MAC Calculator</li>
-        </ul>
-        <p>Visit the <a href="Rccalcs" class="button" ">Model Aircraft Calculators</a> page to get started!</p>
+    <!-- Calculators Section -->
+    <section id="calculators" class="container mx-auto py-16 px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">RC Aircraft Design Calculators</h2>
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
+                <i class="fas fa-weight calculator-icon"></i>
+                <h3 class="text-xl font-semibold mb-4">Thrust-to-Weight</h3>
+                <p class="mb-4">Calculate optimal thrust ratios for peak performance.</p>
+                <a href="Rccalcs" class="cta-button">Calculate</a>
+            </div>
+            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
+                <i class="fas fa-battery-full calculator-icon"></i>
+                <h3 class="text-xl font-semibold mb-4">Battery Life</h3>
+                <p class="mb-4">Estimate flight times and battery requirements.</p>
+                <a href="#" class="cta-button">Calculate</a>
+            </div>
+            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
+                <i class="fas fa-balance-scale calculator-icon"></i>
+                <h3 class="text-xl font-semibold mb-4">Center of Gravity</h3>
+                <p class="mb-4">Optimize aircraft stability and control.</p>
+                <a href="#" class="cta-button">Calculate</a>
+            </div>
+            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
+                <i class="fas fa-ruler calculator-icon"></i>
+                <h3 class="text-xl font-semibold mb-4">Wing Sizing</h3>
+                <p class="mb-4">Determine optimal wing dimensions.</p>
+                <a href="#" class="cta-button">Calculate</a>
+            </div>
+        </div>
     </section>
 
-<footer class="bg-gray-800 text-white py-6">
-  <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-    <!-- About Section -->
-    <div class="flex flex-col">
-      <h2 class="text-xl font-bold mb-2">About FlyWise Guides</h2>
-      <p class="text-sm text-gray-400">FlyWise Guides provides RC plane enthusiasts with expert tools, calculators, and resources to design and optimize their aircraft for maximum performance. Join us and take flight!</p>
+    <!-- Referrals Section -->
+    <section id="referrals" class="bg-gray-900 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Top Casino Referral Opportunities</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Stake.us</h3>
+                    <p class="mb-4">Daily Earnings: $1<br>Sign up bonus: $25</p>
+                    <a href="https://stake.us/?c=beer" class="cta-button">Join Now</a>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">CrownCoinsCasino</h3>
+                    <p class="mb-4">Sign up bonus: 2SC and 100k Gold Coins<br>Daily Earnings: $0.30-$1</p>
+                    <a href="https://crowncoinscasino.com" class="cta-button">Join Now</a>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Luckybird</h3>
+                    <p class="mb-4">Daily Earnings: $0.30-$1<br>Weekly bonus wheel: $0.30-$10</p>
+                    <a href="https://luckybird.io/?c=harry" class="cta-button">Join Now</a>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Zula</h3>
+                    <p class="mb-4">Daily Earnings: $1<br>Good 100% bonus deals for +EV gambling.</p>
+                    <a href="https://www.zulacasino.com/signup/7ec7817e-9805-4f95-9b6a-7251c6c15564" class="cta-button">Join Now</a>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">FortuneCoins</h3>
+                    <p class="mb-4">Daily Earnings: 50FC = $0.50<br>Good 100% bonus deals for +EV gambling.</p>
+                    <a href="https://www.fortunecoins.com/signup/7b11c20e-82be-4c0c-b163-f54b038adee6" class="cta-button">Join Now</a>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Stake.com</h3>
+                    <p class="mb-4">International version with a wide variety of games and perks.</p>
+                    <a href="https://www.stake.com/?c=chOba0eN" class="cta-button">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	<!-- Add this section after the Referrals Section -->
+<section id="affiliate-leaderboard" class="bg-gradient-to-br from-gray-900 to-blue-900 py-16">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white mb-4">Stake.us Monthly Affiliate Race</h2>
+            <p class="text-xl text-gray-300">Compete, wager, and win crypto prizes!</p>
+        </div>
+
+        <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div class="grid grid-cols-3 bg-gray-700 text-white py-4 px-6">
+                <div class="text-left font-semibold">Rank</div>
+                <div class="text-center font-semibold">Player</div>
+                <div class="text-right font-semibold">Total Wager</div>
+            </div>
+
+            <div class="leaderboard-entries">
+                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                    <div class="text-left flex items-center">
+                        <span class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center mr-4">1</span>
+                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>
+                        <span class="text-white">*****r13</span>
+                    </div>
+                    <div class="text-center text-gray-300">Verified Player</div>
+                    <div class="text-right text-green-400 font-bold">$336.41</div>
+                </div>
+
+                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                    <div class="text-left flex items-center">
+                        <span class="bg-gray-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">2</span>
+                        <i class="fas fa-medal text-gray-400 mr-2"></i>
+                        <span class="text-white">******rl4</span>
+                    </div>
+                    <div class="text-center text-gray-300">Verified Player</div>
+                    <div class="text-right text-green-400 font-bold">$181.00</div>
+                </div>
+
+                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                    <div class="text-left flex items-center">
+                        <span class="bg-bronze text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">3</span>
+                        <i class="fas fa-medal text-bronze mr-2"></i>
+                        <span class="text-white">***028</span>
+                    </div>
+                    <div class="text-center text-gray-300">Verified Player</div>
+                    <div class="text-right text-green-400 font-bold">$156.15</div>
+                </div>
+
+                <div class="grid grid-cols-3 py-4 px-6 hover:bg-gray-700 transition duration-300">
+                    <div class="text-left flex items-center">
+                        <span class="bg-gray-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">4</span>
+                        <span class="text-white">******949</span>
+                    </div>
+                    <div class="text-center text-gray-300">Verified Player</div>
+                    <div class="text-right text-green-400 font-bold">$78.00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">Monthly Prize Pool</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-yellow-500 text-black p-6 rounded-xl">
+                    <h4 class="text-xl font-bold">1st Place</h4>
+                    <p class="text-2xl font-extrabold">$10 Crypto</p>
+                </div>
+                <div class="bg-gray-500 text-white p-6 rounded-xl">
+                    <h4 class="text-xl font-bold">2nd Place</h4>
+                    <p class="text-2xl font-extrabold">$1 Crypto</p>
+                </div>
+                <div class="bg-bronze text-white p-6 rounded-xl">
+                    <h4 class="text-xl font-bold">3rd Place</h4>
+                    <p class="text-2xl font-extrabold">$1 Crypto</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">How to Participate</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fas fa-sign-in-alt text-4xl text-blue-500 mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Sign Up</h4>
+                    <p class="text-gray-300">Create an account on Stake.us</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fas fa-dice text-4xl text-green-500 mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Wager</h4>
+                    <p class="text-gray-300">Place wagers to increase your ranking</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <i class="fas fa-trophy text-4xl text-yellow-500 mb-4"></i>
+                    <h4 class="text-xl font-semibold mb-2">Win</h4>
+                    <p class="text-gray-300">Top 3 players win crypto prizes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="https://stake.us/?c=Augment" class="cta-button text-lg px-8 py-4">
+                Join the Race Now!
+            </a>
+        </div>
     </div>
+</section>
 
-    <!-- Navigation Links -->
-    <div class="flex flex-col">
-      <h2 class="text-xl font-bold mb-2">Quick Links</h2>
-      <ul class="space-y-1">
-        <li><a href="/" class="button">Home</a></li>
-        <li><a href="Rccalcs" class="button" >Calculators</a></li>
-        <li><a href="#casino-referrals" class="button"  >Affiliate Race Leaderboard</a></li>
-        <li><a href="/about" class="button"  >About Us</a></li>
-      </ul>
-    </div>
+    <!-- Testimonials Section -->
+    <section class="container mx-auto py-16 px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="testimonial-card">
+                <p>"Flywise Guides has transformed my approach to RC flying. The calculators are a game-changer!"</p>
+                <p class="text-right font-semibold">- Alex R.</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"I love the referral opportunities! I've earned so much just by sharing my link."</p>
+                <p class="text-right font-semibold">- Jamie L.</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"The resources provided are top-notch. Highly recommend for any aviation enthusiast!"</p>
+                <p class="text-right font-semibold">- Sam T.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Contact Section -->
-    <div class="flex flex-col">
-      <h2 class="text-xl font-bold mb-2">Contact Us</h2>
-      <p class="text-sm text-gray-400">Have questions or feedback? Reach out to us:</p>
-      <a href="mailto:contact@flywiseguides.com" class="button" >contact@flywiseguides.com</a>
-    </div>
-  </div>
-
-  <div class="mt-6 border-t border-gray-700 pt-4 text-center text-sm text-gray-500">
-    <p>&copy; 2025 FlyWise Guides. All rights reserved.</p>
-  </div>
-</footer>
-
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex flex-col">
+                <h2 class="text-xl font-bold mb-2">About FlyWise Guides</h2>
+                <p class="text-sm text-gray-400">FlyWise Guides provides RC plane enthusiasts with expert tools, calculators, and resources to design and optimize their aircraft for maximum performance. Join us and take flight!</p>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-xl font-bold mb-2">Quick Links</h2>
+                <ul class="space-y-1">
+                    <li><a href="/" class="cta-button">Home</a></li>
+                    <li><a href="Rcalcs" class="cta-button">Calculators</a></li>
+                    <li><a href="#referrals" class="cta-button">Affiliate Race Leaderboard</a></li>
+                    <li><a href="#about" class="cta-button">About Us</a></li>
+                </ul>
+            </div>
+            <div class="flex flex-col">
+                <h2 class="text-xl font-bold mb-2">Contact Us</h2>
+                <p class="text-sm text-gray-400">Have questions or feedback? Reach out to us:</p>
+                <a href="mailto:contact@flywiseguides.com" class="cta-button">contact@flywiseguides.com</a>
+            </div>
+        </div>
+        <div class="mt-6 border-t border-gray-700 pt-4 text-center text-sm text-gray-500">
+            <p>&copy; 2025 FlyWise Guides. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
