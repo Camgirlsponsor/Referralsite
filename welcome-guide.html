@@ -11,12 +11,13 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            max-width: 1200px; /* Increased from 800px to 1200px */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
         }
+        
         .header {
             text-align: center;
             background-color: #2c3e50;
@@ -24,52 +25,65 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
         }
+        
         .image-placeholder {
-            background-color: #e0e0e0;
-            height: 400px; /* Increased height */
+            background-color: #2a2a2a;
+            height: 300px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 20px 0;
             border-radius: 10px;
+            overflow: hidden;
         }
+        
         .image-placeholder img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            display: block;
         }
+        
         .step {
-            background-color: white;
+            background-color: #242424;
             border-radius: 10px;
-            padding: 30px; /* Increased padding */
+            padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 6px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
         }
+        
         .step h2 {
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
             margin-bottom: 20px;
+            color: #3498db;
         }
+        
         .faq {
-            background-color: white;
+            background-color: #242424;
             border-radius: 10px;
             padding: 30px;
             margin-top: 30px;
-            box-shadow: 0 6px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
         }
+        
         .content-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             gap: 30px;
         }
+        
         .content-column {
             flex: 1;
+            min-width: 0; /* Prevents flex items from overflowing */
         }
+        
         .cta-button {
             display: block;
-            width: 250px; /* Wider button */
+            width: 250px;
             margin: 30px auto;
             padding: 15px;
             background-color: #3498db;
@@ -77,15 +91,114 @@
             text-align: center;
             text-decoration: none;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             font-size: 18px;
+            border: none;
         }
+        
         .cta-button:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
         }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #2980b9;
+        }
+        
+        .achievement-row {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .achievement-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .bronze-badge { background: linear-gradient(135deg, #cd7f32, #8B4513); color: white; }
+        .silver-badge { background: linear-gradient(135deg, #c0c0c0, #707070); color: white; }
+        .gold-badge { background: linear-gradient(135deg, #ffd700, #FFA500); color: white; }
+        .platinum-badge { 
+            background: linear-gradient(135deg, #00f2fe, #008080); 
+            color: white; 
+        }
+        
+        .achievement-title {
+            color: #e0e0e0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-description {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+        
+        .milestone {
+            background: #333;
+            color: #b0b0b0;
+            border: 1px solid #444;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .bonus-amount {
+            color: #3498db;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
+        }
+        
+        h3 {
+            color: #3498db;
+        }
+        
         @media (max-width: 768px) {
             .content-row {
                 flex-direction: column;
+            }
+            
+            .content-column {
+                width: 100%;
+            }
+            
+            .image-placeholder {
+                height: 250px;
+                margin: 10px 0;
+            }
+            
+            .achievement-row {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .achievement-badge {
+                margin: 0 auto 1rem;
             }
         }
     </style>
@@ -104,7 +217,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <div class="header">
         <h1>How to Use My Stake.us Code</h1>
-        <p>Follow these simple steps to get started and maximize your gaming experience!</p>
+        <p>Follow these simple steps to qualify for my affiliate wager races and Extra VIP Bonuses!</p>
     </div>
 
     <div class="step">
@@ -160,24 +273,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <li>Claim your welcome bonus in your email within 72 Hours</li>
                     <li>Explore available games</li>
                     <li>Start playing and winning!</li>
-                    <li>The more you wager, the better the chance youll win a reward from my monthly Afilliate races
+                    <li>The more you wager, the better the chance youll win a reward from my monthly Afilliate races</li>
                     <li>Enjoy your gaming experience</li>
                 </ul>
             </div>
         </div>
     </div>
 
- <div class="button-container">
-
+    <div class="button-container">
         <a href="https://stake.us/?c=Augment" class="cta-button">Go to Stake.us</a>
-
         <a href="index#affiliate-leaderboard" class="cta-button">Join My Affiliate Race</a>
-
         <a href="index" class="cta-button">Return to home</a>
-
-
     </div>
-
 
     <div class="faq">
         <h2>Frequently Asked Questions</h2>
@@ -193,9 +300,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>What other benefits do you offer?</h3>
         <p>On top of my what stake gives you for each VIP level achieved, i am willing to throw on a bonus for my affiliates in crypto!</p>
     </div>
+    
+    <div class="step">
+        <h2>VIP Achievement Bonuses</h2>
+        <p class="text-center">Unlock these exclusive bonus rewards as you reach new VIP levels!</p>
+        
+        <div class="achievements-container">
+            <div class="achievement-row">
+                <div class="achievement-badge bronze-badge">B</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">Bronze Achievement</div>
+                    <div class="achievement-description">
+                        You've reached your first milestone! Enjoy this bonus as a thank you for your dedication.
+                    </div>
+                    <div class="bonus-amount">$5 Bonus</div>
+                    <div class="milestone">Bronze Level Achievement</div>
+                </div>
+            </div>
+
+            <div class="achievement-row">
+                <div class="achievement-badge silver-badge">S</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">Silver Achievement</div>
+                    <div class="achievement-description">
+                        Your growth is impressive! Here's an enhanced bonus to celebrate your success.
+                    </div>
+                    <div class="bonus-amount">$15 Bonus</div>
+                    <div class="milestone">Silver Level Achievement</div>
+                </div>
+            </div>
+
+            <div class="achievement-row">
+                <div class="achievement-badge gold-badge">G</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">Gold Achievement</div>
+                    <div class="achievement-description">
+                        You're becoming one of our top performers! Enjoy this substantial bonus reward.
+                    </div>
+                    <div class="bonus-amount">$25 Bonus</div>
+                    <div class="milestone">Gold Level Achievement</div>
+                </div>
+            </div>
+
+            <div class="achievement-row">
+                <div class="achievement-badge platinum-badge">P</div>
+                <div class="achievement-content">
+                    <div class="achievement-title">Platinum Achievement</div>
+                    <div class="achievement-description">
+                        Elite status achieved! Take pride in this exceptional bonus for your outstanding performance.
+                    </div>
+                    <div class="bonus-amount">$50 Bonus</div>
+                    <div class="milestone">Platinum Level Achievement</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="header">
-        <p>Need Help? Contact Support or send me an email (email located on home page)!</p>
+        <p>Need Help? Contact Support or send me an email at fly.postbox882@passinbox.com!</p>
     </div>
 </body>
 </html>
