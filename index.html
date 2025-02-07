@@ -97,6 +97,7 @@
     animation: pulse 1s infinite;
 }
    </style>
+<head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -114,34 +115,164 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-80 z-50">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <a href="#" class="text-white text-2xl font-bold flex items-center">
-                <i class="fas fa-plane-departure mr-2"></i> FlyWise Guides
-            </a>
-            <div class="space-x-6">
-                <a href="index" class="text-white hover:text-blue-300 transition">Home</a>
-                <a href="rc-calculators" class="text-white hover:text-blue-300 transition">Calculators</a>
-                <a href="#referrals" class="text-white hover:text-blue-300 transition">Referrals</a>
-                <a href="#affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Affiliate Race</a>
-                <a href="stake-us-pump-multiplier" class="cta-button">Pump multiplier table</a>
-            </div>
-        </div>
-    </nav>
+<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 shadow-lg z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+        <!-- Logo -->
+        <a href="index" class="text-white text-2xl font-bold flex items-center">
+            <i class="fas fa-plane-departure mr-2"></i> FlyWise Guides
+        </a>
 
-<header class="hero relative">
-    <div class="gradient-overlay"></div>
-    <div class="container mx-auto text-center relative z-10 px-4 py-8 md:py-16">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 text-white">Elevate Your RC Aircraft Design</h1>
-        <p class="text-lg md:text-xl mb-8 text-gray-200">Powerful Calculators & Casino Insights for Enthusiasts</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="rc-calculators" class="cta-button">Explore Calculators</a>
-            <a href="#referrals" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">View Referrals</a>
-            <a href="#affiliate-leaderboard" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">Affiliate Race</a>
-            <a href="welcome-guide" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-600 transition">Stake.us sign up guide</a>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex space-x-6">
+            <a href="index" class="text-white hover:text-blue-300 transition">Home</a>
+
+            <!-- Clickable Dropdown for Calculators -->
+            <div class="relative">
+                <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center">
+                    Calculators <i class="fas fa-angle-down ml-2"></i>
+                </button>
+                <div class="dropdown-content absolute left-0 mt-2 w-48 bg-black bg-opacity-95 rounded-lg shadow-lg hidden">
+                    <a href="rc-calculators" class="block px-4 py-2 text-white hover:text-blue-300">RC Calculators</a>
+                </div>
+            </div>
+
+            <a href="referrals" class="text-white hover:text-blue-300 transition">Referrals</a>
+
+            <!-- Clickable Dropdown for Casino Insights -->
+            <div class="relative">
+                <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center">
+                    Casino Insights <i class="fas fa-angle-down ml-2"></i>
+                </button>
+                <div class="dropdown-content absolute left-0 mt-2 w-56 bg-black bg-opacity-95 rounded-lg shadow-lg hidden">
+                    <a href="stake-us-pump-multiplier" class="block px-4 py-2 text-white hover:text-blue-300">Pump Multiplier</a>
+                    <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
+                    <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
+                </div>
+            </div>
+
+            <a href="affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Affiliate Race</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4">
+        <a href="index" class="block py-2 text-white hover:text-blue-300">Home</a>
+        
+        <button class="dropdown-btn-mobile block w-full text-left py-2 text-white hover:text-blue-300">
+            Calculators <i class="fas fa-angle-down ml-2"></i>
+        </button>
+        <div class="dropdown-content-mobile hidden pl-4">
+            <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
+        </div>
+
+        <a href="referrals" class="block py-2 text-white hover:text-blue-300">Referrals</a>
+
+        <button class="dropdown-btn-mobile block w-full text-left py-2 text-white hover:text-blue-300">
+            Casino Insights <i class="fas fa-angle-down ml-2"></i>
+        </button>
+        <div class="dropdown-content-mobile hidden pl-4">
+            <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
+            <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
+            <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
+        </div>
+
+        <a href="affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
+    </div>
+</nav>
+
+<!-- JavaScript for Clickable Dropdowns & Mobile Menu -->
+<script>
+    // Mobile Menu Toggle
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Click-to-Toggle Dropdowns (Desktop)
+    document.querySelectorAll('.dropdown-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.nextElementSibling;
+            dropdown.classList.toggle('hidden');
+        });
+    });
+
+    // Click-to-Toggle Dropdowns (Mobile)
+    document.querySelectorAll('.dropdown-btn-mobile').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = this.nextElementSibling;
+            dropdown.classList.toggle('hidden');
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.dropdown-content').forEach(menu => {
+            if (!menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+        document.querySelectorAll('.dropdown-content-mobile').forEach(menu => {
+            if (!menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4">
+        <a href="index" class="block py-2 text-white hover:text-blue-300">Home</a>
+        <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
+        <a href="referrals" class="block py-2 text-white hover:text-blue-300">Referrals</a>
+        <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
+        <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
+        <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
+        <a href="affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
+    </div>
+</nav>
+
+
+<header class="hero relative flex items-center justify-center text-center min-h-screen bg-cover bg-center" 
+    style="background-image: url('https://images.unsplash.com/photo-1581579186913-45ac24ed53d2');">
+    <div class="gradient-overlay absolute inset-0 bg-black bg-opacity-60"></div>
+    
+    <div class="container mx-auto relative z-10 px-6 py-12 md:py-24">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight shadow-md">
+            Elevate Your RC Aircraft Design
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-300 mt-4 max-w-2xl mx-auto">
+            Powerful Calculators & Casino Insights for Enthusiasts.
+        </p>
+
+        <!-- Buttons Section -->
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a href="rc-calculators" 
+                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 bg-blue-600 hover:bg-blue-400 text-white">
+                🚀 Explore Calculators
+            </a>
+            <a href="#referrals" 
+                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
+                🎁 View Referrals
+            </a>
+            <a href="#affiliate-leaderboard" 
+                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
+                🏆 Affiliate Race
+            </a>
+            <a href="welcome-guide" 
+                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
+                📜 Stake.us Sign-Up Guide
+            </a>
         </div>
     </div>
 </header>
+
 
     <!-- Calculators Section -->
     <section id="calculators" class="container mx-auto py-16 px-4">
