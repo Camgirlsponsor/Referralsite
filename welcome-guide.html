@@ -376,7 +376,7 @@
         <div class="content-row">
             <div class="content-column">
                 <div class="image-container">
-                    <img src="https://raw.githubusercontent.com/Camgirlsponsor/Referralsite/main/images/welcomeemail.jpg" alt="Welcome Email Bonus" loading="lazy">
+                    <img data-src="https://raw.githubusercontent.com/Camgirlsponsor/Referralsite/main/images/welcomeemail.jpg" alt="Welcome Email Bonus" loading="lazy">
                 </div>
             </div>
             <div class="content-column">
@@ -480,20 +480,44 @@
     <!-- Added lazy loading script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load images
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
+            // Enhanced lazy loading with fallback
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                img.classList.add('loaded');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
                 });
-            });
 
-            images.forEach(img => imageObserver.observe(img));
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for browsers that don't support IntersectionObserver
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    img.classList.add('loaded');
+                });
+            }
+        });
+
+        // Add error handling for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                console.error(`Failed to load image: ${this.dataset.src || this.src}`);
+            });
         });
     </script>
 </body>
