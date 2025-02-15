@@ -338,6 +338,91 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
        <canvas id="wingGraph" class="mt-6" style="width: 100%; max-height: 300px;"></canvas>
      </div>
+	       <!-- Reynolds Number Calculator -->
+      <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-semibold text-blue-400">Reynolds Number Calculator</h2>
+        <label class="block mt-3" for="airSpeed">Air Speed (m/s):</label>
+        <input type="number" id="airSpeed" placeholder="Enter air speed" class="w-full p-2 rounded bg-gray-700 text-white">
+        
+        <label class="block mt-3" for="chordLength">Chord Length (cm):</label>
+        <input type="number" id="chordLength" placeholder="Enter chord length" class="w-full p-2 rounded bg-gray-700 text-white">
+        
+        <label class="block mt-3" for="airTemp">Air Temperature (°C):</label>
+        <input type="number" id="airTemp" value="20" placeholder="Enter temperature" class="w-full p-2 rounded bg-gray-700 text-white">
+        
+        <button onclick="calculateReynolds()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Reynolds Number</button>
+        <div class="result mt-4 text-yellow-400" id="reynoldsResult"></div>
+
+        <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('info6')">
+          Hide Info
+        </button>
+        <div id="info6" class="text-sm mt-4 text-gray-300">
+          <p>The <strong>Reynolds Number</strong> is a dimensionless value that helps predict the flow pattern of air around your RC aircraft.</p>
+          <p class="mt-2"><strong>Flow Regimes:</strong></p>
+          <ul class="list-disc ml-6">
+            <li>Below 2000: Laminar flow (smooth, predictable)</li>
+            <li>2000-4000: Transitional flow</li>
+            <li>Above 4000: Turbulent flow (more complex behavior)</li>
+          </ul>
+          <p class="mt-2">For most RC planes, operating in the turbulent regime is normal and often desirable for better control surface effectiveness.</p>
+        </div>
+      </div>
+	  <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+  <h2 class="text-xl font-semibold text-blue-400">Propeller Efficiency Calculator</h2>
+  <label class="block mt-3" for="propDiameter">Propeller Diameter (inches):</label>
+  <input type="number" id="propDiameter" placeholder="Enter diameter" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <label class="block mt-3" for="propPitch">Propeller Pitch (inches):</label>
+  <input type="number" id="propPitch" placeholder="Enter pitch" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <label class="block mt-3" for="motorRPM">Motor RPM:</label>
+  <input type="number" id="motorRPM" placeholder="Enter RPM" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <button onclick="calculatePropEfficiency()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Efficiency</button>
+  <div class="result mt-4 text-yellow-400" id="propResult"></div>
+
+  <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('infoProp')">
+    Hide Info
+  </button>
+  <div id="infoProp" class="text-sm mt-4 text-gray-300">
+    <p>The <strong>Propeller Efficiency Calculator</strong> helps you understand your prop's theoretical performance.</p>
+    <p class="mt-2"><strong>Key Points:</strong></p>
+    <ul class="list-disc ml-6">
+      <li>Theoretical speed is calculated using pitch and RPM</li>
+      <li>Static thrust estimate is provided</li>
+      <li>Helps match props to your flying style</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Stall Speed Calculator -->
+<div class="bg-gray-800 p-4 rounded-lg shadow-lg">
+  <h2 class="text-xl font-semibold text-blue-400">Stall Speed Calculator</h2>
+  <label class="block mt-3" for="planeWeight">Aircraft Weight (grams):</label>
+  <input type="number" id="stallWeight" placeholder="Enter weight" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <label class="block mt-3" for="wingArea">Wing Area (sq. cm):</label>
+  <input type="number" id="stallWingArea" placeholder="Enter wing area" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <label class="block mt-3" for="liftCoeff">Max Lift Coefficient:</label>
+  <input type="number" id="liftCoeff" value="1.5" placeholder="Usually 1.2-1.6" class="w-full p-2 rounded bg-gray-700 text-white">
+  
+  <button onclick="calculateStallSpeed()" class="bg-blue-500 w-full mt-4 py-2 rounded hover:bg-blue-400">Calculate Stall Speed</button>
+  <div class="result mt-4 text-yellow-400" id="stallResult"></div>
+
+  <button class="bg-gray-700 w-full mt-4 py-2 rounded text-sm hover:bg-gray-600" onclick="toggleInfo('infoStall')">
+    Hide Info
+  </button>
+  <div id="infoStall" class="text-sm mt-4 text-gray-300">
+    <p>The <strong>Stall Speed Calculator</strong> estimates the minimum speed your aircraft needs to maintain level flight.</p>
+    <p class="mt-2"><strong>Guidelines:</strong></p>
+    <ul class="list-disc ml-6">
+      <li>Lower stall speeds are safer for landing</li>
+      <li>Typical max lift coefficients: Flat plate: 1.2, Clark Y: 1.4, High-lift: 1.6</li>
+      <li>Add 30% margin for safe flying speed</li>
+    </ul>
+  </div>
+</div>
     </div>
   </main>
 
@@ -347,6 +432,95 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 
   <!-- JavaScript -->
+  <script>
+function calculatePropEfficiency() {
+  const diameter = parseFloat(document.getElementById('propDiameter').value);
+  const pitch = parseFloat(document.getElementById('propPitch').value);
+  const rpm = parseFloat(document.getElementById('motorRPM').value);
+  
+  if (!diameter || !pitch || !rpm || diameter <= 0 || pitch <= 0 || rpm <= 0) {
+    document.getElementById('propResult').textContent = "Please enter valid values!";
+    return;
+  }
+
+  // Calculate theoretical speed (mph)
+  const theoreticalSpeed = (pitch * rpm * 60) / (12 * 5280);
+  
+  // Estimate static thrust (rough approximation)
+  const staticThrust = (diameter * diameter * pitch * (rpm/1000) * (rpm/1000)) / 45000;
+  
+  document.getElementById('propResult').innerHTML = 
+    `Theoretical Speed: ${theoreticalSpeed.toFixed(1)} mph<br>
+     Estimated Static Thrust: ${staticThrust.toFixed(1)} oz`;
+}
+
+function calculateStallSpeed() {
+  const weight = parseFloat(document.getElementById('stallWeight').value);
+  const wingArea = parseFloat(document.getElementById('stallWingArea').value);
+  const liftCoeff = parseFloat(document.getElementById('liftCoeff').value) || 1.5;
+  
+  if (!weight || !wingArea || weight <= 0 || wingArea <= 0) {
+    document.getElementById('stallResult').textContent = "Please enter valid values!";
+    return;
+  }
+
+  // Convert to appropriate units (weight to Newtons, area to square meters)
+  const weightN = weight * 0.00981;
+  const areaM2 = wingArea * 0.0001;
+  
+  // Air density at sea level (kg/m³)
+  const airDensity = 1.225;
+  
+  // Calculate stall speed (m/s)
+  const stallSpeed = Math.sqrt((2 * weightN) / (airDensity * areaM2 * liftCoeff));
+  
+  // Convert to km/h for easier understanding
+  const stallSpeedKmh = stallSpeed * 3.6;
+  
+  const safeSpeed = stallSpeedKmh * 1.3;
+  
+  document.getElementById('stallResult').innerHTML = 
+    `Stall Speed: ${stallSpeedKmh.toFixed(1)} km/h<br>
+     Recommended Safe Flying Speed: ${safeSpeed.toFixed(1)} km/h`;
+}
+</script>
+    <script>
+    // Previous calculator functions remain the same
+
+    function calculateReynolds() {
+      const airSpeed = parseFloat(document.getElementById('airSpeed').value);
+      const chordLength = parseFloat(document.getElementById('chordLength').value);
+      const temperature = parseFloat(document.getElementById('airTemp').value) || 20;
+
+      if (!airSpeed || !chordLength || airSpeed <= 0 || chordLength <= 0) {
+        document.getElementById('reynoldsResult').textContent = "Please enter valid values!";
+        return;
+      }
+
+      // Convert chord length from cm to meters
+      const lengthInMeters = chordLength / 100;
+
+      // Calculate kinematic viscosity based on temperature
+      const kinematicViscosity = (1.458e-6 * Math.pow(temperature + 273.15, 1.5)) / (temperature + 273.15 + 110.4);
+
+      // Calculate Reynolds number
+      const reynolds = (airSpeed * lengthInMeters) / kinematicViscosity;
+
+      // Determine flow regime
+      let regime = "";
+      if (reynolds < 2000) {
+        regime = "Laminar flow";
+      } else if (reynolds < 4000) {
+        regime = "Transitional flow";
+      } else {
+        regime = "Turbulent flow";
+      }
+
+      document.getElementById('reynoldsResult').innerHTML = 
+        `Reynolds Number: ${reynolds.toFixed(0)}<br>Flow Regime: ${regime}`;
+    }
+
+  </script>
   <script>
     function calculateRatio() {
       const weight = parseFloat(document.getElementById('weight').value);
@@ -490,6 +664,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     }
   </script>
-  
- </body>
-</html>
