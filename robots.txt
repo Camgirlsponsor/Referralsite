@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+
+# Specific bots can be more aggressive
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.flywiseguides.com/sitemap.xml
