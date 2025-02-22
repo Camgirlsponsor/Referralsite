@@ -310,6 +310,155 @@
                 display: none;
             }
         }
+		    .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo i {
+            margin-right: 0.5rem;
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .desktop-nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .dropdown-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            min-width: 200px;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.5rem 1rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 1rem;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-dropdown-btn {
+            width: 100%;
+            text-align: left;
+            color: white;
+            background: none;
+            border: none;
+            padding: 0.5rem 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .mobile-dropdown-content {
+            display: none;
+            padding-left: 1rem;
+        }
+
+        .mobile-dropdown-content.active {
+            display: block;
+        }
+
+        /* Adjust body padding to account for fixed nav */
+        body {
+            padding-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+        }
     </style>
     
     <!-- Google Tag Manager -->
@@ -325,6 +474,71 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DFP5HR5"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index" class="nav-logo">
+                <i class="fas fa-plane-departure"></i> FlyWise Guides
+            </a>
+
+            <div class="desktop-nav">
+                <a href="index">Home</a>
+
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        Calculators <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="rc-calculators">RC Calculators</a>
+                    </div>
+                </div>
+
+                <a href="https://stake.us/?c=Augment">Stake.us SIGN UP</a>
+
+                <div class="dropdown">
+                    <button class="dropdown-btn">
+                        Casino Insights <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="stake-us-pump-multiplier">Pump Multiplier</a>
+                        <a href="welcome-guide#achievements">VIP Bonus Guide</a>
+                        <a href="welcome-guide">Stake.us Sign up Guide</a>
+                        <a href="index#referrals">Other Free Daily SC Casinos</a>
+                    </div>
+                </div>
+
+                <a href="index#affiliate-leaderboard">Affiliate Race</a>
+            </div>
+
+            <button id="menu-toggle" class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index">Home</a>
+            
+            <button class="mobile-dropdown-btn">
+                Calculators <i class="fas fa-angle-down"></i>
+            </button>
+            <div class="mobile-dropdown-content">
+                <a href="rc-calculators">RC Calculators</a>
+            </div>
+
+            <a href="#referrals">Referrals</a>
+
+            <button class="mobile-dropdown-btn">
+                Casino Insights <i class="fas fa-angle-down"></i>
+            </button>
+            <div class="mobile-dropdown-content">
+                <a href="stake-us-pump-multiplier">Pump Multiplier</a>
+                <a href="welcome-guide">VIP Bonus Guide</a>
+                <a href="welcome-guide">Stake.us Sign up Guide</a>
+            </div>
+
+            <a href="index#affiliate-leaderboard">Affiliate Race</a>
+        </div>
+    </nav>
 
     <div class="header">
         <h1>How to Use My Stake.us Code</h1>
@@ -530,6 +744,45 @@
                 this.style.display = 'none';
                 console.error(`Failed to load image: ${this.dataset.src || this.src}`);
             });
+        });
+    </script>
+  
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Mobile dropdowns
+        const mobileDropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+
+        mobileDropdownBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const dropdownContent = btn.nextElementSibling;
+                dropdownContent.classList.toggle('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Close mobile dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.mobile-dropdown-btn')) {
+                const dropdowns = document.querySelectorAll('.mobile-dropdown-content');
+                dropdowns.forEach(dropdown => {
+                    if (dropdown.classList.contains('active')) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
