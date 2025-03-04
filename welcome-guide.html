@@ -143,67 +143,86 @@
             margin: 40px 0;
         }
         
-        .achievement-row {
-            background: linear-gradient(145deg, #2a2a2a, #333);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
+.achievement-row {
+    background: linear-gradient(145deg, #2a2a2a, #333);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
 
-        .achievement-row:hover {
-            transform: translateY(-5px);
-        }
-        
-        .achievement-badge {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin-right: 2rem;
-            flex-shrink: 0;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-        }
+.achievement-row:hover {
+    transform: translateY(-3px);
+}
 
-        .achievement-badge:hover {
-            transform: rotate(360deg);
-        }
-        
-        .bronze-badge { background: linear-gradient(135deg, #cd7f32, #8B4513); }
-        .silver-badge { background: linear-gradient(135deg, #c0c0c0, #707070); }
-        .gold-badge { background: linear-gradient(135deg, #ffd700, #FFA500); }
-        .platinum-badge { background: linear-gradient(135deg, #00f2fe, #008080); }
-        
-        .achievement-content {
-            flex-grow: 1;
-        }
+.achievement-badge {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
 
-        .achievement-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary-color), #2ecc71);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .bonus-amount {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #3498db, #2ecc71);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
-            margin: 1rem 0;
-        }
+.achievement-badge:hover {
+    transform: rotate(360deg);
+}
+
+.bronze-badge { background: linear-gradient(135deg, #cd7f32, #8B4513); }
+.silver-badge { background: linear-gradient(135deg, #c0c0c0, #707070); }
+.gold-badge { background: linear-gradient(135deg, #ffd700, #FFA500); }
+.platinum1-badge { background: linear-gradient(135deg, #00f2fe, #008080); }
+.platinum2-badge { background: linear-gradient(135deg, #00bfff, #00698f); }
+.platinum3-badge { background: linear-gradient(135deg, #00cccc, #005c5c); }
+.platinum4-badge { background: linear-gradient(135deg, #00aaff, #004d4d); }
+.platinum5-badge { background: linear-gradient(135deg, #0099ff, #003366); }
+.platinum6-badge { background: linear-gradient(135deg, #0066ff, #002266); }
+
+.achievement-content {
+    flex-grow: 1;
+}
+
+.achievement-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    background: linear-gradient(135deg, var(--primary-color), #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bonus-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+    margin: 0.5rem 0;
+}
+.bonus-amounts {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.bonus-amounts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bonus-amounts li {
+    margin-bottom: 0.2rem;
+}
 
         .faq {
             background-color: var(--background-card);
@@ -611,72 +630,225 @@
         <a href="index" class="cta-button">Back to Home</a>
     </div>
 
-    <div class="step">
-        <h2>VIP Achievement Bonuses</h2>
-        <p>Unlock these exclusive extra bonus rewards as you reach new VIP levels on Stake!(Only for people under my referral code)</p>
-        
-        <div class="achievements-container">
-            <div class="achievement-row">
-                <div class="achievement-badge bronze-badge">B</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">Bronze VIP Bonus</div>
-                    <div class="achievement-description">
-                        Start your journey with a welcome bonus! Your first milestone awaits.
-                    </div>
-                    <div class="bonus-amount">$5 Bonus</div>
-                    <div class="milestone">Bronze Level Achievement</div>
+<div class="step">
+
+    <h2>VIP Achievement Bonuses</h2>
+
+    <p>Unlock these exclusive extra bonus rewards as you reach new VIP levels on Stake!(Only for people under my referral code)</p>
+
+    
+
+    <div class="achievements-container">
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge bronze-badge">B</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Bronze VIP Bonus</div>
+
+                <div class="achievement-description">
+
+                    Start your journey with a welcome bonus! Your first milestone awaits.
+
                 </div>
+
+                <div class="bonus-amount">$5 Bonus</div>
+
+                <div class="milestone">Bronze Level Achievement</div>
+
             </div>
 
-            <div class="achievement-row">
-                <div class="achievement-badge silver-badge">S</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">Silver VIP Bonus</div>
-                    <div class="achievement-description">
-                        Reaching Silver shows your dedication! Enjoy an enhanced reward package.
-                    </div>
-                    <div class="bonus-amount">$15 Bonus</div>
-                    <div class="milestone">Silver Level Achievement</div>
-                </div>
-            </div>
-
-            <div class="achievement-row">
-                <div class="achievement-badge gold-badge">G</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">Gold VIP Bonus</div>
-                    <div class="achievement-description">
-                        Gold status unlocks premium rewards! You're among our valued players.
-                    </div>
-                    <div class="bonus-amount">$25 Bonus</div>
-                    <div class="milestone">Gold Level Achievement</div>
-                </div>
-            </div>
-
-            <div class="achievement-row">
-                <div class="achievement-badge platinum-badge">P</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">Platinum I VIP</div>
-                    <div class="achievement-description">
-                        One of our larger Extra VIP bonuses, Enjoy exclusive platinum-level rewards and recognition.
-                    </div>
-                    <div class="bonus-amount">$100 Bonus</div>
-                    <div class="milestone">Platinum Level Achievement</div>
-                </div>
-            </div>
-
-           <div class="achievement-row">
-                <div class="achievement-badge platinum-badge">P</div>
-                <div class="achievement-content">
-                    <div class="achievement-title">Platinum II VIP</div>
-                    <div class="achievement-description">
-                        Even more of an extra bonus, contact me for other exclusive bonuses offered for this tier!
-                    </div>
-                    <div class="bonus-amount">$250 Bonus</div>
-                    <div class="milestone">Platinum 2 Level Achievement</div>
-                </div>
-            </div>
         </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge silver-badge">S</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Silver VIP Bonus</div>
+
+                <div class="achievement-description">
+
+                    Reaching Silver shows your dedication! Enjoy an enhanced reward package.
+
+                </div>
+
+                <div class="bonus-amount">$15 Bonus</div>
+
+                <div class="milestone">Silver Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge gold-badge">G</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Gold VIP Bonus</div>
+
+                <div class="achievement-description">
+
+                    Gold status unlocks premium rewards! You're among our valued players.
+
+                </div>
+
+                <div class="bonus-amount">$25 Bonus</div>
+
+                <div class="milestone">Gold Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum1-badge">P1</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum I VIP</div>
+
+                <div class="achievement-description">
+
+                    One of our larger Extra VIP bonuses, Enjoy exclusive platinum-level rewards and recognition.
+
+                </div>
+
+                <div class="bonus-amount">$100 Bonus</div>
+
+                <div class="milestone">Platinum Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum2-badge">P2</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum II VIP</div>
+
+                <div class="achievement-description">
+
+                    Even more of an extra bonus, contact me for other exclusive bonuses offered for this tier!
+
+                </div>
+
+                <div class="bonus-amount">$250 Bonus</div>
+
+                <div class="milestone">Platinum 2 Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum3-badge">P3</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum III VIP</div>
+
+                <div class="achievement-description">
+
+                    Exclusive rewards and recognition for our most dedicated players.
+
+                </div>
+
+                <div class="bonus-amount">$500 Bonus</div>
+
+                <div class="milestone">Platinum 3 Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum4-badge">P4</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum IV VIP</div>
+
+                <div class="achievement-description">
+
+                    Unlock the highest level of rewards and recognition, reserved for our most elite players.
+
+                </div>
+
+                <div class="bonus-amount">$800 Bonus</div>
+
+                <div class="milestone">Platinum 4 Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum5-badge">P5</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum V VIP</div>
+
+                <div class="achievement-description">
+
+                    The ultimate level of VIP rewards, reserved for our most loyal and dedicated players.
+
+                </div>
+
+                <div class="bonus-amount">$1200 Bonus</div>
+
+                <div class="milestone">Platinum 5 Level Achievement</div>
+
+            </div>
+
+        </div>
+
+
+        <div class="achievement-row">
+
+            <div class="achievement-badge platinum6-badge">P6</div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-title">Platinum VI VIP</div>
+
+                <div class="achievement-description">
+
+                    The highest tier of VIP status, offering unparalleled rewards and recognition for our top players.
+
+                </div>
+
+                <div class="bonus-amount">$2000 Bonus</div>
+
+                <div class="milestone">Platinum 6 Level Achievement</div>
+
+            </div>
+
+        </div>
+
     </div>
+
+</div>
 
     <div class="faq">
         <h2>Frequently Asked Questions</h2>
