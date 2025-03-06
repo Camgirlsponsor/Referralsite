@@ -1,13 +1,62 @@
+# robots.txt for flywiseguides.com
+# Last updated: March 6, 2025
+
 User-agent: *
 Allow: /
-Allow: /sitemap.xml
+Allow: /rc-calculators
+Allow: /welcome-guide
+Allow: /stake-us-referral-faq
+Allow: /stake-us-pump-multiplier
+Allow: /parameter-analyzer
 
-# Specific bots can be more aggressive
+# Prevent duplicate content issues
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: */trackback/
+Disallow: */feed/
+Disallow: */page/
+Disallow: /*?
+Disallow: /*?s=*
+Disallow: /*&s=*
+Disallow: /search/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /download/
+
+# Block archive pages that could create duplicate content
+Disallow: /category/
+Disallow: /archives/
+Disallow: /*/comment-page-*
+
+# Allow specific bots with customized directives
 User-agent: Googlebot
+Allow: /
 Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /
 
 User-agent: Bingbot
+Allow: /
 Crawl-delay: 1
 
-# Sitemap location
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block aggressive bots and scrapers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Block known bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+# Sitemap declaration
 Sitemap: https://www.flywiseguides.com/sitemap.xml
