@@ -7,7 +7,7 @@
     
     <url>
         <loc>https://www.flywiseguides.com/</loc>
-        <lastmod>2024-02-15</lastmod>
+        <lastmod>2024-03-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
         <xhtml:link 
@@ -18,7 +18,7 @@
     
     <url>
         <loc>https://www.flywiseguides.com/rc-calculators</loc>
-        <lastmod>2024-02-15</lastmod>
+        <lastmod>2024-03-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link 
@@ -29,7 +29,7 @@
     
     <url>
         <loc>https://www.flywiseguides.com/welcome-guide</loc>
-        <lastmod>2024-02-15</lastmod>
+        <lastmod>2024-03-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <xhtml:link 
@@ -40,12 +40,23 @@
         
     <url>
         <loc>https://www.flywiseguides.com/stake-us-pump-multiplier</loc>
-        <lastmod>2024-02-15</lastmod>
+        <lastmod>2024-03-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <xhtml:link 
             rel="alternate"
             hreflang="en"
             href="https://www.flywiseguides.com/stake-us-pump-multiplier"/>
+    </url>
+
+    <url>
+        <loc>https://www.flywiseguides.com/Parameter-Analyzer</loc>
+        <lastmod>2024-03-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link 
+            rel="alternate"
+            hreflang="en"
+            href="https://www.flywiseguides.com/Parameter-Analyzer"/>
     </url>
 </urlset>
