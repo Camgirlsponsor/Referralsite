@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>RC Aircraft Parameter Analyzer | Wing Loading, CG & Performance Calculator</title>
+    <meta name="description" content="Calculate and visualize key RC aircraft parameters including Mean Aerodynamic Chord (MAC), Wing Loading, Center of Gravity, and power requirements for optimal flight performance.">
+    <meta name="keywords" content="RC aircraft calculator, wing loading calculator, center of gravity calculator, mean aerodynamic chord, RC plane design, aircraft parameter analyzer, UAV design tool">
+    <meta name="author" content="RC Aircraft Parameter Analyzer">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="RC Aircraft Parameter Analyzer | Wing Loading, CG & Performance Calculator">
+    <meta property="og:description" content="Calculate wing parameters, CG, performance metrics and power requirements for your RC aircraft designs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.flywiseguides.com/Parameter-Analyzer">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.flywiseguides.com/Parameter-Analyzer">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "RC Aircraft Parameter Analyzer",
+      "description": "Calculate and visualize key RC aircraft parameters including Mean Aerodynamic Chord (MAC), Wing Loading, and Center of Gravity.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Wing Parameter Calculation, Weight & Balance, Performance Analysis, Power System Design",
+      "screenshot": "https://rcaircraftanalyzer.com/images/screenshot.jpg"
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .input-section, .results-section {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            flex: 1;
+            min-width: 300px;
+        }
+        .visualization {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        h3 {
+            color: #66bb6a;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #b0b0b0;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        .result-value {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .tab {
+            padding: 10px 15px;
+            background-color: #333;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+            color: #b0b0b0;
+        }
+        .tab.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        canvas {
+            max-width: 100%;
+            background-color: #2a2a2a;
+            border-radius: 4px;
+        }
+        .component-list {
+            margin-top: 20px;
+        }
+        .component-item {
+            background-color: #2a2a2a;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .remove-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .remove-btn:hover {
+            background-color: #d32f2f;
+            box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+        }
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .unit-toggle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .unit-toggle label {
+            margin: 0 10px 0 0;
+        }
+        
+        /* Additional styles for better dark mode visibility */
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #45a049;
+        }
+        
+        /* SEO-focused styles */
+        .intro-section {
+            margin-bottom: 30px;
+        }
+        .intro-section h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+        .intro-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+        }
+        .related-links {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+        }
+        .related-links h3 {
+            margin-top: 0;
+        }
+        .related-links ul {
+            padding-left: 20px;
+        }
+        .related-links li {
+            margin-bottom: 8px;
+        }
+        .related-links a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        .related-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* FlyWise Navigation Bar Styles */
+        .fly-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .fly-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        .fly-nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .fly-nav-logo i {
+            margin-right: 0.5rem;
+        }
+        .fly-nav-menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .fly-nav-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .fly-nav-link:hover {
+            color: #3b82f6;
+        }
+        .fly-dropdown {
+            position: relative;
+        }
+        .fly-dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            min-width: 12rem;
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 0.375rem;
+            z-index: 1001;
+            padding: 0.5rem 0;
+        }
+        .fly-dropdown-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .fly-dropdown-link:hover {
+            color: #3b82f6;
+        }
+        .fly-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .fly-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 1rem;
+            z-index: 999;
+        }
+        .fly-mobile-link {
+            display: block;
+            padding: 0.75rem 0;
+            color: white;
+            text-decoration: none;
+        }
+        .fly-mobile-dropdown {
+            padding-left: 1rem;
+            display: none;
+        }
+        
+        /* Make room for fixed navbar */
+        body {
+            padding-top: 4rem;
+        }
+        
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .fly-nav-menu {
+                display: none;
+            }
+            .fly-menu-toggle {
+                display: block;
+            }
+            .container {
+                flex-direction: column;
+            }
+            .input-section, .results-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- FlyWise Navigation Bar -->
+    <nav class="fly-nav">
+        <div class="fly-nav-container">
+            <!-- Logo -->
+            <a href="/" class="fly-nav-logo">
+                <i class="fas fa-plane-departure"></i> FlyWise Guides
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="fly-nav-menu">
+                <a href="index" class="fly-nav-link">Home</a>
+
+                <!-- Calculators Dropdown -->
+                <div class="fly-dropdown">
+                    <a href="#" class="fly-nav-link fly-dropdown-btn">
+                        Calculators <i class="fas fa-angle-down"></i>
+                    </a>
+                    <div class="fly-dropdown-content">
+                        <a href="rc-calculators" class="fly-dropdown-link">RC Calculators</a>
+                    </div>
+                </div>
+
+                <a href="https://stake.us/?c=Augment" class="fly-nav-link">Stake.us SIGN UP</a>
+
+                <!-- Casino Insights Dropdown -->
+                <div class="fly-dropdown">
+                    <a href="#" class="fly-nav-link fly-dropdown-btn">
+                        Casino Insights <i class="fas fa-angle-down"></i>
+                    </a>
+                    <div class="fly-dropdown-content">
+                        <a href="stake-us-pump-multiplier" class="fly-dropdown-link">Pump Multiplier</a>
+                        <a href="welcome-guide#achievements" class="fly-dropdown-link">VIP Bonus Guide</a>
+                        <a href="welcome-guide" class="fly-dropdown-link">Stake.us Sign up Guide</a>
+                        <a href="#referrals" class="fly-dropdown-link">Other Free Daily SC Casinos</a>
+                    </div>
+                </div>
+
+                <a href="#affiliate-leaderboard" class="fly-nav-link">Affiliate Race</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="fly-menu-toggle" id="fly-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="fly-mobile-menu" id="fly-mobile-menu">
+            <a href="/" class="fly-mobile-link">Home</a>
+            
+            <a href="#" class="fly-mobile-link fly-mobile-dropdown-btn">
+                Calculators <i class="fas fa-angle-down"></i>
+            </a>
+            <div class="fly-mobile-dropdown">
+                <a href="rc-calculators" class="fly-mobile-link">RC Calculators</a>
+            </div>
+
+            <a href="https://stake.us/?c=Augment" class="fly-mobile-link">Stake.us SIGN UP</a>
+
+            <a href="#" class="fly-mobile-link fly-mobile-dropdown-btn">
+                Casino Insights <i class="fas fa-angle-down"></i>
+            </a>
+            <div class="fly-mobile-dropdown">
+                <a href="stake-us-pump-multiplier" class="fly-mobile-link">Pump Multiplier</a>
+                <a href="welcome-guide#achievements" class="fly-mobile-link">VIP Bonus Guide</a>
+                <a href="welcome-guide" class="fly-mobile-link">Stake.us Sign up Guide</a>
+                <a href="#referrals" class="fly-mobile-link">Other Free Daily SC Casinos</a>
+            </div>
+
+            <a href="#affiliate-leaderboard" class="fly-mobile-link">Affiliate Race</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <div class="intro-section">
+                <h1>RC Aircraft Parameter Analyzer</h1>
+                <p>Welcome to the most comprehensive RC aircraft design calculator available online. Our tool helps hobbyists, engineers, and aviation enthusiasts calculate and visualize key RC aircraft parameters including Mean Aerodynamic Chord (MAC), Wing Loading, Center of Gravity (CG), and power requirements for optimal flight performance.</p>
+            </div>
+        </header>
+        
+        <div class="unit-toggle">
+            <label>Unit System:</label>
+            <select id="unitSystem" onchange="changeUnitSystem()">
+                <option value="metric">Metric (cm, g)</option>
+                <option value="imperial">Imperial (in, oz)</option>
+            </select>
+        </div>
+        
+        <div class="container">
+            <div class="input-section">
+                <div class="tabs">
+                    <button class="tab active" onclick="openTab(event, 'wingTab')">Wing Parameters</button>
+                    <button class="tab" onclick="openTab(event, 'weightTab')">Weight & Balance</button>
+                    <button class="tab" onclick="openTab(event, 'performanceTab')">Performance</button>
+                    <button class="tab" onclick="openTab(event, 'powerTab')">Power System</button>
+                </div>
+                
+                <div id="wingTab" class="tab-content active">
+                    <h2>Wing Parameters</h2>
+                    <label for="wingspan" id="wingspanLabel">Wingspan (cm):</label>
+                    <input type="number" id="wingspan" step="0.1" value="120" aria-label="Wingspan in centimeters">
+                    
+                    <label for="rootChord" id="rootChordLabel">Root Chord (cm):</label>
+                    <input type="number" id="rootChord" step="0.1" value="20" aria-label="Root chord in centimeters">
+                    
+                    <label for="tipChord" id="tipChordLabel">Tip Chord (cm):</label>
+                    <input type="number" id="tipChord" step="0.1" value="15" aria-label="Tip chord in centimeters">
+                    
+                    <label for="sweepAngle">Sweep Angle (degrees):</label>
+                    <input type="number" id="sweepAngle" step="0.1" value="0" aria-label="Wing sweep angle in degrees">
+                    
+                    <label for="taperRatio">Taper Ratio:</label>
+                    <input type="number" id="taperRatio" step="0.01" value="0.75" disabled aria-label="Wing taper ratio" aria-disabled="true">
+                    
+                    <label for="airfoil">Airfoil Type:</label>
+                    <select id="airfoil" aria-label="Choose airfoil type">
+                        <option value="flat">Flat Plate</option>
+                        <option value="clark_y">Clark Y</option>
+                        <option value="naca_2412">NACA 2412</option>
+                        <option value="naca_4412">NACA 4412</option>
+                        <option value="naca_6412">NACA 6412</option>
+                        <option value="mh_32">MH-32</option>
+                        <option value="s1223">S1223 (High Lift)</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    
+                    <button onclick="calculateWingParameters()">Calculate Wing Parameters</button>
+                </div>
+                
+                <!-- Remaining tab content sections remain unchanged -->
+                <div id="weightTab" class="tab-content">
+                    <h2>Weight & Balance</h2>
+                    <label for="emptyWeight" id="emptyWeightLabel">Empty Weight (g):</label>
+                    <input type="number" id="emptyWeight" step="1" value="500" aria-label="Empty weight in grams">
+                    
+                    <label for="emptyWeightCG" id="emptyWeightCGLabel">Empty Weight CG (cm from nose):</label>
+                    <input type="number" id="emptyWeightCG" step="0.1" value="15" aria-label="Empty weight center of gravity in centimeters from nose">
+                    
+                    <h3>Add Component</h3>
+                    <label for="componentName">Component Name:</label>
+                    <input type="text" id="componentName" value="Battery" aria-label="Component name">
+                    
+                    <label for="componentWeight" id="componentWeightLabel">Weight (g):</label>
+                    <input type="number" id="componentWeight" step="0.1" value="200" aria-label="Component weight in grams">
+                    
+                    <label for="componentStation" id="componentStationLabel">Station (cm from nose):</label>
+                    <input type="number" id="componentStation" step="0.1" value="10" aria-label="Component station in centimeters from nose">
+                    
+                    <button onclick="addComponent()">Add Component</button>
+                    
+                    <div id="componentList" class="component-list" aria-live="polite" aria-label="Component list"></div>
+                    
+                    <button onclick="calculateCG()">Calculate Center of Gravity</button>
+                </div>
+                
+                <div id="performanceTab" class="tab-content">
+                    <h2>Performance Parameters</h2>
+                    <label for="maxTakeoffWeight" id="maxTakeoffWeightLabel">Max Takeoff Weight (g):</label>
+                    <input type="number" id="maxTakeoffWeight" step="1" value="1000" aria-label="Maximum takeoff weight in grams">
+                    
+                    <label for="targetWingLoading" id="targetWingLoadingLabel">Target Wing Loading (g/dm²):</label>
+                    <input type="number" id="targetWingLoading" step="0.1" value="30" aria-label="Target wing loading in grams per square decimeter">
+                    
+                    <label for="cruiseSpeed" id="cruiseSpeedLabel">Cruise Speed (km/h):</label>
+                    <input type="number" id="cruiseSpeed" step="1" value="40" aria-label="Cruise speed in kilometers per hour">
+                    
+                    <label for="stallSpeed" id="stallSpeedLabel">Stall Speed (km/h):</label>
+                    <input type="number" id="stallSpeed" step="1" value="15" aria-label="Stall speed in kilometers per hour">
+                    
+                    <button onclick="calculatePerformance()">Calculate Performance</button>
+                </div>
+                
+                <div id="powerTab" class="tab-content">
+                    <h2>Power System</h2>
+                    <label for="motorKv">Motor Kv Rating:</label>
+                    <input type="number" id="motorKv" step="1" value="1000" aria-label="Motor Kv rating">
+                    
+                    <label for="propDiameter" id="propDiameterLabel">Propeller Diameter (in):</label>
+                    <input type="number" id="propDiameter" step="0.1" value="9" aria-label="Propeller diameter in inches">
+                    
+                    <label for="propPitch" id="propPitchLabel">Propeller Pitch (in):</label>
+                    <input type="number" id="propPitch" step="0.1" value="4.5" aria-label="Propeller pitch in inches">
+                    
+                    <label for="batteryCell">Battery Cell Count:</label>
+                    <select id="batteryCell" aria-label="Battery cell count">
+                        <option value="1">1S (3.7V)</option>
+                        <option value="2">2S (7.4V)</option>
+                        <option value="3" selected>3S (11.1V)</option>
+                        <option value="4">4S (14.8V)</option>
+                        <option value="5">5S (18.5V)</option>
+                        <option value="6">6S (22.2V)</option>
+                    </select>
+                    
+                    <label for="batteryCap" id="batteryCapLabel">Battery Capacity (mAh):</label>
+                    <input type="number" id="batteryCap" step="10" value="2200" aria-label="Battery capacity in milliamp hours">
+                    
+                    <label for="escRating">ESC Rating (A):</label>
+                    <input type="number" id="escRating" step="1" value="30" aria-label="ESC rating in amps">
+                    
+                    <button onclick="calculatePowerSystem()">Calculate Power System</button>
+                </div>
+            </div>
+            
+            <div class="results-section">
+                <h2>Calculated Parameters</h2>
+                <div id="wingResults">
+                    <p>Wing Area: <span id="wingArea" class="result-value">--</span> <span id="wingAreaUnit">dm²</span></p>
+                    <p>Mean Aerodynamic Chord (MAC): <span id="mac" class="result-value">--</span> <span id="macUnit">cm</span></p>
+                    <p>MAC Position from Root: <span id="macPosition" class="result-value">--</span> <span id="macPositionUnit">cm</span></p>
+                    <p>Aspect Ratio: <span id="aspectRatio" class="result-value">--</span></p>
+                    <p>Estimated CL Max: <span id="clMax" class="result-value">--</span></p>
+                    <p>Recommended CG Position: <span id="recommendedCG" class="result-value">--</span> <span id="recommendedCGUnit">cm</span> from LE</p>
+                </div>
+                
+                <div id="weightResults">
+                    <p>Total Weight: <span id="totalWeight" class="result-value">--</span> <span id="totalWeightUnit">g</span></p>
+                    <p>Center of Gravity: <span id="cg" class="result-value">--</span> <span id="cgUnit">cm</span> from nose</p>
+                    <p>CG as % of MAC: <span id="cgPercentMAC" class="result-value">--</span>%</p>
+                </div>
+                
+                <div id="performanceResults">
+                    <p>Wing Loading: <span id="wingLoading" class="result-value">--</span> <span id="wingLoadingUnit">g/dm²</span></p>
+                    <p>Power Loading: <span id="powerLoading" class="result-value">--</span> <span id="powerLoadingUnit">g/W</span></p>
+                    <p>Stall Speed: <span id="calculatedStallSpeed" class="result-value">--</span> <span id="stallSpeedUnit">km/h</span></p>
+                </div>
+                
+                <div id="powerResults">
+                    <p>Motor RPM (no load): <span id="motorRpm" class="result-value">--</span> RPM</p>
+                    <p>Estimated Thrust: <span id="thrust" class="result-value">--</span> <span id="thrustUnit">g</span></p>
+                    <p>Thrust to Weight Ratio: <span id="thrustToWeight" class="result-value">--</span>:1</p>
+                    <p>Estimated Flight Time: <span id="flightTime" class="result-value">--</span> min</p>
+                    <p>Power: <span id="power" class="result-value">--</span> W</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visualization">
+            <h2>Aircraft Visualization</h2>
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'topViewTab')">Top View</button>
+                <button class="tab" onclick="openTab(event, 'sideViewTab')">Side View</button>
+                <button class="tab" onclick="openTab(event, 'cgChartTab')">CG Chart</button>
+            </div>
+            
+            <div id="topViewTab" class="tab-content active">
+                <div class="canvas-container">
+                    <canvas id="topViewCanvas" width="800" height="400" aria-label="Aircraft top view visualization"></canvas>
+                </div>
+            </div>
+            
+            <div id="sideViewTab" class="tab-content">
+                <div class="canvas-container">
+                    <canvas id="sideViewCanvas" width="800" height="200" aria-label="Aircraft side view visualization"></canvas>
+                </div>
+            </div>
+            
+            <div id="cgChartTab" class="tab-content">
+                <canvas id="cgChart" aria-label="Center of gravity chart"></canvas>
+            </div>
+        </div>
+        
+        <!-- SEO-Related Content Section -->
+        <div class="related-links">
+            <h3>RC Aircraft Design Resources</h3>
+            <ul>
+                <li><a href="#" title="RC Aircraft Wing Design Guide">Understanding Wing Loading in RC Aircraft Design</a></li>
+                <li><a href="#" title="CG Calculator Tutorial">How to Find the Perfect Center of Gravity for Your RC Plane</a></li>
+                <li><a href="#" title="Motor and Prop Selection Guide">Matching Motors and Propellers for Optimal Performance</a></li>
+                <li><a href="#" title="RC Aircraft Airfoil Selection">Choosing the Right Airfoil for Your Flying Style</a></li>
+                <li><a href="#" title="Battery Selection for RC Aircraft">Battery Selection and Flight Time Calculation Guide</a></li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>RC Aircraft Parameter Analyzer © 2025 | <a href="#" title="Privacy Policy">Privacy Policy</a> | <a href="#" title="Terms of Use">Terms of Use</a> | <a href="#" title="Contact Us">Contact Us</a></p>
+            <p>The most comprehensive online calculator for RC aircraft design, performance analysis, and parameter optimization.</p>
+        </footer>
+    </div>
+	
+<script>
+// Navigation Dropdowns
+document.addEventListener('DOMContentLoaded', function() {
+  // Desktop dropdowns
+  const dropdownBtns = document.querySelectorAll('.fly-dropdown-btn');
+  dropdownBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const dropdownContent = this.nextElementSibling;
+      
+      // Close all other dropdowns first
+      document.querySelectorAll('.fly-dropdown-content').forEach(content => {
+        if (content !== dropdownContent && content.classList.contains('show')) {
+          content.classList.remove('show');
+        }
+      });
+      
+      // Toggle current dropdown
+      dropdownContent.classList.toggle('show');
+    });
+  });
+  
+  // Close dropdowns when clicking outside
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.fly-dropdown-btn')) {
+      document.querySelectorAll('.fly-dropdown-content').forEach(content => {
+        if (content.classList.contains('show')) {
+          content.classList.remove('show');
+        }
+      });
+    }
+  });
+  
+  // Mobile menu toggle
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const mobileNav = document.querySelector('.mobile-nav');
+  
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+    });
+  }
+  
+  // Submenu toggles for mobile
+  const mobileSubMenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+  mobileSubMenuToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const subMenu = this.nextElementSibling;
+      subMenu.classList.toggle('open');
+      this.classList.toggle('active');
+    });
+  });
+});
+</script>
+    
+    <script>
+        // Global variables
+        let components = [];
+        let wingParams = {};
+        let cgParams = {};
+        let performanceParams = {};
+        let powerParams = {};
+        let topViewCtx, sideViewCtx, cgChartInstance;
+        let currentUnitSystem = 'metric';
+        
+        // Airfoil data
+        const airfoilData = {
+            'flat': { clMax: 0.8, recommendedCGPercent: 25 },
+            'clark_y': { clMax: 1.3, recommendedCGPercent: 30 },
+            'naca_2412': { clMax: 1.4, recommendedCGPercent: 28 },
+            'naca_4412': { clMax: 1.5, recommendedCGPercent: 30 },
+            'naca_6412': { clMax: 1.6, recommendedCGPercent: 32 },
+            'mh_32': { clMax: 1.4, recommendedCGPercent: 28 },
+            's1223': { clMax: 1.8, recommendedCGPercent: 25 },
+            'custom': { clMax: 1.2, recommendedCGPercent: 30 }
+        };
+        
+        // Initialize on page load
+        window.onload = function() {
+            topViewCtx = document.getElementById('topViewCanvas').getContext('2d');
+            sideViewCtx = document.getElementById('sideViewCanvas').getContext('2d');
+            
+            // Initialize with default values
+            calculateWingParameters();
+            
+            // Set taper ratio based on tip and root chord
+            document.getElementById('rootChord').addEventListener('input', updateTaperRatio);
+            document.getElementById('tipChord').addEventListener('input', updateTaperRatio);
+        };
+        
+        function changeUnitSystem() {
+            const newSystem = document.getElementById('unitSystem').value;
+            if (newSystem === currentUnitSystem) return;
+            
+            // Save current values
+            const wingspan = parseFloat(document.getElementById('wingspan').value);
+            const rootChord = parseFloat(document.getElementById('rootChord').value);
+            const tipChord = parseFloat(document.getElementById('tipChord').value);
+            const emptyWeight = parseFloat(document.getElementById('emptyWeight').value);
+            const emptyWeightCG = parseFloat(document.getElementById('emptyWeightCG').value);
+            const maxTakeoffWeight = parseFloat(document.getElementById('maxTakeoffWeight').value);
+            const targetWingLoading = parseFloat(document.getElementById('targetWingLoading').value);
+            const cruiseSpeed = parseFloat(document.getElementById('cruiseSpeed').value);
+            const stallSpeed = parseFloat(document.getElementById('stallSpeed').value);
+            const propDiameter = parseFloat(document.getElementById('propDiameter').value);
+            const propPitch = parseFloat(document.getElementById('propPitch').value);
+            const batteryCap = parseFloat(document.getElementById('batteryCap').value);
+            
+            // Convert values
+            if (newSystem === 'imperial' && currentUnitSystem === 'metric') {
+                // Metric to Imperial
+                document.getElementById('wingspan').value = (wingspan / 2.54).toFixed(1);
+                document.getElementById('rootChord').value = (rootChord / 2.54).toFixed(1);
+                document.getElementById('tipChord').value = (tipChord / 2.54).toFixed(1);
+                document.getElementById('emptyWeight').value = (emptyWeight / 28.35).toFixed(1);
+                document.getElementById('emptyWeightCG').value = (emptyWeightCG / 2.54).toFixed(1);
+                document.getElementById('maxTakeoffWeight').value = (maxTakeoffWeight / 28.35).toFixed(1);
+                document.getElementById('targetWingLoading').value = (targetWingLoading * 0.0321).toFixed(2); // g/dm² to oz/ft²
+                
+                // Update labels
+                document.getElementById('wingspanLabel').textContent = 'Wingspan (in):';
+                document.getElementById('rootChordLabel').textContent = 'Root Chord (in):';
+                document.getElementById('tipChordLabel').textContent = 'Tip Chord (in):';
+                document.getElementById('emptyWeightLabel').textContent = 'Empty Weight (oz):';
+                document.getElementById('emptyWeightCGLabel').textContent = 'Empty Weight CG (in from nose):';
+                document.getElementById('componentWeightLabel').textContent = 'Weight (oz):';
+                document.getElementById('componentStationLabel').textContent = 'Station (in from nose):';
+                document.getElementById('maxTakeoffWeightLabel').textContent = 'Max Takeoff Weight (oz):';
+                document.getElementById('targetWingLoadingLabel').textContent = 'Target Wing Loading (oz/ft²):';
+                
+                // Update unit labels
+                document.getElementById('wingAreaUnit').textContent = 'ft²';
+                document.getElementById('macUnit').textContent = 'in';
+                document.getElementById('macPositionUnit').textContent = 'in';
+                document.getElementById('recommendedCGUnit').textContent = 'in';
+                document.getElementById('totalWeightUnit').textContent = 'oz';
+                document.getElementById('cgUnit').textContent = 'in';
+                document.getElementById('wingLoadingUnit').textContent = 'oz/ft²';
+                document.getElementById('powerLoadingUnit').textContent = 'oz/W';
+                document.getElementById('thrustUnit').textContent = 'oz';
+                
+            } else if (newSystem === 'metric' && currentUnitSystem === 'imperial') {
+                // Imperial to Metric
+                document.getElementById('wingspan').value = (wingspan * 2.54).toFixed(1);
+                document.getElementById('rootChord').value = (rootChord * 2.54).toFixed(1);
+                document.getElementById('tipChord').value = (tipChord * 2.54).toFixed(1);
+                document.getElementById('emptyWeight').value = (emptyWeight * 28.35).toFixed(1);
+                document.getElementById('emptyWeightCG').value = (emptyWeightCG * 2.54).toFixed(1);
+                document.getElementById('maxTakeoffWeight').value = (maxTakeoffWeight * 28.35).toFixed(1);
+                document.getElementById('targetWingLoading').value = (targetWingLoading / 0.0321).toFixed(2); // oz/ft² to g/dm²
+                
+                // Update labels
+                document.getElementById('wingspanLabel').textContent = 'Wingspan (cm):';
+                document.getElementById('rootChordLabel').textContent = 'Root Chord (cm):';
+                document.getElementById('tipChordLabel').textContent = 'Tip Chord (cm):';
+                document.getElementById('emptyWeightLabel').textContent = 'Empty Weight (g):';
+                document.getElementById('emptyWeightCGLabel').textContent = 'Empty Weight CG (cm from nose):';
+                document.getElementById('componentWeightLabel').textContent = 'Weight (g):';
+                document.getElementById('componentStationLabel').textContent = 'Station (cm from nose):';
+                document.getElementById('maxTakeoffWeightLabel').textContent = 'Max Takeoff Weight (g):';
+                document.getElementById('targetWingLoadingLabel').textContent = 'Target Wing Loading (g/dm²):';
+                
+                // Update unit labels
+                document.getElementById('wingAreaUnit').textContent = 'dm²';
+                document.getElementById('macUnit').textContent = 'cm';
+                document.getElementById('macPositionUnit').textContent = 'cm';
+                document.getElementById('recommendedCGUnit').textContent = 'cm';
+                document.getElementById('totalWeightUnit').textContent = 'g';
+                document.getElementById('cgUnit').textContent = 'cm';
+                document.getElementById('wingLoadingUnit').textContent = 'g/dm²';
+                document.getElementById('powerLoadingUnit').textContent = 'g/W';
+                document.getElementById('thrustUnit').textContent = 'g';
+            }
+            
+            // Update components list with converted units
+            components.forEach(comp => {
+                if (newSystem === 'imperial' && currentUnitSystem === 'metric') {
+                    comp.weight = comp.weight / 28.35;
+                    comp.station = comp.station / 2.54;
+                } else {
+                    comp.weight = comp.weight * 28.35;
+                    comp.station = comp.station * 2.54;
+                }
+            });
+            updateComponentList();
+            
+            currentUnitSystem = newSystem;
+            
+            // Recalculate everything with new units
+            calculateWingParameters();
+        }
+        
+        function updateTaperRatio() {
+            const rootChord = parseFloat(document.getElementById('rootChord').value);
+            const tipChord = parseFloat(document.getElementById('tipChord').value);
+            if (rootChord > 0) {
+                document.getElementById('taperRatio').value = (tipChord / rootChord).toFixed(2);
+            }
+        }
+        
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all tabs
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Show the current tab and add active class
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        function calculateWingParameters() {
+            let wingspan = parseFloat(document.getElementById('wingspan').value);
+            let rootChord = parseFloat(document.getElementById('rootChord').value);
+            let tipChord = parseFloat(document.getElementById('tipChord').value);
+            const sweepAngle = parseFloat(document.getElementById('sweepAngle').value);
+            const airfoilType = document.getElementById('airfoil').value;
+            
+            // Update taper ratio
+            updateTaperRatio();
+            
+            // Convert to meters for calculations if in metric
+            let wingspanM, rootChordM, tipChordM;
+            if (currentUnitSystem === 'metric') {
+                wingspanM = wingspan / 100; // cm to m
+                rootChordM = rootChord / 100; // cm to m
+                tipChordM = tipChord / 100; // cm to m
+            } else {
+                wingspanM = wingspan * 0.0254; // in to m
+                rootChordM = rootChord * 0.0254; // in to m
+                tipChordM = tipChord * 0.0254; // in to m
+            }
+            
+            // Calculate wing parameters
+            const taperRatio = tipChordM / rootChordM;
+            const wingAreaM2 = (wingspanM / 2) * (rootChordM + tipChordM);
+            const aspectRatio = Math.pow(wingspanM, 2) / wingAreaM2;
+            
+            // Calculate Mean Aerodynamic Chord (MAC)
+            const macM = (2/3) * rootChordM * (1 + taperRatio + Math.pow(taperRatio, 2)) / (1 + taperRatio);
+            
+            // Calculate MAC position from root
+            const macPositionM = (wingspanM / 6) * (1 + 2 * taperRatio) / (1 + taperRatio);
+            
+            // Get airfoil data
+            const clMax = airfoilData[airfoilType].clMax;
+            const recommendedCGPercent = airfoilData[airfoilType].recommendedCGPercent;
+            
+            // Calculate recommended CG position (% of MAC from leading edge)
+            const recommendedCGM = macM * (recommendedCGPercent / 100);
+            
+            // Convert back to display units
+            let wingArea, mac, macPosition, recommendedCG;
+            if (currentUnitSystem === 'metric') {
+                wingArea = wingAreaM2 * 100; // m² to dm²
+                mac = macM * 100; // m to cm
+                macPosition = macPositionM * 100; // m to cm
+                recommendedCG = recommendedCGM * 100; // m to cm
+            } else {
+                wingArea = wingAreaM2 * 10.764; // m² to ft²
+                mac = macM * 39.37; // m to in
+                macPosition = macPositionM * 39.37; // m to in
+                recommendedCG = recommendedCGM * 39.37; // m to in
+            }
+            
+            // Store parameters
+            wingParams = {
+                wingspan,
+                rootChord,
+                tipChord,
+                sweepAngle,
+                taperRatio,
+                wingArea,
+                aspectRatio,
+                mac,
+                macPosition,
+                clMax,
+                recommendedCG,
+                recommendedCGPercent,
+                airfoilType
+            };
+            
+            // Update results
+            document.getElementById('wingArea').textContent = wingArea.toFixed(2);
+            document.getElementById('mac').textContent = mac.toFixed(2);
+            document.getElementById('macPosition').textContent = macPosition.toFixed(2);
+            document.getElementById('aspectRatio').textContent = aspectRatio.toFixed(2);
+            document.getElementById('clMax').textContent = clMax.toFixed(2);
+            document.getElementById('recommendedCG').textContent = recommendedCG.toFixed(2);
+            
+            // Draw aircraft visualization
+            drawTopView();
+            drawSideView();
+            
+            // Recalculate performance if we have the data
+            if (document.getElementById('maxTakeoffWeight').value) {
+                calculatePerformance();
+            }
+            
+            // Recalculate CG if we have components
+            if (components.length > 0) {
+                calculateCG();
+            }
+        }
+        
+        function addComponent() {
+            const name = document.getElementById('componentName').value;
+            const weight = parseFloat(document.getElementById('componentWeight').value);
+            const station = parseFloat(document.getElementById('componentStation').value);
+            
+            if (name && !isNaN(weight) && !isNaN(station)) {
+                components.push({ name, weight, station });
+                updateComponentList();
+                
+                // Clear inputs for next component
+                document.getElementById('componentName').value = '';
+                document.getElementById('componentWeight').value = '';
+            }
+        }
+        
+        function removeComponent(index) {
+            components.splice(index, 1);
+            updateComponentList();
+            calculateCG();
+        }
+        
+        function updateComponentList() {
+            const list = document.getElementById('componentList');
+            list.innerHTML = '';
+            
+            const weightUnit = currentUnitSystem === 'metric' ? 'g' : 'oz';
+            const distanceUnit = currentUnitSystem === 'metric' ? 'cm' : 'in';
+            
+            components.forEach((component, index) => {
+                const item = document.createElement('div');
+                item.className = 'component-item';
+                item.innerHTML = `
+                    <span>${component.name}: ${component.weight.toFixed(1)} ${weightUnit} at ${component.station.toFixed(1)} ${distanceUnit}</span>
+                    <button class="remove-btn" onclick="removeComponent(${index})">Remove</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+        
+function calculateCG() {
+            const emptyWeight = parseFloat(document.getElementById('emptyWeight').value);
+            const emptyWeightCG = parseFloat(document.getElementById('emptyWeightCG').value);
+            
+            let totalWeight = emptyWeight;
+            let momentSum = emptyWeight * emptyWeightCG;
+            
+            // Add moments from components
+            components.forEach(component => {
+                totalWeight += component.weight;
+                momentSum += component.weight * component.station;
+            });
+            
+            // Calculate CG
+            const cg = momentSum / totalWeight;
+            
+            // Calculate CG as percentage of MAC
+            let cgPercentMAC = 0;
+            if (wingParams.mac) {
+                // Assuming empty weight CG is measured from nose, need to convert to % of MAC
+                // First determine where the leading edge of the MAC is located from nose
+                const macLeadingEdge = wingParams.macPosition;
+                // Calculate CG as percentage of MAC
+                cgPercentMAC = ((cg - macLeadingEdge) / wingParams.mac) * 100;
+            }
+            
+            // Store parameters
+            cgParams = {
+                totalWeight,
+                cg,
+                cgPercentMAC
+            };
+            
+            // Update results
+            document.getElementById('totalWeight').textContent = totalWeight.toFixed(1);
+            document.getElementById('cg').textContent = cg.toFixed(2);
+            document.getElementById('cgPercentMAC').textContent = cgPercentMAC.toFixed(1);
+            
+            // Update CG visualization
+            drawSideView();
+            updateCGChart();
+            
+            return cgParams;
+        }
+        
+        function calculatePerformance() {
+            const maxTakeoffWeight = parseFloat(document.getElementById('maxTakeoffWeight').value);
+            const targetWingLoading = parseFloat(document.getElementById('targetWingLoading').value);
+            const cruiseSpeed = parseFloat(document.getElementById('cruiseSpeed').value);
+            const userStallSpeed = parseFloat(document.getElementById('stallSpeed').value);
+            
+            // Calculate wing loading
+            const wingLoading = maxTakeoffWeight / wingParams.wingArea;
+            
+            // Calculate stall speed based on wing loading and CL max
+            // Vs = sqrt(2 * W/S / (rho * CLmax))
+            let stallSpeed;
+            const airDensity = 1.225; // kg/m³ at sea level
+            
+            if (currentUnitSystem === 'metric') {
+                // Convert g/dm² to N/m²
+                const wingLoadingPascal = wingLoading * 0.980665;
+                stallSpeed = Math.sqrt((2 * wingLoadingPascal) / (airDensity * wingParams.clMax));
+                // Convert m/s to km/h
+                stallSpeed = stallSpeed * 3.6;
+            } else {
+                // Convert oz/ft² to lbf/ft²
+                const wingLoadingLbs = wingLoading / 16;
+                // Stall speed in ft/s
+                stallSpeed = Math.sqrt((2 * wingLoadingLbs * 32.174) / (0.00237 * wingParams.clMax));
+                // Convert ft/s to mph
+                stallSpeed = stallSpeed * 0.681818;
+                // Convert mph to km/h for display consistency
+                stallSpeed = stallSpeed * 1.60934;
+            }
+            
+            // Calculate power required (assuming available from power system tab)
+            let power = 0;
+            let powerLoading = 0;
+            
+            if (powerParams && powerParams.power) {
+                power = powerParams.power;
+                powerLoading = maxTakeoffWeight / power;
+            }
+            
+            // Store parameters
+            performanceParams = {
+                maxTakeoffWeight,
+                wingLoading,
+                targetWingLoading,
+                cruiseSpeed,
+                stallSpeed,
+                power,
+                powerLoading
+            };
+            
+            // Update results
+            document.getElementById('wingLoading').textContent = wingLoading.toFixed(2);
+            document.getElementById('calculatedStallSpeed').textContent = stallSpeed.toFixed(1);
+            
+            if (power > 0) {
+                document.getElementById('powerLoading').textContent = powerLoading.toFixed(2);
+            }
+            
+            return performanceParams;
+        }
+        
+        function calculatePowerSystem() {
+            const motorKv = parseFloat(document.getElementById('motorKv').value);
+            const propDiameter = parseFloat(document.getElementById('propDiameter').value);
+            const propPitch = parseFloat(document.getElementById('propPitch').value);
+            const batteryCell = parseInt(document.getElementById('batteryCell').value);
+            const batteryCap = parseFloat(document.getElementById('batteryCap').value);
+            const escRating = parseFloat(document.getElementById('escRating').value);
+            
+            // Calculate nominal battery voltage
+            const batteryVoltage = batteryCell * 3.7;
+            
+            // Calculate no-load motor RPM
+            const motorRpm = motorKv * batteryVoltage;
+            
+            // Estimate power
+            // Approximation for input power (W) based on prop size and RPM
+            // Formula: P = D^4 * pitch * RPM^3 * 1.1 * 10^-10
+            // Where D = diameter in inches, pitch in inches, RPM in RPM
+            const power = Math.pow(propDiameter, 4) * propPitch * Math.pow(motorRpm / 1000, 3) * 1.1 * Math.pow(10, -7);
+            
+            // Estimate thrust based on power
+            // Approximation: 1W produces about 3-4g of thrust for efficient setups
+            let thrust;
+            if (currentUnitSystem === 'metric') {
+                thrust = power * 3.5; // gram-force
+            } else {
+                thrust = power * 3.5 / 28.35; // ounce-force
+            }
+            
+            // Calculate thrust to weight ratio
+            let thrustToWeight = 0;
+            if (cgParams && cgParams.totalWeight > 0) {
+                thrustToWeight = thrust / cgParams.totalWeight;
+            } else if (document.getElementById('maxTakeoffWeight').value) {
+                const maxTakeoffWeight = parseFloat(document.getElementById('maxTakeoffWeight').value);
+                thrustToWeight = thrust / maxTakeoffWeight;
+            }
+            
+            // Estimate flight time
+            // Flight time (minutes) = (Battery capacity in mAh * 60) / (Power in W * 1000)
+            // With safety factor of 80%
+            const flightTime = (batteryCap * 60 * 0.8) / (power * 1000);
+            
+            // Store parameters
+            powerParams = {
+                motorKv,
+                propDiameter,
+                propPitch,
+                batteryCell,
+                batteryVoltage,
+                batteryCap,
+                escRating,
+                motorRpm,
+                power,
+                thrust,
+                thrustToWeight,
+                flightTime
+            };
+            
+            // Update results
+            document.getElementById('motorRpm').textContent = motorRpm.toFixed(0);
+            document.getElementById('thrust').textContent = thrust.toFixed(0);
+            document.getElementById('thrustToWeight').textContent = thrustToWeight.toFixed(2);
+            document.getElementById('flightTime').textContent = flightTime.toFixed(1);
+            document.getElementById('power').textContent = power.toFixed(1);
+            
+            // Recalculate performance parameters
+            if (document.getElementById('maxTakeoffWeight').value) {
+                calculatePerformance();
+            }
+            
+            return powerParams;
+        }
+        
+        function drawTopView() {
+            if (!wingParams.wingspan) return;
+            
+            const canvas = document.getElementById('topViewCanvas');
+            const ctx = topViewCtx;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set scale factor to fit canvas
+            const maxSize = Math.max(wingParams.wingspan, wingParams.rootChord * 3);
+            const scale = (canvas.width * 0.8) / maxSize;
+            
+            // Set origin to middle of canvas
+            const originX = canvas.width / 2;
+            const originY = canvas.height * 0.6;
+            
+            // Draw wing
+            ctx.beginPath();
+            
+            // Calculate wing coordinates based on parameters
+            const halfWingspan = wingParams.wingspan / 2;
+            const rootChord = wingParams.rootChord;
+            const tipChord = wingParams.tipChord;
+            const sweepAngle = wingParams.sweepAngle * Math.PI / 180; // Convert to radians
+            
+            // Calculate sweep at leading edge
+            const leadingEdgeSweep = Math.tan(sweepAngle) * halfWingspan;
+            
+            // Right wing
+            ctx.moveTo(originX, originY); // Root trailing edge
+            ctx.lineTo(originX, originY - rootChord * scale); // Root leading edge
+            ctx.lineTo(originX + halfWingspan * scale, originY - rootChord * scale + leadingEdgeSweep * scale); // Tip leading edge
+            ctx.lineTo(originX + halfWingspan * scale, originY - rootChord * scale + leadingEdgeSweep * scale + tipChord * scale); // Tip trailing edge
+            ctx.lineTo(originX, originY); // Back to root trailing edge
+            
+            // Left wing
+            ctx.moveTo(originX, originY); // Root trailing edge
+            ctx.lineTo(originX, originY - rootChord * scale); // Root leading edge
+            ctx.lineTo(originX - halfWingspan * scale, originY - rootChord * scale + leadingEdgeSweep * scale); // Tip leading edge
+            ctx.lineTo(originX - halfWingspan * scale, originY - rootChord * scale + leadingEdgeSweep * scale + tipChord * scale); // Tip trailing edge
+            ctx.lineTo(originX, originY); // Back to root trailing edge
+            
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(135, 206, 250, 0.5)';
+            ctx.fill();
+            
+            // Draw fuselage (simplified)
+            const fuselageLength = rootChord * 3;
+            const fuselageWidth = rootChord * 0.2;
+            
+            ctx.beginPath();
+            ctx.ellipse(originX, originY - rootChord * scale / 2, fuselageLength * scale / 2, fuselageWidth * scale, 0, 0, 2 * Math.PI);
+            ctx.fillStyle = 'rgba(200, 200, 200, 0.7)';
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Draw Mean Aerodynamic Chord (MAC)
+            if (wingParams.macPosition) {
+                ctx.beginPath();
+                const macPositionX = originX + wingParams.macPosition * scale;
+                const macLeadingEdgeY = originY - rootChord * scale + (leadingEdgeSweep * wingParams.macPosition / halfWingspan) * scale;
+                
+                ctx.moveTo(macPositionX, macLeadingEdgeY);
+                ctx.lineTo(macPositionX, macLeadingEdgeY + wingParams.mac * scale);
+                
+                ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Label MAC
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
+                ctx.font = '12px Arial';
+                ctx.fillText('MAC', macPositionX + 5, macLeadingEdgeY + wingParams.mac * scale / 2);
+            }
+            
+            // Draw recommended CG
+            if (wingParams.recommendedCG) {
+                const cgX = originX + wingParams.macPosition * scale;
+                const cgY = originY - rootChord * scale + (leadingEdgeSweep * wingParams.macPosition / halfWingspan) * scale + wingParams.recommendedCG * scale;
+                
+                ctx.beginPath();
+                ctx.arc(cgX, cgY, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.fill();
+                
+                // Draw CG line across fuselage
+                ctx.beginPath();
+                ctx.moveTo(originX - fuselageWidth * scale, cgY);
+                ctx.lineTo(originX + fuselageWidth * scale, cgY);
+                ctx.strokeStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Label recommended CG
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.font = '12px Arial';
+                ctx.fillText('Recommended CG', cgX + 10, cgY);
+            }
+            
+            // Draw calculated CG if available
+            if (cgParams && cgParams.cg) {
+                // This is simplified - would need to calculate actual position based on MAC and CG%
+                const actualCgX = originX;
+                const actualCgY = originY - rootChord * scale / 2; // Simplified position
+                
+                ctx.beginPath();
+                ctx.arc(actualCgX, actualCgY, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(255, 165, 0, 0.8)';
+                ctx.fill();
+                
+                // Label actual CG
+                ctx.fillStyle = 'rgba(255, 165, 0, 0.8)';
+                ctx.font = '12px Arial';
+                ctx.fillText('Current CG', actualCgX - 60, actualCgY);
+            }
+        }
+        
+        function drawSideView() {
+            if (!wingParams.rootChord) return;
+            
+            const canvas = document.getElementById('sideViewCanvas');
+            const ctx = sideViewCtx;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set scale factor to fit canvas
+            const fuselageLength = wingParams.rootChord * 3;
+            const scale = (canvas.width * 0.8) / fuselageLength;
+            
+            // Set origin
+            const originX = canvas.width * 0.1;
+            const originY = canvas.height * 0.6;
+            
+            // Draw fuselage (simplified)
+            ctx.beginPath();
+            ctx.moveTo(originX, originY);
+            ctx.lineTo(originX + fuselageLength * scale * 0.3, originY - fuselageLength * scale * 0.1);
+            ctx.lineTo(originX + fuselageLength * scale * 0.9, originY - fuselageLength * scale * 0.1);
+            ctx.lineTo(originX + fuselageLength * scale, originY - fuselageLength * scale * 0.05);
+            ctx.lineTo(originX + fuselageLength * scale, originY + fuselageLength * scale * 0.05);
+            ctx.lineTo(originX, originY);
+            
+            ctx.fillStyle = 'rgba(200, 200, 200, 0.7)';
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Draw wing (simplified)
+            const wingPosX = originX + fuselageLength * scale * 0.4;
+            const wingThickness = wingParams.rootChord * 0.1;
+            
+            ctx.beginPath();
+            ctx.moveTo(wingPosX, originY - fuselageLength * scale * 0.1);
+            ctx.lineTo(wingPosX, originY - fuselageLength * scale * 0.1 - wingThickness * scale);
+            ctx.lineTo(wingPosX + wingParams.rootChord * scale, originY - fuselageLength * scale * 0.1 - wingThickness * scale);
+            ctx.lineTo(wingPosX + wingParams.rootChord * scale, originY - fuselageLength * scale * 0.1);
+            
+            ctx.fillStyle = 'rgba(135, 206, 250, 0.5)';
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Draw tail (simplified)
+            const tailPosX = originX + fuselageLength * scale * 0.85;
+            const tailHeight = wingParams.rootChord * 0.3;
+            
+            ctx.beginPath();
+            ctx.moveTo(tailPosX, originY - fuselageLength * scale * 0.1);
+            ctx.lineTo(tailPosX, originY - fuselageLength * scale * 0.1 - tailHeight * scale);
+            ctx.lineTo(tailPosX + wingParams.rootChord * scale * 0.4, originY - fuselageLength * scale * 0.1);
+            
+            ctx.fillStyle = 'rgba(135, 206, 250, 0.5)';
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Draw recommended CG if available
+            if (wingParams.recommendedCG) {
+                const cgX = wingPosX + wingParams.recommendedCG * scale;
+                
+                ctx.beginPath();
+                ctx.moveTo(cgX, originY - fuselageLength * scale * 0.15);
+                ctx.lineTo(cgX, originY + fuselageLength * scale * 0.15);
+                ctx.strokeStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Draw CG point
+                ctx.beginPath();
+                ctx.arc(cgX, originY, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.fill();
+                
+                // Label recommended CG
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+                ctx.font = '12px Arial';
+                ctx.fillText('Recommended CG', cgX + 10, originY - 10);
+            }
+            
+            // Draw calculated CG if available
+            if (cgParams && cgParams.cg) {
+                const actualCgX = originX + cgParams.cg * scale;
+                
+                ctx.beginPath();
+                ctx.moveTo(actualCgX, originY - fuselageLength * scale * 0.15);
+                ctx.lineTo(actualCgX, originY + fuselageLength * scale * 0.15);
+                ctx.strokeStyle = 'rgba(255, 165, 0, 0.8)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Draw CG point
+                ctx.beginPath();
+                ctx.arc(actualCgX, originY, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = 'rgba(255, 165, 0, 0.8)';
+                ctx.fill();
+                
+                // Label actual CG
+                ctx.fillStyle = 'rgba(255, 165, 0, 0.8)';
+                ctx.font = '12px Arial';
+                ctx.fillText('Current CG', actualCgX + 10, originY + 20);
+            }
+        }
+        
+        function updateCGChart() {
+            // Create CG chart if it doesn't exist
+            if (!cgChartInstance && cgParams) {
+                const ctx = document.getElementById('cgChart').getContext('2d');
+                
+                cgChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Empty Weight', ...components.map(c => c.name)],
+                        datasets: [{
+                            label: 'Weight Contribution',
+                            data: [document.getElementById('emptyWeight').value, ...components.map(c => c.weight)],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.5)',
+                                ...components.map(() => 'rgba(153, 102, 255, 0.5)')
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                ...components.map(() => 'rgba(153, 102, 255, 1)')
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: currentUnitSystem === 'metric' ? 'Weight (g)' : 'Weight (oz)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Weight Distribution'
+                            }
+                        }
+                    }
+                });
+            } else if (cgChartInstance && cgParams) {
+                // Update existing chart
+                cgChartInstance.data.labels = ['Empty Weight', ...components.map(c => c.name)];
+                cgChartInstance.data.datasets[0].data = [document.getElementById('emptyWeight').value, ...components.map(c => c.weight)];
+                cgChartInstance.options.scales.y.title.text = currentUnitSystem === 'metric' ? 'Weight (g)' : 'Weight (oz)';
+                cgChartInstance.update();
+            }
+        }
+    </script>
+	
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        // For mobile: make dropdown toggles work with click
+        if (window.innerWidth <= 768) {
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.parentNode.classList.toggle('active');
+                });
+            });
+        }
+    });
+    </script>
+</body>
+</html>
