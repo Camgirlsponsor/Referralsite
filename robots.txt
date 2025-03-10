@@ -12,44 +12,28 @@ Allow: /parameter-analyzer
 # Prevent duplicate content issues
 Disallow: /wp-admin/
 Disallow: /wp-includes/
-Disallow: */trackback/
-Disallow: */feed/
-Disallow: */page/
-Disallow: /*?
-Disallow: /*?s=*
-Disallow: /*&s=*
-Disallow: /search/
-Disallow: /tag/
-Disallow: /author/
 Disallow: /download/
 
-# Block archive pages that could create duplicate content
-Disallow: /category/
-Disallow: /archives/
-Disallow: /*/comment-page-*
 
 # Allow specific bots with customized directives
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
-Crawl-delay: 2
 
 # Block aggressive bots and scrapers
 User-agent: AhrefsBot
-Crawl-delay: 10
+Crawl-delay: 5
 
 User-agent: SemrushBot
-Crawl-delay: 10
+Crawl-delay: 5
 
 # Block known bad bots
 User-agent: MJ12bot
