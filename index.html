@@ -12,7 +12,11 @@
         :root {
             --primary-color: #1c87c9;
             --secondary-color: #23c462;
-            --background-gradient: linear-gradient(135deg, #1124cb, #2575fc);
+            --accent-color: #FFD700;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --card-highlight: #334155;
+            --background-gradient: linear-gradient(135deg, #0f172a, #1e3a8a);
         }
 
         body {
@@ -23,7 +27,7 @@
         }
 
         .gradient-overlay {
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.75);
             position: absolute;
             top: 0;
             left: 0;
@@ -34,7 +38,7 @@
 
         .hero {
             position: relative;
-            height: 80vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -46,57 +50,136 @@
         }
 
         .feature-card {
+            background-color: var(--card-bg);
             transition: all 0.3s ease;
             transform: translateY(0);
+            border-radius: 0.75rem;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background-color: var(--card-highlight);
         }
 
-        .cta-button {
+        .btn-primary {
             background-color: var(--primary-color);
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             font-weight: bold;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
-        .cta-button:hover {
+        .btn-primary:hover {
             background-color: var(--secondary-color);
             transform: scale(1.05);
         }
 
-        .calculator-icon {
-            font-size: 3rem;
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
             color: var(--primary-color);
-            margin-bottom: 15px;
         }
 
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px;
+        .calculator-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
         }
-   .bg-bronze {
-    background-color: #cd7f32;
-}
 
-/* Optional: Add some subtle animations */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
 
-.leaderboard-entries > div:hover {
-    animation: pulse 1s infinite;
-}
-   </style>
-  <script type="application/ld+json">
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        /* Leaderboard styles */
+        .leaderboard-card {
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .rank-badge {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+
+        .bg-bronze {
+            background-color: #cd7f32;
+        }
+
+        .dropdown-content {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 70vh;
+            }
+        }
+    </style>
+    <!-- Structured data remains unchanged -->
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -139,9 +222,11 @@
         }
     }
     </script>
-<!-- Clarity tracking code for https://www.flywiseguides.com/ --><script>    (function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "p81rfnfwe7");</script>
-<meta name="msvalidate.01" content="0E58BEF86098189A8075754E48876E67" />
+    <!-- Clarity tracking code - moved to bottom for performance -->
+    <!-- Google validation meta tag -->
+    <meta name="msvalidate.01" content="0E58BEF86098189A8075754E48876E67" />
 </head>
+
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMSDZRTX4P"></script>
@@ -156,317 +241,211 @@
 
 
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 shadow-lg z-50">
-    <div class="container mx-auto flex justify-between items-center p-4">
-        <!-- Logo -->
-        <a href="/" class="text-white text-2xl font-bold flex items-center">
-            <i class="fas fa-plane-departure mr-2"></i> FlyWise Guides
-        </a>
+    <nav class="fixed top-0 left-0 right-0 bg-black bg-opacity-90 shadow-lg z-50" aria-label="Main navigation">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <!-- Logo -->
+            <a href="/" class="text-white text-2xl font-bold flex items-center">
+                <i class="fas fa-plane-departure mr-2" aria-hidden="true"></i> 
+                <span>FlyWise Guides</span>
+            </a>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex space-x-6">
-            <a href="/" class="text-white hover:text-blue-300 transition">Home</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6">
+                <a href="/" class="text-white hover:text-blue-300 transition">Home</a>
 
-            <!-- Clickable Dropdown for Calculators -->
-            <div class="relative">
-                <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center">
-                    Calculators <i class="fas fa-angle-down ml-2"></i>
-                </button>
-                <div class="dropdown-content absolute left-0 mt-2 w-48 bg-black bg-opacity-95 rounded-lg shadow-lg hidden">
-                    <a href="rc-calculators" class="block px-4 py-2 text-white hover:text-blue-300">RC Calculators</a>
-	            <a href="parameter-analyzer" class="block px-4 py-2 text-white hover:text-blue-300">Parameter Analyzer</a>
+                <!-- Calculators Dropdown -->
+                <div class="relative">
+                    <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center" aria-expanded="false" aria-haspopup="true">
+                        Calculators <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-content absolute left-0 mt-2 w-48 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Calculators submenu">
+                        <a href="rc-calculators" class="block px-4 py-2 text-white hover:text-blue-300">RC Calculators</a>
+                        <a href="parameter-analyzer" class="block px-4 py-2 text-white hover:text-blue-300">Parameter Analyzer</a>
+                    </div>
                 </div>
+
+                <a href="https://stake.us/?c=Augment" class="btn-primary text-sm" aria-label="Sign up for Stake.us using bonus code Augment">Stake.us SIGN UP</a>
+
+                <!-- Casino Insights Dropdown -->
+                <div class="relative">
+                    <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center" aria-expanded="false" aria-haspopup="true">
+                        Casino Insights <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-content absolute left-0 mt-2 w-56 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Casino insights submenu">
+                        <a href="stake-us-referral-faq" class="block px-4 py-2 text-white hover:text-blue-300">Frequently Asked Questions (FAQ)</a>
+                        <a href="stake-us-pump-multiplier" class="block px-4 py-2 text-white hover:text-blue-300">Pump Multiplier</a>
+                        <a href="welcome-guide#achievements" class="block px-4 py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
+                        <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
+                        <a href="#referrals" class="block px-4 py-2 text-white hover:text-blue-300">Other Free Daily SC Casinos</a>
+                    </div>
+                </div>
+
+                <a href="#affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Affiliate Race</a>
             </div>
 
-            <a href="https://stake.us/?c=Augment" class="text-white hover:text-blue-300 transition">Stake.us SIGN UP</a>
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
 
-            <!-- Clickable Dropdown for Casino Insights -->
-            <div class="relative">
-                <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center">
-                    Casino Insights <i class="fas fa-angle-down ml-2"></i>
-                </button>
-                <div class="dropdown-content absolute left-0 mt-2 w-56 bg-black bg-opacity-95 rounded-lg shadow-lg hidden">
-                    <a href="stake-us-referral-faq" class="block px-4 py-2 text-white hover:text-blue-300">Frequently Asked Questions (FAQ)</a>
-		    <a href="stake-us-pump-multiplier" class="block px-4 py-2 text-white hover:text-blue-300">Pump Multiplier</a>
-                    <a href="welcome-guide#achievements" class="block px-4 py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
-                    <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
-                    <a href="#referrals" class="block px-4 py-2 text-white hover:text-blue-300">Other Free Daily SC Casinos</a>
-                </div>
+        <!-- Mobile Menu - Simplified with a single implementation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4" aria-label="Mobile navigation">
+            <a href="/" class="block py-2 text-white hover:text-blue-300">Home</a>
+            
+            <button class="mobile-dropdown-btn w-full text-left py-2 text-white hover:text-blue-300 flex justify-between items-center" aria-expanded="false">
+                <span>Calculators</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div class="mobile-dropdown-content hidden pl-4">
+                <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
+                <a href="parameter-analyzer" class="block py-2 text-white hover:text-blue-300">Parameter Analyzer</a>
             </div>
 
-            <a href="#affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Affiliate Race</a>
-		
+            <a href="https://stake.us/?c=Augment" class="block py-2 text-white hover:text-blue-300">Stake.us SIGN UP</a>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
-            <i class="fas fa-bars"></i>
-        </button>
-    </div>
+            <button class="mobile-dropdown-btn w-full text-left py-2 text-white hover:text-blue-300 flex justify-between items-center" aria-expanded="false">
+                <span>Casino Insights</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </button>
+            <div class="mobile-dropdown-content hidden pl-4">
+                <a href="stake-us-referral-faq" class="block py-2 text-white hover:text-blue-300">Frequently Asked Questions</a>
+                <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
+                <a href="welcome-guide#achievements" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
+                <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
+                <a href="#referrals" class="block py-2 text-white hover:text-blue-300">Other Free Daily SC Casinos</a>
+            </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4">
-        <a href="/" class="block py-2 text-white hover:text-blue-300">Home</a>
+            <a href="#affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Reduced height and improved contrast -->
+    <header id="main-content" class="hero relative flex items-center justify-center text-center pt-20" aria-label="Hero banner">
+        <div class="gradient-overlay"></div>
         
-        <button class="dropdown-btn-mobile block w-full text-left py-2 text-white hover:text-blue-300">
-            Calculators <i class="fas fa-angle-down ml-2"></i>
-        </button>
-        <div class="dropdown-content-mobile hidden pl-4">
-            <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
-        </div>
+        <div class="container mx-auto relative z-10 px-6 py-12 md:py-16">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight shadow-md mb-4">
+                RC Aircraft Tools & Casino Affiliate Benefits
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mt-4 max-w-2xl mx-auto">
+                Advanced calculators for RC enthusiasts and exclusive Stake.us bonus offers in one place.
+            </p>
 
-        <a href="#referrals" class="block py-2 text-white hover:text-blue-300">Referrals</a>
-
-        <button class="dropdown-btn-mobile block w-full text-left py-2 text-white hover:text-blue-300">
-            Casino Insights <i class="fas fa-angle-down ml-2"></i>
-        </button>
-        <div class="dropdown-content-mobile hidden pl-4">
-            <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
-            <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
-            <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
-        </div>
-
-        <a href="#affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
-    </div>
-</nav>
-
-<!-- JavaScript for Clickable Dropdowns & Mobile Menu -->
-<script>
-    // Mobile Menu Toggle
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    // Click-to-Toggle Dropdowns (Desktop)
-    document.querySelectorAll('.dropdown-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const dropdown = this.nextElementSibling;
-            dropdown.classList.toggle('hidden');
-        });
-    });
-
-    // Click-to-Toggle Dropdowns (Mobile)
-    document.querySelectorAll('.dropdown-btn-mobile').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const dropdown = this.nextElementSibling;
-            dropdown.classList.toggle('hidden');
-        });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        document.querySelectorAll('.dropdown-content').forEach(menu => {
-            if (!menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
-                menu.classList.add('hidden');
-            }
-        });
-        document.querySelectorAll('.dropdown-content-mobile').forEach(menu => {
-            if (!menu.contains(e.target) && !menu.previousElementSibling.contains(e.target)) {
-                menu.classList.add('hidden');
-            }
-        });
-    });
-</script>
-
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4">
-        <a href="/" class="block py-2 text-white hover:text-blue-300">Home</a>
-        <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
-        <a href="#referrals" class="block py-2 text-white hover:text-blue-300">Referrals</a>
-        <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
-        <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
-        <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
-        <a href="#affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
-    </div>
-</nav>
-
-
-<header class="hero relative flex items-center justify-center text-center min-h-screen bg-cover bg-center" 
-    style="background-image: url('https://images.unsplash.com/photo-1581579186913-45ac24ed53d2');">
-    <div class="gradient-overlay absolute inset-0 bg-black bg-opacity-60"></div>
-    
-    <div class="container mx-auto relative z-10 px-6 py-12 md:py-24">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight shadow-md">
-            Elevate Your RC Aircraft Design, Enjoy exclusive affiliate benefits
-        </h1>
-        <p class="text-lg md:text-2xl text-gray-300 mt-4 max-w-2xl mx-auto">
-            Powerful Calculators & Casino Insights for Enthusiasts.
-        </p>
-
-        <!-- Buttons Section -->
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-            <a href="rc-calculators" 
-                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 bg-blue-600 hover:bg-blue-400 text-white">
-                🚀 Explore Calculators
-            </a>
-            <a href="#referrals" 
-                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
-                🎁 View Referrals
-            </a>
-            <a href="#affiliate-leaderboard" 
-                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
-                🏆 Affiliate Race
-            </a>
-            <a href="welcome-guide" 
-                class="px-6 py-3 text-lg font-semibold rounded-lg shadow-md transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-blue-600">
-                📜 Stake.us Sign-Up Guide
-            </a>
-        </div>
-    </div>
-</header>
-
-
-    <!-- Calculators Section -->
-    <section id="calculators" class="container mx-auto py-16 px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">RC Aircraft Design Calculators</h2>
-        <div class="grid md:grid-cols-4 gap-6">
-            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
-                <i class="fas fa-weight calculator-icon"></i>
-                <h3 class="text-xl font-semibold mb-4">Thrust-to-Weight</h3>
-                <p class="mb-4">Calculate optimal thrust ratios for peak performance.</p>
-                <a href="rc-calculators" class="cta-button">Calculate</a>
+            <!-- Buttons Section -->
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <a href="rc-calculators" class="btn-primary">
+                    <i class="fas fa-calculator mr-2" aria-hidden="true"></i> RC Calculators
+                </a>
+                <a href="welcome-guide" class="btn-secondary">
+                    <i class="fas fa-gift mr-2" aria-hidden="true"></i> Stake.us Guide
+                </a>
+                <a href="#affiliate-leaderboard" class="btn-secondary">
+                    <i class="fas fa-trophy mr-2" aria-hidden="true"></i> Affiliate Race
+                </a>
             </div>
-            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
-                <i class="fas fa-battery-full calculator-icon"></i>
-                <h3 class="text-xl font-semibold mb-4">Battery Life</h3>
-                <p class="mb-4">Estimate flight times and battery requirements.</p>
-                <a href="rc-calculators" class="cta-button">Calculate</a>
-            </div>
-            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
-                <i class="fas fa-balance-scale calculator-icon"></i>
-                <h3 class="text-xl font-semibold mb-4">Center of Gravity</h3>
-                <p class="mb-4">Optimize aircraft stability and control.</p>
-                <a href="rc-calculators" class="cta-button">Calculate</a>
-            </div>
-            <div class="feature-card bg-gray-800 p-6 rounded-lg text-center">
-                <i class="fas fa-ruler calculator-icon"></i>
-                <h3 class="text-xl font-semibold mb-4">Wing Sizing</h3>
-                <p class="mb-4">Determine optimal wing dimensions.</p>
-                <a href="rc-calculators" class="cta-button">Calculate</a>
+        </div>
+    </header>
+
+    <!-- Site Purpose Section - NEW ADDITION to explain the dual focus -->
+    <section class="bg-gradient-to-r from-blue-900 to-indigo-900 py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">Welcome to FlyWise Guides</h2>
+                <p class="text-lg text-gray-200 mb-4">
+                    We offer two complementary services for enthusiasts: precision tools for RC aircraft design and exclusive benefits for social casino players.
+                </p>
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="bg-blue-800 bg-opacity-50 p-6 rounded-lg">
+                        <i class="fas fa-plane text-3xl text-white mb-4" aria-hidden="true"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">RC Aircraft Tools</h3>
+                        <p class="text-gray-200">Professional-grade calculators for optimizing your model aircraft performance.</p>
+                    </div>
+                    <div class="bg-blue-800 bg-opacity-50 p-6 rounded-lg">
+                        <i class="fas fa-coins text-3xl text-white mb-4" aria-hidden="true"></i>
+                        <h3 class="text-xl font-semibold text-white mb-2">Casino Affiliate Program</h3>
+                        <p class="text-gray-200">Exclusive sign-up bonuses and monthly rewards through our Stake.us partnership.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-	
-<section id="affiliate-leaderboard" class="bg-gradient-to-br from-gray-900 to-blue-900 py-16">
+
+    <!-- Calculators Section -->
+    <section id="calculators" class="py-16 px-4 bg-gray-900">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center section-title">RC Aircraft Design Calculators</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card p-6 text-center">
+                    <i class="fas fa-weight calculator-icon" aria-hidden="true"></i>
+                    <h3 class="text-xl font-semibold mb-4">Thrust-to-Weight</h3>
+                    <p class="mb-4 text-gray-300">Calculate optimal thrust ratios for peak performance and flight characteristics.</p>
+                    <a href="rc-calculators" class="btn-primary">Calculate</a>
+                </div>
+                <div class="feature-card p-6 text-center">
+                    <i class="fas fa-battery-full calculator-icon" aria-hidden="true"></i>
+                    <h3 class="text-xl font-semibold mb-4">Battery Life</h3>
+                    <p class="mb-4 text-gray-300">Estimate flight times and power requirements for different configurations.</p>
+                    <a href="rc-calculators" class="btn-primary">Calculate</a>
+                </div>
+                <div class="feature-card p-6 text-center">
+                    <i class="fas fa-balance-scale calculator-icon" aria-hidden="true"></i>
+                    <h3 class="text-xl font-semibold mb-4">Center of Gravity</h3>
+                    <p class="mb-4 text-gray-300">Optimize aircraft stability and control with precise CoG calculations.</p>
+                    <a href="rc-calculators" class="btn-primary">Calculate</a>
+                </div>
+                <div class="feature-card p-6 text-center">
+                    <i class="fas fa-ruler calculator-icon" aria-hidden="true"></i>
+                    <h3 class="text-xl font-semibold mb-4">Wing Sizing</h3>
+                    <p class="mb-4 text-gray-300">Determine optimal wing dimensions and loading for your aircraft model.</p>
+                    <a href="rc-calculators" class="btn-primary">Calculate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- Affiliate Leaderboard Section - Redesigned for consistency -->
+<section id="affiliate-leaderboard" class="py-16 bg-gradient-to-br from-gray-900 to-blue-900">
     <div class="container mx-auto px-4">
-        <!-- Past Winners Banner with Contact Box Side by Side -->
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-            <!-- January Winner Banner -->
-            <div class="bg-gradient-to-r from-purple-900 to-indigo-900 rounded-xl p-6 shadow-2xl">
-                <div class="text-center">
-                    <h3 class="text-2xl font-bold text-white mb-2">January Champion</h3>
-                    <div class="flex items-center justify-center space-x-4">
-                        <div class="bg-purple-800 rounded-xl p-4 inline-flex items-center">
-                            <i class="fas fa-crown text-yellow-500 text-2xl mr-3"></i>
-                            <div>
-                                <p class="text-gray-300 text-sm">January 2025 Winner</p>
-                                <p class="text-white font-bold text-xl">*****r13</p>
-                                <p class="text-green-400 font-semibold">$338.86 Total Wager</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <h2 class="text-4xl font-bold text-white text-center section-title mb-10">Stake.us Monthly Affiliate Race</h2>
+        <p class="text-xl text-gray-300 text-center mb-12">Compete, wager, and win crypto rewards! Prizes are sent to your wallet in BTC, ETH, XRP or LTC.</p>
+        
+        <!-- Current Month Leaderboard - MOVED UP -->
+        <div class="leaderboard-card overflow-hidden mb-12">
+            <div class="bg-blue-900 text-white py-4 px-6">
+                <h3 class="text-xl font-bold">March 2025 Leaderboard</h3>
             </div>
             
-            <!-- February Winner Banner with 2nd and 3rd place -->
-            <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-xl p-6 shadow-2xl">
-                <div class="text-center">
-                    <h3 class="text-2xl font-bold text-white mb-3">February Champions</h3>
-                    <!-- 1st Place -->
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-blue-800 rounded-xl p-3 w-full inline-flex items-center">
-                            <i class="fas fa-crown text-yellow-500 text-xl mr-2"></i>
-                            <div>
-                                <p class="text-gray-300 text-xs">1st Place</p>
-                                <p class="text-white font-bold text-lg">*********r05</p>
-                                <p class="text-green-400 font-semibold text-sm">$4647.00 Total Wager</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2nd Place -->
-                    <div class="flex items-center justify-center mb-3">
-                        <div class="bg-blue-800/80 rounded-xl p-2 w-full inline-flex items-center">
-                            <i class="fas fa-medal text-gray-300 text-lg mr-2"></i>
-                            <div>
-                                <p class="text-gray-300 text-xs">2nd Place</p>
-                                <p class="text-white font-bold text-md">********olZ</p>
-                                <p class="text-green-400 font-semibold text-sm">$1278.51 Total Wager</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3rd Place -->
-                    <div class="flex items-center justify-center">
-                        <div class="bg-blue-800/60 rounded-xl p-2 w-full inline-flex items-center">
-                            <i class="fas fa-award text-amber-700 text-lg mr-2"></i>
-                            <div>
-                                <p class="text-gray-300 text-xs">3rd Place</p>
-                                <p class="text-white font-bold text-md">***cue</p>
-                                <p class="text-green-400 font-semibold text-sm">$602.03 Total Wager</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Contact Info Box -->
-            <div class="bg-gray-800 rounded-xl shadow-2xl border border-gray-700 p-6">
-                <div class="text-center mb-4">
-                    <i class="fas fa-coins text-yellow-500 text-3xl mb-2"></i>
-                    <h4 class="text-xl font-bold text-white">Claim Your Prize</h4>
-                    <p class="text-gray-300 text-sm mt-2">Winners: Please contact me with your preferred cryptocurrency address and your full Username to receive your prize</p>
-                </div>
-                <div class="space-y-4">
-                    <div class="bg-gray-700 p-4 rounded-lg">
-                        <p class="text-gray-300 text-sm mb-2">Contact Email:</p>
-                        <p class="text-green-400 font-mono text-sm break-all">fly.postbox882@passinbox.com</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-gray-400 text-xs">Please make sure to include your full stake.us username when contacting</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-white mb-4">Stake.us Monthly Affiliate Race</h2>
-            <p class="text-xl text-gray-300">Compete, wager, and win crypto!  (sent to the wallet of your choosing, in the crypto of your choosing BTC,ETH,XRP Or LTC)</p>
-        </div>
-
-        <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden">
-            <div class="grid grid-cols-3 bg-gray-700 text-white py-4 px-6">
+            <div class="grid grid-cols-3 bg-gray-800 text-white py-3 px-6">
                 <div class="text-left font-semibold">Rank</div>
                 <div class="text-center font-semibold">Player</div>
                 <div class="text-right font-semibold">Total Wager</div>
             </div>
 
-            <div class="leaderboard-entries">
-                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+            <div class="divide-y divide-gray-700">
+                <div class="grid grid-cols-3 py-4 px-6 hover:bg-gray-700 transition duration-300">
                     <div class="text-left flex items-center">
-                        <span class="bg-yellow-500 text-black rounded-full w-8 h-8 flex items-center justify-center mr-4">1</span>
-                        <i class="fas fa-trophy text-yellow-500 mr-2"></i>
+                        <span class="rank-badge bg-yellow-500 text-black">1</span>
                         <span class="text-white">********olZ</span>
                     </div>
                     <div class="text-center text-gray-300">Verified Player</div>
-                    <div class="text-right text-green-400 font-bold">$2681.55</div>
+                    <div class="text-right text-green-400 font-bold">$2,681.55</div>
                 </div>
 
-                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                <div class="grid grid-cols-3 py-4 px-6 hover:bg-gray-700 transition duration-300">
                     <div class="text-left flex items-center">
-                        <span class="bg-gray-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">2</span>
-                        <i class="fas fa-medal text-gray-400 mr-2"></i>
+                        <span class="rank-badge bg-gray-500 text-white">2</span>
                         <span class="text-white">****k60</span>
                     </div>
                     <div class="text-center text-gray-300">Verified Player</div>
                     <div class="text-right text-green-400 font-bold">$112.00</div>
                 </div>
 
-                <div class="grid grid-cols-3 py-4 px-6 border-b border-gray-700 hover:bg-gray-700 transition duration-300">
+                <div class="grid grid-cols-3 py-4 px-6 hover:bg-gray-700 transition duration-300">
                     <div class="text-left flex items-center">
-                        <span class="bg-bronze text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">3</span>
-                        <i class="fas fa-medal text-bronze mr-2"></i>
+                        <span class="rank-badge bg-bronze text-white">3</span>
                         <span class="text-white">*********r05</span>
                     </div>
                     <div class="text-center text-gray-300">Verified Player</div>
@@ -475,7 +454,7 @@
 
                 <div class="grid grid-cols-3 py-4 px-6 hover:bg-gray-700 transition duration-300">
                     <div class="text-left flex items-center">
-                        <span class="bg-gray-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4">4</span>
+                        <span class="rank-badge bg-gray-600 text-white">4</span>
                         <span class="text-white">***cue</span>
                     </div>
                     <div class="text-center text-gray-300">Verified Player</div>
@@ -483,137 +462,146 @@
                 </div>
             </div>
         </div>
-
-        <div class="mt-8 text-center">
-            <h3 class="text-2xl font-bold text-white mb-4">Monthly Prize Pool</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-yellow-500 text-black p-6 rounded-xl">
-                    <h4 class="text-xl font-bold">1st Place</h4>
-                    <p class="text-2xl font-extrabold">$10 Crypto</p>
-                </div>
-                <div class="bg-gray-500 text-white p-6 rounded-xl">
-                    <h4 class="text-xl font-bold">2nd Place</h4>
-                    <p class="text-2xl font-extrabold">$5 Crypto</p>
-                </div>
-                <div class="bg-bronze text-white p-6 rounded-xl">
-                    <h4 class="text-xl font-bold">3rd Place</h4>
-                    <p class="text-2xl font-extrabold">$1 Crypto</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
- <div class="container mx-auto px-4 mt-12 text-center">
-    <h3 class="text-2xl font-bold text-white mb-4">How to Participate</h3>
-    <div class="grid md:grid-cols-3 gap-3">
-        <div class="bg-gray-800 p-6 rounded-xl">
-            <i class="fas fa-sign-in-alt text-4xl text-blue-500 mb-4"></i>
-            <h4 class="text-xl font-semibold mb-2">Sign Up</h4>
-            <p class="text-gray-300">Create an account on Stake.us Under my referral code:Augment or link </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-xl">
-            <i class="fas fa-dice text-4xl text-green-500 mb-4"></i>
-            <h4 class="text-xl font-semibold mb-2">Wager</h4>
-            <p class="text-gray-300">Place wagers to increase your ranking</p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-xl">
-            <i class="fas fa-trophy text-4xl text-yellow-500 mb-4"></i>
-            <h4 class="text-xl font-semibold mb-2">Win</h4>
-            <p class="text-gray-300">Top 3 players win crypto prizes</p>
-        </div>
-    </div>
-</div>
-
-        <div class="text-center mt-12">
-            <a href="https://stake.us/?c=Augment" class="cta-button text-lg px-8 py-4">
-                Join the Race Now!
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<section id="referrals" class="bg-gray-900 py-16">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Top Casino Referral Opportunities</h2>
         
-        <!-- Earnings Potential Highlight -->
-        <div class="bg-gradient-to-r from-blue-800 to-purple-800 rounded-xl p-6 mb-12 text-center">
-            <h3 class="text-2xl font-bold text-white mb-4">Maximize Your Crypto Earnings!</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                    <p class="text-xl font-semibold text-green-400">Daily Potential</p>
-                    <p class="text-3xl font-bold text-white">$3.80</p>
+        <!-- Monthly Prize Pool Section -->
+        <div class="mt-8 text-center mb-12">
+            <h3 class="text-2xl font-bold text-white mb-6">Monthly Prize Pool</h3>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-black p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="mb-2">
+                        <i class="fas fa-crown text-3xl" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">1st Place</h4>
+                    <p class="text-3xl font-extrabold">$10 Crypto</p>
                 </div>
-                <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                    <p class="text-xl font-semibold text-blue-400">Weekly Potential</p>
-                    <p class="text-3xl font-bold text-white">$26.60</p>
+                <div class="bg-gradient-to-br from-gray-400 to-gray-600 text-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="mb-2">
+                        <i class="fas fa-medal text-3xl" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">2nd Place</h4>
+                    <p class="text-3xl font-extrabold">$5 Crypto</p>
                 </div>
-                <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
-                    <p class="text-xl font-semibold text-yellow-400">Monthly Potential</p>
-                    <p class="text-3xl font-bold text-white">$114.00</p>
+                <div class="bg-gradient-to-br from-amber-700 to-amber-900 text-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="mb-2">
+                        <i class="fas fa-award text-3xl" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">3rd Place</h4>
+                    <p class="text-3xl font-extrabold">$1 Crypto</p>
                 </div>
             </div>
-            <p class="mt-4 text-gray-300">Disclaimer: Earnings may vary. Always gamble responsibly.</p>
         </div>
 
-        <!-- Existing Referral Opportunities Grid -->
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="feature-card bg-gray-800 p-6 rounded-lg relative">
-                <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs">
-                    $1/Day
+        <!-- How to Participate Section -->
+        <div class="container mx-auto px-4 mt-16 text-center">
+            <h3 class="text-2xl font-bold text-white mb-8 section-title">How to Participate</h3>
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-blue-500 transform hover:translateY(-5px) transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-900 mb-4">
+                        <i class="fas fa-sign-in-alt text-3xl text-blue-500" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Sign Up</h4>
+                    <p class="text-gray-300">Create an account on Stake.us using referral code: <span class="font-bold text-blue-400">Augment</span></p>
+                    <a href="https://stake.us/?c=Augment" class="mt-4 inline-block px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-300">Register Now</a>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">Stake.us</h3>
-                <p class="mb-4">Daily Earnings: $1<br>Sign up bonus: $25<br>Wager leaderboard access, with potential of winning $10<br>No playthrough required on the daily dollar!</p>
-                <a href="https://stake.us/?c=Fly" class="cta-button">Join Now</a>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-green-500 transform hover:translateY(-5px) transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-900 mb-4">
+                        <i class="fas fa-dice text-3xl text-green-500" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Wager</h4>
+                    <p class="text-gray-300">Place wagers on your favorite games to increase your ranking in the competition</p>
+                    <p class="mt-2 text-sm text-gray-400">All wagers count toward your monthly total</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-yellow-500 transform hover:translateY(-5px) transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-yellow-900 mb-4">
+                        <i class="fas fa-trophy text-3xl text-yellow-500" aria-hidden="true"></i>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-3">Win</h4>
+                    <p class="text-gray-300">Top 3 players at the end of each month win cryptocurrency prizes</p>
+                    <p class="mt-2 text-sm text-gray-400">Winners announced on the 1st of each month</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Past Winners and Contact Box -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12 mt-16">
+            <!-- January Winner Card -->
+            <div class="leaderboard-card p-6 shadow-2xl">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-800 mb-4">
+                        <i class="fas fa-crown text-yellow-500 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">January Champion</h3>
+                    <div class="bg-purple-800 bg-opacity-50 rounded-xl p-4 mt-4">
+                        <p class="text-gray-300 text-sm">January 2025 Winner</p>
+                        <p class="text-white font-bold text-xl">*****r13</p>
+                        <p class="text-green-400 font-semibold">$338.86 Total Wager</p>
+                    </div>
+                </div>
             </div>
             
-            <div class="feature-card bg-gray-800 p-6 rounded-lg relative">
-                <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs">
-                    $0.50/Day
+            <!-- February Winner Card -->
+            <div class="leaderboard-card p-6 shadow-2xl">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-800 mb-4">
+                        <i class="fas fa-trophy text-yellow-500 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">February Champions</h3>
+                    
+                    <!-- Top 3 Winners -->
+                    <div class="space-y-3 mt-4">
+                        <!-- 1st Place -->
+                        <div class="bg-blue-800 bg-opacity-50 rounded-xl p-3">
+                            <div class="flex items-center mb-1">
+                                <i class="fas fa-crown text-yellow-500 text-xl mr-2" aria-hidden="true"></i>
+                                <p class="text-gray-300 text-xs">1st Place</p>
+                            </div>
+                            <p class="text-white font-bold text-lg">*********r05</p>
+                            <p class="text-green-400 font-semibold text-sm">$4,647.00 Total Wager</p>
+                        </div>
+                        
+                        <!-- 2nd Place -->
+                        <div class="bg-blue-800 bg-opacity-30 rounded-xl p-3">
+                            <div class="flex items-center mb-1">
+                                <i class="fas fa-medal text-gray-300 text-lg mr-2" aria-hidden="true"></i>
+                                <p class="text-gray-300 text-xs">2nd Place</p>
+                            </div>
+                            <p class="text-white font-bold text-lg">********olZ</p>
+                            <p class="text-green-400 font-semibold text-sm">$1,278.51 Total Wager</p>
+                        </div>
+                        
+                        <!-- 3rd Place -->
+                        <div class="bg-blue-800 bg-opacity-30 rounded-xl p-3">
+                            <div class="flex items-center mb-1">
+                                <i class="fas fa-award text-amber-700 text-lg mr-2" aria-hidden="true"></i>
+                                <p class="text-gray-300 text-xs">3rd Place</p>
+                            </div>
+                            <p class="text-white font-bold text-lg">***cue</p>
+                            <p class="text-green-400 font-semibold text-sm">$602.03 Total Wager</p>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">CrownCoinsCasino</h3>
-                <p class="mb-4">Sign up bonus: 2SC and 100k Gold Coins<br>Daily Earnings: $0.30-$1</p>
-                <a href="https://crowncoinscasino.com/?utm_campaign=51455a93-f458-46c9-a015-93bace4614db&utm_source=friends" class="cta-button">Join Now</a>
             </div>
             
-            <div class="feature-card bg-gray-800 p-6 rounded-lg relative">
-                <div class="absolute top-2 right-2 bg-purple-500 text-white px-2 py-1 rounded-full text-xs">
-                    $0.50/Day
+            <!-- Contact Info Box -->
+            <div class="leaderboard-card p-6 shadow-2xl border border-gray-700">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800 mb-4">
+                        <i class="fas fa-envelope text-blue-400 text-2xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Claim Your Prize</h3>
+                    <p class="text-gray-300 text-sm mb-6">Winners: Contact us with your preferred cryptocurrency address and full Username to receive your prize</p>
+                    
+                    <div class="bg-gray-800 p-4 rounded-lg mb-4">
+                        <p class="text-gray-300 text-sm mb-2">Contact Email:</p>
+                        <p class="text-green-400 font-mono text-sm break-all">fly.postbox882@passinbox.com</p>
+                    </div>
+                    <p class="text-gray-400 text-xs">Please include your full stake.us username when contacting</p>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">Luckybird</h3>
-                <p class="mb-4">Daily Earnings: $0.30-$1<br>Weekly bonus wheel: $0.30-$10<br>Faucet that can be used often for $0.05</p>
-                <a href="https://luckybird.io/?c=harry" class="cta-button">Join Now</a>
-            </div>
-            
-            <div class="feature-card bg-gray-800 p-6 rounded-lg relative">
-                <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">
-                    $1/Day
-                </div>
-                <h3 class="text-xl font-semibold mb-4">Zula</h3>
-                <p class="mb-4">Daily Earnings: $1<br>Good 100% bonus deals for +EV gambling.</p>
-                <a href="https://www.zulacasino.com/signup/7ec7817e-9805-4f95-9b6a-7251c6c15564" class="cta-button">Join Now</a>
-            </div>
-            
-            <div class="feature-card bg-gray-800 p-6 rounded-lg relative">
-                <div class="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
-                    $0.50/Day
-                </div>
-                <h3 class="text-xl font-semibold mb-4">FortuneCoins</h3>
-                <p class="mb-4">Daily Earnings: 50FC = $0.50<br>Good 100% bonus deals for +EV gambling.</p>
-                <a href="https://www.fortunecoins.com/signup/7b11c20e-82be-4c0c-b163-f54b038adee6" class="cta-button">Join Now</a>
-            </div>
-            
-            <div class="feature-card bg-gray-800 p-6 rounded-lg">
-                <h3 class="text-xl font-semibold mb-4">Stake.com</h3>
-                <p class="mb-4">International version with a wide variety of games and perks.</p>
-                <a href="https://www.stake.com/?c=chOba0eN" class="cta-button">Join Now</a>
             </div>
         </div>
     </div>
 </section>
-<!-- Footer -->
+
 <footer class="bg-gradient-to-b from-gray-800 to-gray-900 text-white py-12">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -627,6 +615,36 @@
                     and resources to design and optimize their aircraft for maximum performance. 
                     Join us and take flight!
                 </p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://www.facebook.com/profile.php?id=61572404429501" class="text-gray-400 hover:text-white" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCf1vx5lG3Cc2PftfdtWmldQ" class="text-gray-400 hover:text-white" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+                            <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="white"/>
+                        </svg>
+                    </a>
+                    <a href="https://rumble.com/user/0xAugment" class="text-gray-400 hover:text-white" aria-label="Rumble" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.897 15.24l-3.722-2.148V8.907l3.722-2.148 3.722 2.148 3.722 2.148-3.722 2.147-3.722 2.147v-.11z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0z"/>
+                            <path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8z"/>
+                            <circle cx="18.406" cy="5.594" r="1.44"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 9.99 9.99 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <!-- Quick Links Section -->
@@ -643,7 +661,7 @@
                         </li>
                         <li>
                             <a href="/rc-calculators" class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center">
-                                <span class="mr-2">→</span> Calculators
+                                <span class="mr-2">→</span> RC Calculators
                             </a>
                         </li>
                         <li>
@@ -652,47 +670,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="stake-us-referral-faq" class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center">
-                                <span class="mr-2">→</span> About Us
+                            <a href="/welcome-guide" class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center">
+                                <span class="mr-2">→</span> Stake.us Guide
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/profile.php?id=61572404429501" 
-                               class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <!-- Facebook Icon (SVG) -->
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                                Facebook
+                            <a href="/stake-us-referral-faq" class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center">
+                                <span class="mr-2">→</span> About Us
                             </a>
                         </li>
-			<li>
-    <a href="https://www.youtube.com/channel/UCf1vx5lG3Cc2PftfdtWmldQ" 
-       class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center"
-       target="_blank"
-       rel="noopener noreferrer">
-        <!-- YouTube Icon (SVG) -->
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
-            <path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="white"/>
-        </svg>
-        YouTube
-    </a>
-</li>
-<li>
-    <a href="https://rumble.com/user/0xAugment" 
-       class="text-gray-300 hover:text-blue-400 transition-colors duration-200 flex items-center"
-       target="_blank"
-       rel="noopener noreferrer">
-        <!-- Rumble Icon (SVG) -->
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.897 15.24l-3.722-2.148V8.907l3.722-2.148 3.722 2.148 3.722 2.148-3.722 2.147-3.722 2.147v-.11z"/>
-        </svg>
-        Rumble
-    </a>
-</li>
                     </ul>
                 </nav>
             </div>
@@ -706,10 +692,21 @@
                     <p class="text-gray-300">
                         Have questions or feedback? We'd love to hear from you!
                     </p>
-                    <a href="mailto:affiliates@flywiseguides.com"
-                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200">
-                        affiliates@flywiseguides.com
-                    </a>
+                    <p class="text-gray-300">
+                        Email: <a href="mailto:affiliates@flywiseguides.com"
+                           class="text-blue-400 hover:underline">
+                            affiliates@flywiseguides.com
+                        </a>
+                    </p>
+                    <p class="text-gray-300">
+                        Alternate: <a href="mailto:fly.postbox882@passinbox.com"
+                           class="text-blue-400 hover:underline">
+                            fly.postbox882@passinbox.com
+                        </a>
+                    </p>
+                    <p class="text-gray-300 mt-4">
+                        Join our affiliate program for exclusive benefits.
+                    </p>
                 </div>
             </div>
         </div>
@@ -719,6 +716,66 @@
             <p class="text-center text-gray-400">
                 &copy; 2025 FlyWise Guides. All rights reserved.
             </p>
+
         </div>
     </div>
 </footer>
+
+    <!-- JavaScript for interactive elements -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+        });
+        
+        // Desktop dropdown functionality
+        const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+        
+        dropdownBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                content.classList.toggle('dropdown-visible');
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+            });
+        });
+        
+        // Mobile dropdown functionality
+        const mobileDropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
+        
+        mobileDropdownBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                content.classList.toggle('hidden');
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+            });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            dropdownBtns.forEach(btn => {
+                if (!btn.contains(event.target)) {
+                    const content = btn.nextElementSibling;
+                    content.classList.remove('dropdown-visible');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    </script>
+    
+    <!-- Clarity tracking code for analytics -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "cghkr8xz6d");
+    </script>
+</body>
+</html>
