@@ -7,7 +7,7 @@
     
     <url>
         <loc>https://www.flywiseguides.com/</loc>
-        <lastmod>2024-03-05</lastmod>
+        <lastmod>2024-03-15</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
         <xhtml:link 
@@ -63,12 +63,23 @@
 
     <url>
         <loc>https://www.flywiseguides.com/parameter-analyzer</loc>
-        <lastmod>2024-03-05</lastmod>
+        <lastmod>2024-03-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <xhtml:link 
             rel="alternate"
             hreflang="en"
             href="https://www.flywiseguides.com/parameter-analyzer"/>
+    </url>
+
+        <url>
+        <loc>https://www.flywiseguides.com/stake-weekly-links</loc>
+        <lastmod>2024-03-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link 
+            rel="alternate"
+            hreflang="en"
+            href="https://www.flywiseguides.com/stake-weekly-links"/>
     </url>
 </urlset>
