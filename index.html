@@ -154,13 +154,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            pointer-events: none;
         }
 
         .dropdown-visible {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Mobile dropdown improvements */
+        .mobile-dropdown-content {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .mobile-dropdown-content.show {
+            max-height: 300px;
         }
 
         /* Skip link for accessibility */
@@ -285,37 +298,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden md:flex items-center space-x-6">
                 <a href="/" class="text-white hover:text-blue-300 transition">Home</a>
 
-                <!-- Calculators Dropdown -->
+                <!-- Tools Dropdown -->
                 <div class="relative">
                     <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center" aria-expanded="false" aria-haspopup="true">
-                        Calculators <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
+                        Tools <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
                     </button>
-                    <div class="dropdown-content absolute left-0 mt-2 w-48 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Calculators submenu">
+                    <div class="dropdown-content absolute left-0 mt-2 w-48 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Tools submenu">
                         <a href="rc-calculators" class="block px-4 py-2 text-white hover:text-blue-300">RC Calculators</a>
                         <a href="parameter-analyzer" class="block px-4 py-2 text-white hover:text-blue-300">Parameter Analyzer</a>
+                        <a href="stake-us-pump-multiplier" class="block px-4 py-2 text-white hover:text-blue-300">Pump Multiplier</a>
                     </div>
                 </div>
 
-                <a href="https://stake.us/?c=Augment" class="btn-primary text-sm" aria-label="Sign up for Stake.us using bonus code Augment">Stake.us SIGN UP</a>
-
-                <!-- Casino Insights Dropdown -->
+                <!-- Casino Dropdown -->
                 <div class="relative">
                     <button class="dropdown-btn text-white hover:text-blue-300 transition flex items-center" aria-expanded="false" aria-haspopup="true">
-                        Casino Insights <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
+                        Casino <i class="fas fa-angle-down ml-2" aria-hidden="true"></i>
                     </button>
-                    <div class="dropdown-content absolute left-0 mt-2 w-56 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Casino insights submenu">
-                        <a href="stake-us-referral-faq" class="block px-4 py-2 text-white hover:text-blue-300">Frequently Asked Questions (FAQ)</a>
-                        <a href="stake-us-pump-multiplier" class="block px-4 py-2 text-white hover:text-blue-300">Pump Multiplier</a>
-                        <a href="welcome-guide#achievements" class="block px-4 py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
-                        <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
-                        <a href="#referrals" class="block px-4 py-2 text-white hover:text-blue-300">Other Free Daily SC Casinos</a>
+                    <div class="dropdown-content absolute left-0 mt-2 w-56 bg-black bg-opacity-95 rounded-lg shadow-lg" aria-label="Casino submenu">
+                        <a href="welcome-guide" class="block px-4 py-2 text-white hover:text-blue-300">Sign Up Guide</a>
+                        <a href="welcome-guide#achievements" class="block px-4 py-2 text-white hover:text-blue-300">VIP Bonuses</a>
+                        <a href="stake-us-referral-faq" class="block px-4 py-2 text-white hover:text-blue-300">FAQ</a>
+                        <a href="#referrals" class="block px-4 py-2 text-white hover:text-blue-300">Daily SC Casinos</a>
                     </div>
                 </div>
 
-                <a href="#affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Affiliate Race</a>
+                <a href="#affiliate-leaderboard" class="text-white hover:text-blue-300 transition">Leaderboard</a>
+                
+                <a href="https://stake.us/?c=Augment" class="btn-primary text-sm" aria-label="Sign up for Stake.us using bonus code Augment">Sign Up</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -324,32 +337,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </button>
         </div>
 
-        <!-- Mobile Menu - Simplified with a single implementation -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 p-4" aria-label="Mobile navigation">
-            <a href="/" class="block py-2 text-white hover:text-blue-300">Home</a>
+            <a href="/" class="block py-3 text-white hover:text-blue-300 border-b border-gray-700">Home</a>
             
-            <button class="mobile-dropdown-btn w-full text-left py-2 text-white hover:text-blue-300 flex justify-between items-center" aria-expanded="false">
-                <span>Calculators</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
+            <button class="mobile-dropdown-btn w-full text-left py-3 text-white hover:text-blue-300 flex justify-between items-center border-b border-gray-700" aria-expanded="false">
+                <span>Tools</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
             </button>
-            <div class="mobile-dropdown-content hidden pl-4">
-                <a href="rc-calculators" class="block py-2 text-white hover:text-blue-300">RC Calculators</a>
-                <a href="parameter-analyzer" class="block py-2 text-white hover:text-blue-300">Parameter Analyzer</a>
+            <div class="mobile-dropdown-content hidden bg-gray-800">
+                <a href="rc-calculators" class="block py-2 px-4 text-white hover:text-blue-300">RC Calculators</a>
+                <a href="parameter-analyzer" class="block py-2 px-4 text-white hover:text-blue-300">Parameter Analyzer</a>
+                <a href="stake-us-pump-multiplier" class="block py-2 px-4 text-white hover:text-blue-300">Pump Multiplier</a>
             </div>
 
-            <a href="https://stake.us/?c=Augment" class="block py-2 text-white hover:text-blue-300">Stake.us SIGN UP</a>
-
-            <button class="mobile-dropdown-btn w-full text-left py-2 text-white hover:text-blue-300 flex justify-between items-center" aria-expanded="false">
-                <span>Casino Insights</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
+            <button class="mobile-dropdown-btn w-full text-left py-3 text-white hover:text-blue-300 flex justify-between items-center border-b border-gray-700" aria-expanded="false">
+                <span>Casino</span> <i class="fas fa-angle-down" aria-hidden="true"></i>
             </button>
-            <div class="mobile-dropdown-content hidden pl-4">
-                <a href="stake-us-referral-faq" class="block py-2 text-white hover:text-blue-300">Frequently Asked Questions</a>
-                <a href="stake-us-pump-multiplier" class="block py-2 text-white hover:text-blue-300">Pump Multiplier</a>
-                <a href="welcome-guide#achievements" class="block py-2 text-white hover:text-blue-300">VIP Bonus Guide</a>
-                <a href="welcome-guide" class="block py-2 text-white hover:text-blue-300">Stake.us Sign up Guide</a>
-                <a href="#referrals" class="block py-2 text-white hover:text-blue-300">Other Free Daily SC Casinos</a>
+            <div class="mobile-dropdown-content hidden bg-gray-800">
+                <a href="welcome-guide" class="block py-2 px-4 text-white hover:text-blue-300">Sign Up Guide</a>
+                <a href="welcome-guide#achievements" class="block py-2 px-4 text-white hover:text-blue-300">VIP Bonuses</a>
+                <a href="stake-us-referral-faq" class="block py-2 px-4 text-white hover:text-blue-300">FAQ</a>
+                <a href="#referrals" class="block py-2 px-4 text-white hover:text-blue-300">Daily SC Casinos</a>
             </div>
 
-            <a href="#affiliate-leaderboard" class="block py-2 text-white hover:text-blue-300">Affiliate Race</a>
+            <a href="#affiliate-leaderboard" class="block py-3 text-white hover:text-blue-300 border-b border-gray-700">Leaderboard</a>
+            <a href="https://stake.us/?c=Augment" class="block py-3 text-white hover:text-blue-300 bg-blue-600 rounded mt-2 text-center">Sign Up for Stake.us</a>
         </div>
     </nav>
 
@@ -662,20 +674,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             
             <!-- Contact Info Box -->
-            <div class="leaderboard-card p-6 shadow-2xl border border-gray-700">
+            <div class="leaderboard-card p-6 shadow-2xl border border-gray-700 bg-gradient-to-br from-gray-800 to-gray-900">
                 <div class="text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800 mb-4">
-                        <i class="fas fa-envelope text-blue-400 text-2xl" aria-hidden="true"></i>
+                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 mb-6 shadow-lg">
+                        <i class="fas fa-trophy text-yellow-400 text-3xl" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Claim Your Prize</h3>
-                    <p class="text-gray-300 text-sm mb-6">Winners: Please fill out this form: </p>
-	            <a href="https://docs.google.com/forms/d/1-xy62y7NrDjnY82BnKyb93GISEx28pfZvEwX5ie12Js/viewform?edit_requested=true" class="block px-4 py-2 text-white hover:text-blue-300">Affiliate Bonus Form</a>
+                    <h3 class="text-3xl font-bold text-white mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">Claim Your Prize</h3>
+                    <p class="text-gray-300 text-base mb-6">🎉 Congratulations! Please complete the form below to claim your winnings:</p>
                     
-                    <div class="bg-gray-800 p-4 rounded-lg mb-4">
-                        <p class="text-gray-300 text-sm mb-2">Contact Email:</p>
-                        <p class="text-green-400 font-mono text-sm break-all">affiliates@flywiseguides.com</p>
+                    <a href="https://docs.google.com/forms/d/1-xy62y7NrDjnY82BnKyb93GISEx28pfZvEwX5ie12Js/viewform?edit_requested=true" 
+                       class="inline-block bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-8 py-3 rounded-lg mb-6 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <i class="fas fa-file-alt mr-2"></i>Claim Prize Form
+                    </a>
+                    
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 p-6 rounded-xl mb-6 border border-gray-600">
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="fas fa-envelope text-blue-400 mr-2"></i>
+                            <p class="text-gray-300 text-sm font-semibold">Contact Email:</p>
+                        </div>
+                        <p class="text-green-400 font-mono text-base break-all bg-gray-900 p-3 rounded-lg border border-gray-600">affiliates@flywiseguides.com</p>
                     </div>
-                    <p class="text-gray-400 text-xs">Please include your full stake.us username when contacting</p>
+                    
+                    <div class="bg-blue-900 bg-opacity-30 p-4 rounded-lg border border-blue-700">
+                        <p class="text-blue-300 text-sm font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Please include your full stake.us username when contacting
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -831,8 +856,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         mobileDropdownBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 const content = this.nextElementSibling;
-                content.classList.toggle('hidden');
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                
+                // Close other dropdowns
+                mobileDropdownBtns.forEach(otherBtn => {
+                    if (otherBtn !== this) {
+                        const otherContent = otherBtn.nextElementSibling;
+                        otherContent.classList.remove('show');
+                        otherBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Toggle current dropdown
+                content.classList.toggle('show');
                 this.setAttribute('aria-expanded', !isExpanded);
             });
         });
