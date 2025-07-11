@@ -1,5 +1,5 @@
 # robots.txt for flywiseguides.com
-# Last updated: March 6, 2025
+# Last updated: July 11, 2025
 
 User-agent: *
 Allow: /
