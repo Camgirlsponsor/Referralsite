@@ -8,6 +8,7 @@ Allow: /welcome-guide
 Allow: /stake-us-referral-faq
 Allow: /stake-us-pump-multiplier
 Allow: /parameter-analyzer
+Allow: /Shuffle
 
 # Prevent duplicate content issues
 Disallow: /wp-admin/
