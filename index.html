@@ -549,6 +549,9 @@
             <button class="tab-button" onclick="showTab('leaderboard-shuffle')" id="leaderboard-shuffle-tab">
                 <i class="fas fa-trophy"></i> Shuffle.Us Leaderboard
             </button>
+	    <button class="tab-button" onclick="showTab('bonus-claim')" id="bonus-claim-tab">
+                <i class="fas fa-trophy"></i> Bonus claim form
+            </button>
         </div>
 
         <!-- Tab Content -->
@@ -1048,7 +1051,126 @@
                     </div>
                 </section>
             </div>
-        </div>
+            <!-- Bonus Claim Tab -->
+            <div id="bonus-claim" class="tab-content">
+                <section class="py-20">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-12">
+                            <h2 class="text-4xl font-bold mb-6">Claim Your Exclusive Bonuses</h2>
+                            <p class="text-xl text-gray-300 mb-8">
+                                Submit your details to claim VIP bonuses, daily rewards, and participate in our exclusive competitions.
+                            </p>
+                        </div>
+                        
+                        <!-- Bonus Types Grid -->
+                        <div class="grid md:grid-cols-2 gap-8 mb-12">
+                            <div class="card p-8 text-center">
+                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i class="fas fa-gift text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Welcome Bonuses</h3>
+                                <ul class="space-y-2 text-gray-300 mb-6">
+                                    <li>• $25 Stake.us sign-up bonus</li>
+                                    <li>• Exclusive Shuffle.us benefits</li>
+                                    <li>• Daily rewards activation</li>
+                                    <li>• VIP level up bonuses</li>
+                                    <li>• Access to our Monthly Wager competitons, giving you more ways to earn!</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="card p-8 text-center">
+                                <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i class="fas fa-crown text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">VIP Level Up Bonuses</h3>
+                                <ul class="space-y-2 text-gray-300 mb-6">
+                                    <li>• Extra Crypto bonuses upon level up</li>
+                                    <li>• Sent direct in your choice of cryptocurrencies</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Main CTA Section -->
+                        <div class="card p-8 text-center mb-12">
+                            <h3 class="text-3xl font-bold mb-6">Ready to Claim Your Bonuses?</h3>
+                            <p class="text-xl text-gray-300 mb-8">
+                                Fill out our quick form to get started with your exclusive benefits. We'll process your request within 24-48 hours.
+                            </p>
+                            
+                            <!-- Replace with your actual Google Form URL -->
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScQAawQu3nBAsEnsWimF5YKJbdBNrRaYnAM5tOIMA5akT3S7w/viewform?usp=dialog target="_blank" class="btn-primary text-xl px-12 py-6 inline-block">
+                                <i class="fas fa-external-link-alt mr-3"></i>
+                                Open Bonus Claim Form
+                            </a>
+                            
+                            <p class="text-sm text-gray-400 mt-4">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Opens in a new tab • Takes 2-3 minutes to complete
+                            </p>
+                        </div>
+                        
+                        <!-- Information Cards -->
+                        <div class="grid md:grid-cols-3 gap-6 mb-12">
+                            <div class="card p-6 text-center">
+                                <i class="fas fa-clock text-blue-400 text-2xl mb-4"></i>
+                                <h4 class="font-semibold mb-2">Quick Process</h4>
+                                <p class="text-sm text-gray-300">Form takes just 2-3 minutes to complete with all necessary information</p>
+                            </div>
+                            
+                            <div class="card p-6 text-center">
+                                <i class="fas fa-shield-alt text-green-400 text-2xl mb-4"></i>
+                                <h4 class="font-semibold mb-2">Secure & Private</h4>
+                                <p class="text-sm text-gray-300">Your information is protected and only used for bonus processing</p>
+                            </div>
+                            
+                            <div class="card p-6 text-center">
+                                <i class="fas fa-rocket text-purple-400 text-2xl mb-4"></i>
+                                <h4 class="font-semibold mb-2">Fast Response</h4>
+                                <p class="text-sm text-gray-300">We process all bonus claims within 24-72 hours</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Requirements Section -->
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-center mb-6">
+                                <i class="fas fa-list-check mr-2"></i>Requirements
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-4">For Stake.us Bonuses:</h4>
+                                    <ul class="space-y-2 text-gray-300">
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check text-green-400 mr-3"></i>
+                                            Signed up with bonus code 'Augment'
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check text-green-400 mr-3"></i>
+                                            Account verified and active
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check text-green-400 mr-3"></i>
+                                            Valid email address for communication
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-4">For Shuffle.us Bonuses:</h4>
+                                    <ul class="space-y-2 text-gray-300">
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check text-green-400 mr-3"></i>
+                                            Signed up through our affiliate link
+                                        </li>
+                                        <li class="flex items-center">
+                                            <i class="fas fa-check text-green-400 mr-3"></i>
+                                            Platform launches (coming soon)
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+	</div>
     </div>
 </div>
 </div>
